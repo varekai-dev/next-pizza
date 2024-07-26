@@ -5,6 +5,7 @@ import { Button } from '../ui'
 import { Container } from './container'
 import { ArrowRight, ShoppingCart, User } from 'lucide-react'
 import Link from 'next/link'
+import { SearchInput } from './search-input'
 
 interface Props {
     className?: string
@@ -33,6 +34,9 @@ export const Header: React.FC<Props> = ({ className }) => {
                         </div>
                     </div>
                 </Link>
+                <div className="mx-10 flex-1">
+                    <SearchInput />
+                </div>
                 {/* Right part */}
                 <div className="flex items-center gap-3">
                     <Button
