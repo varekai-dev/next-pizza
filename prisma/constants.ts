@@ -156,8 +156,7 @@ export const ingredients: Omit<Ingredient, 'createdAt' | 'updatedAt'>[] = [
 export const pizzas = [
     {
         name: 'Pepperoni Fresh',
-        imageUrl:
-            'https://media.dodostatic.net/image/r:233x233/11EE7D61304FAF5A98A6958F2BB2D260.webp',
+        imageUrl: '/assets/products/pizza/peperoni-fresh.webp',
         categoryId: 1,
         ingredients: {
             connect: ingredients.slice(0, 5),
@@ -165,8 +164,7 @@ export const pizzas = [
     },
     {
         name: 'Cheese',
-        imageUrl:
-            'https://media.dodostatic.net/image/r:233x233/11EE7D610CF7E265B7C72BE5AE757CA7.webp',
+        imageUrl: '/assets/products/pizza/cheese.webp',
         categoryId: 1,
         ingredients: {
             connect: ingredients.slice(5, 10),
@@ -174,8 +172,7 @@ export const pizzas = [
     },
     {
         name: 'Chorizo Fresh',
-        imageUrl:
-            'https://media.dodostatic.net/image/r:584x584/11EE7D61706D472F9A5D71EB94149304.webp',
+        imageUrl: '/assets/products/pizza/chorizo-fresh.webp',
         categoryId: 1,
         ingredients: {
             connect: ingredients.slice(10, 40),
@@ -186,104 +183,82 @@ export const pizzas = [
 export const products = [
     {
         name: 'Omelette with Ham and Mushrooms',
-        imageUrl:
-            'https://media.dodostatic.net/image/r:292x292/11EE7970321044479C1D1085457A36EB.webp',
+        imageUrl: '/assets/products/combo/omelette-with-ham-and-mushrooms.webp',
         categoryId: 2,
     },
     {
         name: 'Omelette with Pepperoni',
-        imageUrl:
-            'https://media.dodostatic.net/image/r:292x292/11EE94ECF33B0C46BA410DEC1B1DD6F8.webp',
+        imageUrl: '/assets/products/combo/omelette-with-pepperoni.webp',
         categoryId: 2,
     },
     {
         name: 'Coffee Latte',
-        imageUrl:
-            'https://media.dodostatic.net/image/r:292x292/11EE7D61B0C26A3F85D97A78FEEE00AD.webp',
-        categoryId: 2,
+        imageUrl: '/assets/products/coffee/coffee-latte.webp',
+        categoryId: 5,
     },
     {
         name: 'Denwich Ham and Cheese',
-        imageUrl:
-            'https://media.dodostatic.net/image/r:292x292/11EE796FF0059B799A17F57A9E64C725.webp',
+        imageUrl: '/assets/products/appetizers/denwich-ham-and-cheese.webp',
         categoryId: 3,
     },
     {
         name: 'Chicken Nuggets',
-        imageUrl:
-            'https://media.dodostatic.net/image/r:292x292/11EE7D618B5C7EC29350069AE9532C6E.webp',
+        imageUrl: '/assets/products/appetizers/chicken-nuggets.webp',
         categoryId: 3,
     },
     {
         name: 'Baked Potato with Sauce 🌱',
-        imageUrl:
-            'https://media.dodostatic.net/image/r:292x292/11EED646A9CD324C962C6BEA78124F19.webp',
+        imageUrl: '/assets/products/appetizers/baked-potato-with-sauce.webp',
         categoryId: 3,
     },
     {
         name: 'Dodster',
-        imageUrl:
-            'https://media.dodostatic.net/image/r:292x292/11EE796F96D11392A2F6DD73599921B9.webp',
+        imageUrl: '/assets/products/appetizers/dodster.webp',
         categoryId: 3,
     },
     {
         name: 'Spicy Dodster 🌶️🌶️',
-        imageUrl:
-            'https://media.dodostatic.net/image/r:292x292/11EE796FD3B594068F7A752DF8161D04.webp',
+        imageUrl: '/assets/products/appetizers/spicy-dodster.webp',
         categoryId: 3,
     },
     {
         name: 'Banana Milkshake',
-        imageUrl:
-            'https://media.dodostatic.net/image/r:292x292/11EEE20B8772A72A9B60CFB20012C185.webp',
+        imageUrl: '/assets/products/cocktails/banana-milkshake.webp',
         categoryId: 4,
     },
     {
         name: 'Caramel Apple Milkshake',
-        imageUrl:
-            'https://media.dodostatic.net/image/r:292x292/11EE79702E2A22E693D96133906FB1B8.webp',
+        imageUrl: '/assets/products/cocktails/caramel-apple-milkshake.webp',
         categoryId: 4,
     },
     {
         name: 'Oreo Cookie Milkshake',
-        imageUrl:
-            'https://media.dodostatic.net/image/r:292x292/11EE796FA1F50F8F8111A399E4C1A1E3.webp',
+        imageUrl: '/assets/products/cocktails/oreo-cookie-milkshake.webp',
         categoryId: 4,
     },
     {
         name: 'Classic Milkshake 👶',
-        imageUrl:
-            'https://media.dodostatic.net/image/r:292x292/11EE796F93FB126693F96CB1D3E403FB.webp',
+        imageUrl: '/assets/products/cocktails/classic-milkshake.webp',
         categoryId: 4,
     },
     {
         name: 'Irish Cappuccino',
-        imageUrl:
-            'https://media.dodostatic.net/image/r:292x292/11EE7D61999EBDA59C10E216430A6093.webp',
-        categoryId: 5,
+        imageUrl: '/assets/products/drinks/irish-cappuccino.webp',
+        categoryId: 6,
     },
     {
         name: 'Caramel Cappuccino Coffee',
-        imageUrl:
-            'https://media.dodostatic.net/image/r:292x292/11EE7D61AED6B6D4BFDAD4E58D76CF56.webp',
-        categoryId: 5,
+        imageUrl: '/assets/products/drinks/caramel-cappuccino-coffee.webp',
+        categoryId: 6,
     },
     {
         name: 'Coconut Latte Coffee',
-        imageUrl:
-            'https://media.dodostatic.net/image/r:292x292/11EE7D61B19FA07090EE88B0ED347F42.webp',
-        categoryId: 5,
+        imageUrl: '/assets/products/drinks/coconut-latte-coffee.webp',
+        categoryId: 6,
     },
     {
         name: 'Americano Coffee',
-        imageUrl:
-            'https://media.dodostatic.net/image/r:292x292/11EE7D61B044583596548A59078BBD33.webp',
-        categoryId: 5,
-    },
-    {
-        name: 'Coffee Latte',
-        imageUrl:
-            'https://media.dodostatic.net/image/r:292x292/11EE7D61B0C26A3F85D97A78FEEE00AD.webp',
+        imageUrl: '/assets/products/coffee/americano-coffee.webp',
         categoryId: 5,
     },
 ]

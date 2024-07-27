@@ -5,53 +5,24 @@ import {
     Title,
     TopBar,
 } from '@/components/shared'
+import { prisma } from '@/prisma/prisma-client'
 
-const items = [
-    {
-        id: 1,
-        name: 'Pizza 1',
-        imageUrl:
-            'https://media.dodostatic.net/image/r:292x292/11EE7D610D2925109AB2E1C92CC5383C.jpg',
-        items: [{ price: 50 }],
-    },
-    {
-        id: 1,
-        name: 'Pizza 1',
-        imageUrl:
-            'https://media.dodostatic.net/image/r:292x292/11EE7D610D2925109AB2E1C92CC5383C.jpg',
-        items: [{ price: 50 }],
-    },
-    {
-        id: 1,
-        name: 'Pizza 1',
-        imageUrl:
-            'https://media.dodostatic.net/image/r:292x292/11EE7D610D2925109AB2E1C92CC5383C.jpg',
-        items: [{ price: 50 }],
-    },
-    {
-        id: 1,
-        name: 'Pizza 1',
-        imageUrl:
-            'https://media.dodostatic.net/image/r:292x292/11EE7D610D2925109AB2E1C92CC5383C.jpg',
-        items: [{ price: 50 }],
-    },
-    {
-        id: 1,
-        name: 'Pizza 1',
-        imageUrl:
-            'https://media.dodostatic.net/image/r:292x292/11EE7D610D2925109AB2E1C92CC5383C.jpg',
-        items: [{ price: 50 }],
-    },
-    {
-        id: 1,
-        name: 'Pizza 1',
-        imageUrl:
-            'https://media.dodostatic.net/image/r:292x292/11EE7D610D2925109AB2E1C92CC5383C.jpg',
-        items: [{ price: 50 }],
-    },
-]
-
-export default function Home() {
+export default async function Home() {
+    const categories = await prisma.category.findMany({
+        where: {
+            products: {
+                some: {},
+            },
+        },
+        include: {
+            products: {
+                include: {
+                    items: true,
+                    ingredients: true,
+                },
+            },
+        },
+    })
     return (
         <>
             <Container className="mt-10">
@@ -61,7 +32,7 @@ export default function Home() {
                     className="font-extrabold"
                 />
             </Container>
-            <TopBar />
+            <TopBar categories={categories} />
             <Container className="mt-10 pb-14">
                 <div className="flex gap-[60px]">
                     {/* Filters */}
@@ -71,16 +42,16 @@ export default function Home() {
                     {/* Products */}
                     <div className="flex-1">
                         <div className="flex flex-col gap-16">
-                            <ProductsGroupList
-                                items={items}
-                                title="Pizza"
-                                categoryId={1}
-                            />
-                            <ProductsGroupList
-                                items={items}
-                                title="Combo"
-                                categoryId={2}
-                            />
+                            {categories.map(category => {
+                                return (
+                                    <ProductsGroupList
+                                        key={category.id}
+                                        items={category.products}
+                                        title={category.name}
+                                        categoryId={category.id}
+                                    />
+                                )
+                            })}
                         </div>
                     </div>
                 </div>

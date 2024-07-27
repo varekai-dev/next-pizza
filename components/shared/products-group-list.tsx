@@ -25,7 +25,7 @@ export const ProductsGroupList: React.FC<Props> = ({
     const setActiveCategoryId = useSetCategoryActiveId()
     const intersectionRef = React.useRef(null)
     const intersection = useIntersection(intersectionRef, {
-        threshold: 0.4,
+        threshold: 0.8,
     })
 
     React.useEffect(() => {
@@ -45,6 +45,7 @@ export const ProductsGroupList: React.FC<Props> = ({
                         name={product.name}
                         imageUrl={product.imageUrl}
                         price={product.items[0].price}
+                        ingredients={product.ingredients}
                     />
                 ))}
             </div>

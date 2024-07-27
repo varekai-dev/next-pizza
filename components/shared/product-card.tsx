@@ -3,13 +3,16 @@ import React from 'react'
 import { Title } from './title'
 import { Button } from '../ui'
 import { Plus } from 'lucide-react'
+import Image from 'next/image'
+import { Ingredient } from '@prisma/client'
 
 interface Props {
     id: number
     name: string
     price: number
-    imageUrl?: string
+    imageUrl: string
     className?: string
+    ingredients?: Ingredient[]
 }
 
 export const ProductCard: React.FC<Props> = ({
@@ -18,19 +21,18 @@ export const ProductCard: React.FC<Props> = ({
     price,
     imageUrl,
     className,
+    ingredients,
 }) => {
+    console.log('ingredients', ingredients)
     return (
         <div className={className}>
-            <Link href="/product/1" className="block">
+            <Link href={`/product/${id}`} className="block">
                 <div className="flex justify-center p-6 bg-secondary rounded-lg h=[260px]">
-                    <img
-                        className="w-[215px] h-[215px]"
-                        src={imageUrl}
-                        alt="Logo"
-                    />
+                    <Image width={215} height={215} src={imageUrl} alt="Logo" />
                 </div>
                 <Title text={name} size="sm" className="mb-1 mt-3 font-bold" />
                 <p className="text-sm text-gray-400">
+                    {/* {ingredients?.join(', ')} */}
                     Pepperoni, mozzarella, tomato sauce, basil
                 </p>
                 <div className="flex justify-between items-center mt-4">
