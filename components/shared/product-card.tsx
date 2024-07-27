@@ -23,7 +23,6 @@ export const ProductCard: React.FC<Props> = ({
     className,
     ingredients,
 }) => {
-    console.log('ingredients', ingredients)
     return (
         <div className={className}>
             <Link href={`/product/${id}`} className="block">

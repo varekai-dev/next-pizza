@@ -1,6 +1,7 @@
 import {
     Container,
     Filters,
+    Products,
     ProductsGroupList,
     Title,
     TopBar,
@@ -40,20 +41,7 @@ export default async function Home() {
                         <Filters />
                     </div>
                     {/* Products */}
-                    <div className="flex-1">
-                        <div className="flex flex-col gap-16">
-                            {categories.map(category => {
-                                return (
-                                    <ProductsGroupList
-                                        key={category.id}
-                                        items={category.products}
-                                        title={category.name}
-                                        categoryId={category.id}
-                                    />
-                                )
-                            })}
-                        </div>
-                    </div>
+                    <Products categories={categories} />
                 </div>
             </Container>
         </>

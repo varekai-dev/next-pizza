@@ -4,8 +4,8 @@ import React from 'react'
 import { Title } from './title'
 import { cn } from '@/lib/utils'
 import { ProductCard } from './product-card'
-import { useIntersection } from 'react-use'
-import { useSetCategoryActiveId } from '@/store'
+import { useDebounce, useIntersection, usePrevious } from 'react-use'
+import { useCategoryActiveId, useSetCategoryActiveId } from '@/store'
 
 interface Props {
     title: string
@@ -13,6 +13,7 @@ interface Props {
     className?: string
     listClassName?: string
     categoryId: number
+    isPageScrolling: boolean
 }
 
 export const ProductsGroupList: React.FC<Props> = ({
@@ -21,21 +22,44 @@ export const ProductsGroupList: React.FC<Props> = ({
     items,
     listClassName,
     categoryId,
+    isPageScrolling,
 }) => {
+    const ref = React.createRef<HTMLDivElement>()
+    const categoryActiveId = useCategoryActiveId()
     const setActiveCategoryId = useSetCategoryActiveId()
-    const intersectionRef = React.useRef(null)
-    const intersection = useIntersection(intersectionRef, {
-        threshold: 0.8,
+    const intersection = useIntersection(ref, {
+        threshold: 1,
     })
 
+    const prevCategoryActiveId = usePrevious(categoryActiveId)
+
+    useDebounce(
+        () => {
+            if (
+                categoryId === categoryActiveId &&
+                prevCategoryActiveId !== categoryActiveId
+            ) {
+                ref.current?.scrollIntoView({
+                    block: 'center',
+                })
+            }
+        },
+        300,
+        [categoryActiveId]
+    )
+
     React.useEffect(() => {
-        if (intersection?.isIntersecting) {
+        if (intersection?.isIntersecting && !isPageScrolling) {
             setActiveCategoryId(categoryId)
         }
-    }, [categoryId, setActiveCategoryId, intersection?.isIntersecting])
-
+    }, [
+        categoryId,
+        setActiveCategoryId,
+        intersection?.isIntersecting,
+        isPageScrolling,
+    ])
     return (
-        <div className={className} id={title} ref={intersectionRef}>
+        <div ref={ref} className={className} id={title}>
             <Title text={title} size="lg" className="font-extrabold mb-5" />
             <div className={cn('grid grid-cols-3 gap-[50px]', listClassName)}>
                 {items.map(product => (

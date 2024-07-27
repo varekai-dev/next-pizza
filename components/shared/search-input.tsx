@@ -6,7 +6,12 @@ import { Search } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
-import { useClickAway, useDebounce } from 'react-use'
+import {
+    useClickAway,
+    useDebounce,
+    useLockBodyScroll,
+    useToggle,
+} from 'react-use'
 
 interface Props {
     className?: string
@@ -17,6 +22,9 @@ export const SearchInput: React.FC<Props> = ({ className }) => {
     const [products, setProducts] = React.useState<Product[]>([])
     const [focused, setFocused] = React.useState(false)
     const ref = React.useRef<HTMLInputElement>(null)
+    const [locked, toggleLocked] = useToggle(false)
+
+    useLockBodyScroll(locked)
 
     useClickAway(ref, () => {
         setFocused(false)
