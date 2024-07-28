@@ -11,7 +11,7 @@ interface Props {
 }
 
 export const Categories: React.FC<Props> = ({ className, items }) => {
-    const categoryActiveId = useCategoryActiveId()
+    const { categoryActiveId } = useCategoryActiveId()
     const setCategoryActiveId = useSetCategoryActiveId()
 
     const { refs, activeWidth, activeOffset } = useElasticTransition(
@@ -34,16 +34,12 @@ export const Categories: React.FC<Props> = ({ className, items }) => {
                         }}
                         className={cn(
                             'flex items-center font-bold h-11 rounded-2xl px-5'
-                            // {
-                            //     ['bg-white shadow-md shadow-gray-200 text-primary transition d']:
-                            //         categoryActiveId === cat.id,
-                            // }
                         )}
                         key={cat.id}
                     >
                         <button
                             className="z-10"
-                            onClick={() => setCategoryActiveId(cat.id)}
+                            onClick={() => setCategoryActiveId(cat.id, true)}
                         >
                             {cat.name}
                         </button>

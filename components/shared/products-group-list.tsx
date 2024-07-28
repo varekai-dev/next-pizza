@@ -25,7 +25,7 @@ export const ProductsGroupList: React.FC<Props> = ({
     isPageScrolling,
 }) => {
     const ref = React.createRef<HTMLDivElement>()
-    const categoryActiveId = useCategoryActiveId()
+    const { categoryActiveId, shouldScroll } = useCategoryActiveId()
     const setActiveCategoryId = useSetCategoryActiveId()
     const intersection = useIntersection(ref, {
         threshold: 1,
@@ -33,24 +33,21 @@ export const ProductsGroupList: React.FC<Props> = ({
 
     const prevCategoryActiveId = usePrevious(categoryActiveId)
 
-    useDebounce(
-        () => {
-            if (
-                categoryId === categoryActiveId &&
-                prevCategoryActiveId !== categoryActiveId
-            ) {
-                ref.current?.scrollIntoView({
-                    block: 'center',
-                })
-            }
-        },
-        300,
-        [categoryActiveId]
-    )
+    React.useEffect(() => {
+        if (
+            categoryId === categoryActiveId &&
+            prevCategoryActiveId !== categoryActiveId &&
+            shouldScroll
+        ) {
+            ref.current?.scrollIntoView({
+                block: 'center',
+            })
+        }
+    }, [ref, categoryActiveId, prevCategoryActiveId, shouldScroll, categoryId])
 
     React.useEffect(() => {
         if (intersection?.isIntersecting && !isPageScrolling) {
-            setActiveCategoryId(categoryId)
+            setActiveCategoryId(categoryId, false)
         }
     }, [
         categoryId,

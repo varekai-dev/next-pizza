@@ -35,6 +35,7 @@ export const ProductImage: React.FC<Props> = ({
             )}
         >
             <Image
+                quality={100}
                 className="left-2 top-2 relative transition-all z-10 duration-300"
                 objectFit="contain"
                 width={adaptiveSize}
