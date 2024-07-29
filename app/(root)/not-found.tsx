@@ -1,4 +1,4 @@
-import { InfoBlock } from '@/components/shared'
+import { InfoBlock } from '@/shared/components/shared'
 
 export default function NotFoundPage() {
     return (
