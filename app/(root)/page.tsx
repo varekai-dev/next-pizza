@@ -2,7 +2,6 @@ import {
     Container,
     Filters,
     Products,
-    ProductsGroupList,
     Title,
     TopBar,
 } from '@/shared/components/shared'

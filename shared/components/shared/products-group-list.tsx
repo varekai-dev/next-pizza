@@ -28,7 +28,7 @@ export const ProductsGroupList: React.FC<Props> = ({
     const { categoryActiveId, shouldScroll } = useCategoryActiveId()
     const setActiveCategoryId = useSetCategoryActiveId()
     const intersection = useIntersection(ref, {
-        threshold: 1,
+        threshold: 0.4,
     })
 
     const prevCategoryActiveId = usePrevious(categoryActiveId)

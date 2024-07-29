@@ -14,10 +14,10 @@ export const Categories: React.FC<Props> = ({ className, items }) => {
     const { categoryActiveId } = useCategoryActiveId()
     const setCategoryActiveId = useSetCategoryActiveId()
 
-    const { refs, activeWidth, activeOffset } = useElasticTransition(
-        categoryActiveId,
-        items
-    )
+    const { refs, activeWidth, activeOffset } = useElasticTransition({
+        activeEl: categoryActiveId,
+        items,
+    })
 
     return (
         <div

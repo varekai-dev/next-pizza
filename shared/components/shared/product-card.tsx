@@ -25,18 +25,22 @@ export const ProductCard: React.FC<Props> = ({
 }) => {
     return (
         <div className={className}>
-            <Link href={`/product/${id}`} className="block">
+            <Link href={`/product/${id}`} className="block" scroll={false}>
                 <div className="flex justify-center p-6 bg-secondary rounded-lg h=[260px]">
                     <Image width={215} height={215} src={imageUrl} alt="Logo" />
                 </div>
                 <Title text={name} size="sm" className="mb-1 mt-3 font-bold" />
-                <p className="text-sm text-gray-400">
-                    {/* {ingredients?.join(', ')} */}
-                    Pepperoni, mozzarella, tomato sauce, basil
-                </p>
+                {!!ingredients?.length && (
+                    <p className="text-sm text-gray-400">
+                        {ingredients
+                            ?.map(ingredient => ingredient.name)
+                            .join(', ')}
+                    </p>
+                )}
+
                 <div className="flex justify-between items-center mt-4">
                     <span className="text-[20px]">
-                        from <b>{price} UAH</b>
+                        from <b>{price} ₴</b>
                     </span>
                     <Button
                         variant="secondary"

@@ -1,10 +1,10 @@
 export const pizzaTypesItems = [
     {
-        value: '1',
+        value: '2',
         text: 'Thin',
     },
     {
-        value: '2',
+        value: '1',
         text: 'Traditional',
     },
 ]

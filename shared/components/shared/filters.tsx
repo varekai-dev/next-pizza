@@ -9,7 +9,7 @@ import { useFilters, useIngredients } from '@/shared/hooks'
 import qs from 'qs'
 import { useRouter } from 'next/navigation'
 import { PriceProps } from '@/shared/hooks/useFilters'
-import { pizzaTypesItems, sizesItems } from '@/shared/constants'
+import { pizzaTypesItems, pizzaSizesOptions } from '@/shared/constants'
 
 interface Props {
     className?: string
@@ -85,7 +85,7 @@ export const Filters: React.FC<Props> = ({ className }) => {
                     name="sizes"
                     className="mt-5"
                     title="Sizes"
-                    items={sizesItems}
+                    items={pizzaSizesOptions}
                     onClickCheckbox={toggleSizes}
                     selectedValues={selectedSizes}
                 />

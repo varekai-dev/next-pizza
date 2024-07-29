@@ -35,121 +35,104 @@ export const ingredients: Omit<Ingredient, 'createdAt' | 'updatedAt'>[] = [
     {
         id: 1,
         name: 'Cheese Crust',
-        price: 179,
-        imageUrl:
-            'https://cdn.dodostatic.net/static/Img/Ingredients/99f5cb91225b4875bd06a26d2e842106.png',
+        price: 29,
+        imageUrl: '/assets/ingredients/cheese-crust.png',
     },
     {
         id: 2,
         name: 'Creamy Mozzarella',
-        price: 79,
-        imageUrl:
-            'https://cdn.dodostatic.net/static/Img/Ingredients/cdea869ef287426386ed634e6099a5ba.png',
+        price: 19,
+        imageUrl: '/assets/ingredients/creamy-mozzarella.png',
     },
     {
         id: 3,
         name: 'Cheddar and Parmesan Cheeses',
-        price: 79,
-        imageUrl:
-            'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A22FA54A81411E9AFA69C1FE796',
+        price: 29,
+        imageUrl: '/assets/ingredients/cheddar-and-parmesan-cheeses.png',
     },
     {
         id: 4,
         name: 'Spicy Jalapeño Pepper',
-        price: 59,
-        imageUrl:
-            'https://cdn.dodostatic.net/static/Img/Ingredients/11ee95b6bfdf98fb88a113db92d7b3df.png',
+        price: 19,
+        imageUrl: '/assets/ingredients/spicy-jalapeno-pepper.png',
     },
     {
         id: 5,
         name: 'Tender Chicken',
-        price: 79,
-        imageUrl:
-            'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A39D824A82E11E9AFA5B328D35A',
+        price: 39,
+        imageUrl: '/assets/ingredients/tender-chicken.png',
     },
     {
         id: 6,
         name: 'Mushrooms',
-        price: 59,
-        imageUrl:
-            'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A22FA54A81411E9AFA67259A324',
+        price: 19,
+        imageUrl: '/assets/ingredients/mushrooms.png',
     },
     {
         id: 7,
         name: 'Ham',
-        price: 79,
-        imageUrl:
-            'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A39D824A82E11E9AFA61B9A8D61',
+        price: 39,
+        imageUrl: '/assets/ingredients/ham.png',
     },
     {
         id: 8,
         name: 'Spicy Pepperoni',
-        price: 79,
-        imageUrl:
-            'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A22FA54A81411E9AFA6258199C3',
+        price: 19,
+        imageUrl: '/assets/ingredients/cheese-crust.png',
     },
     {
         id: 9,
         name: 'Spicy Chorizo',
-        price: 79,
-        imageUrl:
-            'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A22FA54A81411E9AFA62D5D6027',
+        price: 19,
+        imageUrl: '/assets/ingredients/spicy-pepperoni.png',
     },
     {
         id: 10,
         name: 'Pickled Cucumbers',
-        price: 59,
-        imageUrl:
-            'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A21DA51A81211E9EA89958D782B',
+        price: 19,
+        imageUrl: '/assets/ingredients/pickled-cucumbers.png',
     },
     {
         id: 11,
         name: 'Fresh Tomatoes',
-        price: 59,
-        imageUrl:
-            'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A39D824A82E11E9AFA7AC1A1D67',
+        price: 19,
+        imageUrl: '/assets/ingredients/fresh-tomatoes.png',
     },
     {
         id: 12,
         name: 'Red Onion',
-        price: 59,
-        imageUrl:
-            'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A22FA54A81411E9AFA60AE6464C',
+        price: 19,
+        imageUrl: '/assets/ingredients/red-onion.png',
     },
     {
         id: 13,
         name: 'Juicy Pineapples',
-        price: 59,
-        imageUrl:
-            'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A21DA51A81211E9AFA6795BA2A0',
+        price: 39,
+        imageUrl: '/assets/ingredients/juicy-pineapples.png',
     },
     {
         id: 14,
         name: 'Italian Herbs',
-        price: 39,
-        imageUrl:
-            'https://cdn.dodostatic.net/static/Img/Ingredients/370dac9ed21e4bffaf9bc2618d258734.png',
+        price: 19,
+        imageUrl: '/assets/ingredients/italian-herbs.png',
     },
     {
         id: 15,
         name: 'Sweet Pepper',
-        price: 59,
-        imageUrl:
-            'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A22FA54A81411E9AFA63F774C1B',
+        price: 19,
+        imageUrl: '/assets/ingredients/sweet-pepper.png',
     },
     {
         id: 16,
         name: 'Feta Cheese Cubes',
-        price: 79,
-        imageUrl:
-            'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A39D824A82E11E9AFA6B0FFC349',
+        price: 29,
+        imageUrl: '/assets/ingredients/feta-cheese-cubes.png',
     },
     {
         id: 17,
         name: 'Meatballs',
-        price: 79,
-        imageUrl:
-            'https://cdn.dodostatic.net/static/Img/Ingredients/b2f3a5d5afe44516a93cfc0d2ee60088.png',
+        price: 39,
+        imageUrl: '/assets/ingredients/meatballs.png',
     },
 ]
 

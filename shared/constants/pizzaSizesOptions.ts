@@ -1,4 +1,4 @@
-export const sizesItems = [
+export const pizzaSizesOptions = [
     {
         value: '20',
         text: '20 cm',

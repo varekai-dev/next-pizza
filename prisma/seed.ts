@@ -1,6 +1,7 @@
 import { Prisma } from '@prisma/client'
 import { categories, users, ingredients, pizzas, products } from './constants'
 import { prisma } from './prisma-client'
+import { PizzaSize, PizzaType } from '@/shared/constants'
 
 const randomDecimalNumber = (min: number, max: number) => {
     return Math.floor(Math.random() * (max - min) * 10 + min * 10) / 10
@@ -12,8 +13,8 @@ const generateProductItem = ({
     size,
 }: {
     productId: number
-    pizzaType?: 1 | 2
-    size?: 20 | 30 | 40
+    pizzaType?: PizzaType
+    size?: PizzaSize
 }) => {
     return {
         productId,

@@ -1,7 +1,7 @@
 'use client'
 
-import { Dialog } from '@/components/ui'
-import { DialogContent, DialogTitle } from '@/components/ui/dialog'
+import { Dialog } from '@/shared/components/ui'
+import { DialogContent, DialogTitle } from '@/shared/components/ui/dialog'
 import React from 'react'
 import { useRouter } from 'next/navigation'
 import { ChooseProductForm } from '../choose-product-form'
@@ -25,7 +25,7 @@ export const ChooseProductModal: React.FC<Props> = ({ product }) => {
             <VisuallyHidden.Root>
                 <DialogTitle>Title</DialogTitle>
             </VisuallyHidden.Root>
-            <DialogContent className="p-0 w-[1060px] max-w-[1060px] min-h-[500px] bg-white overflow-hidden">
+            <DialogContent className="p-0 w-[1060px] max-w-[1060px] min-h-[510px] bg-white overflow-hidden">
                 {isPizza ? (
                     <ChoosePizzaForm
                         name={product.name}

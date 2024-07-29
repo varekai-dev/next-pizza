@@ -21,12 +21,15 @@ export const ChooseProductForm: React.FC<Props> = ({
     const totalPrice = 590
     return (
         <div className={cn(className, 'flex flex-1')}>
-            <ProductImage src={imageUrl} alt={name} isPizzaType={false} />
+            <ProductImage src={imageUrl} alt={name} />
             <div className="w-[490px] bg-[#f7f6f5] p-7">
                 <Title text={name} />
                 <p className="text-gray-400">{textDetails}</p>
-                <Button className="h-[55px] px-10 text-base rounded-[18px] w-full mt-10">
-                    Add to Cart {totalPrice} UAH
+                <Button
+                    className="h-[55px] px-10 text-base rounded-[18px] w-full mt-10"
+                    onClick={onClickAdd}
+                >
+                    Add to Cart {totalPrice} ₴
                 </Button>
             </div>
         </div>
