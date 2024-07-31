@@ -6,6 +6,7 @@ import { cn } from '@/shared/lib/utils'
 import { ProductCard } from './product-card'
 import { useFirstMountState, useIntersection, usePrevious } from 'react-use'
 import { useCategoryActiveId, useSetCategoryActiveId } from '@/shared/store'
+import { ProductItem } from '@prisma/client'
 
 interface Props {
     title: string
@@ -75,7 +76,11 @@ export const ProductsGroupList: React.FC<Props> = ({
                         id={product.id}
                         name={product.name}
                         imageUrl={product.imageUrl}
-                        price={product.items[0].price}
+                        price={Math.min(
+                            ...product.items.map(
+                                (item: ProductItem) => item.price
+                            )
+                        )}
                         ingredients={product.ingredients}
                     />
                 ))}

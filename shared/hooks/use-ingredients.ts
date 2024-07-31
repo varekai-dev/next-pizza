@@ -1,7 +1,7 @@
 'use client'
 
 import { Api } from '@/shared/services/api-client'
-import { useRequest } from './useRequest'
+import { useRequest } from './use-request'
 import { Ingredient } from '@prisma/client'
 
 interface ReturnProps {

@@ -39,6 +39,7 @@ export default async function ProductPage({
                         elit. Ipsam voluptatibus necessitatibus
                     </p>
                     <GroupVariants
+                        value="2"
                         items={[
                             {
                                 name: 'Small',

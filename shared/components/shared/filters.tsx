@@ -5,19 +5,16 @@ import { Title } from './title'
 import { Input } from '../ui'
 import { RangeSlider } from './range-slider'
 import { CheckboxFiltersGroup } from './checkbox-filters-group'
-import { useFilters, useIngredients } from '@/shared/hooks'
-import qs from 'qs'
-import { useRouter } from 'next/navigation'
-import { PriceProps } from '@/shared/hooks/useFilters'
+import { useFilters, useIngredients, useQueryFilters } from '@/shared/hooks'
+import { PriceProps } from '@/shared/hooks/use-filters'
 import { pizzaTypesItems, pizzaSizesOptions } from '@/shared/constants'
+import { DEFAULT_MAX_PRICE, DEFAULT_MIN_PRICE } from '@/shared/lib/find-pizzas'
 
 interface Props {
     className?: string
 }
 
 export const Filters: React.FC<Props> = ({ className }) => {
-    const router = useRouter()
-
     const {
         selectedIngredients,
         selectedSizes,
@@ -44,29 +41,13 @@ export const Filters: React.FC<Props> = ({ className }) => {
             [name]: value,
         })
     }
-
-    React.useEffect(() => {
-        const filters = {
-            priceFrom,
-            priceTo,
-            pizzaTypes: Array.from(selectedPizzaTypes),
-            sizes: Array.from(selectedSizes),
-            ingredients: Array.from(selectedIngredients),
-        }
-
-        const query = qs.stringify(filters, {
-            arrayFormat: 'comma',
-        })
-
-        router.push(`?${query}`, { scroll: false })
-    }, [
+    useQueryFilters({
+        priceFrom,
+        priceTo,
         selectedIngredients,
         selectedSizes,
         selectedPizzaTypes,
-        priceFrom,
-        priceTo,
-        router,
-    ])
+    })
     return (
         <div className={className}>
             <Title text="Filters" size="sm" className="mb-2 font-bold" />
@@ -97,9 +78,9 @@ export const Filters: React.FC<Props> = ({ className }) => {
                     <Input
                         type="number"
                         placeholder="0"
-                        min={0}
+                        min={DEFAULT_MIN_PRICE}
                         step={10}
-                        max={500}
+                        max={DEFAULT_MAX_PRICE}
                         value={String(priceFrom || 0)}
                         onChange={e =>
                             updatePrice('priceFrom', +e.target.value)
@@ -109,17 +90,20 @@ export const Filters: React.FC<Props> = ({ className }) => {
                         type="number"
                         placeholder="500"
                         min={50}
-                        max={500}
+                        max={DEFAULT_MAX_PRICE}
                         step={10}
-                        value={String(priceTo || 500)}
+                        value={String(priceTo || DEFAULT_MAX_PRICE)}
                         onChange={e => updatePrice('priceTo', +e.target.value)}
                     />
                 </div>
                 <RangeSlider
-                    min={0}
-                    max={500}
+                    min={DEFAULT_MIN_PRICE}
+                    max={DEFAULT_MAX_PRICE}
                     step={10}
-                    value={[priceFrom || 0, priceTo || 500]}
+                    value={[
+                        priceFrom || DEFAULT_MIN_PRICE,
+                        priceTo || DEFAULT_MAX_PRICE,
+                    ]}
                     onValueChange={([priceFrom, priceTo]) =>
                         setPrice({ priceFrom, priceTo })
                     }

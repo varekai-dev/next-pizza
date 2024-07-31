@@ -16,6 +16,7 @@ export const Products: React.FC<Props> = ({ className, categories }) => {
         <div className="flex-1">
             <div className="flex flex-col gap-16">
                 {categories.map(category => {
+                    if (!category.products.length) return null
                     return (
                         <ProductsGroupList
                             isPageScrolling={isPageScrolling}
