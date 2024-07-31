@@ -1,16 +1,18 @@
 'use client'
 
-import React from 'react'
+import React, { use } from 'react'
 import { Title } from './title'
 import { cn } from '@/shared/lib/utils'
 import { ProductCard } from './product-card'
 import { useFirstMountState, useIntersection, usePrevious } from 'react-use'
 import { useCategoryActiveId, useSetCategoryActiveId } from '@/shared/store'
 import { ProductItem } from '@prisma/client'
+import { ProductWithRelations } from '@/@types/prisma'
+import { useSearchParams } from 'next/navigation'
 
 interface Props {
     title: string
-    items: any[]
+    items: ProductWithRelations[]
     className?: string
     listClassName?: string
     categoryId: number
@@ -25,6 +27,7 @@ export const ProductsGroupList: React.FC<Props> = ({
     categoryId,
     isPageScrolling,
 }) => {
+    const searchParams = useSearchParams()
     const isFirstMount = useFirstMountState()
     const ref = React.createRef<HTMLDivElement>()
     const { categoryActiveId, shouldScroll } = useCategoryActiveId()
@@ -32,6 +35,18 @@ export const ProductsGroupList: React.FC<Props> = ({
     const intersection = useIntersection(ref, {
         threshold: 0.4,
     })
+
+    const sortBy = searchParams.get('sortBy') || 1
+
+    // Sort on frontend because prisma doesn't support sorting by nested fields
+    const sortedItems =
+        Number(sortBy) === 1
+            ? items.sort((a, b) => a.items[0].price - b.items[0].price)
+            : items.sort(
+                  (a, b) =>
+                      b.items[b.items.length - 1].price -
+                      a.items[a.items.length - 1].price
+              )
 
     const prevCategoryActiveId = usePrevious(categoryActiveId)
 
@@ -69,7 +84,7 @@ export const ProductsGroupList: React.FC<Props> = ({
         <div ref={ref} className={className} id={title}>
             <Title text={title} size="lg" className="font-extrabold mb-5" />
             <div className={cn('grid grid-cols-3 gap-[50px]', listClassName)}>
-                {items.map(product => (
+                {sortedItems.map(product => (
                     <ProductCard
                         key={product.id}
                         isPizza={!!product.items[0].pizzaType}

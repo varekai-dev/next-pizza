@@ -34,7 +34,13 @@ export const ProductCard: React.FC<Props> = ({
                 scroll={false}
             >
                 <div className="flex justify-center p-6 bg-secondary rounded-lg h=[260px]">
-                    <Image width={215} height={215} src={imageUrl} alt="Logo" />
+                    <Image
+                        width={215}
+                        height={215}
+                        src={imageUrl}
+                        alt="Logo"
+                        className="hover:translate-y-1 transition duration-300"
+                    />
                 </div>
                 <Title
                     text={name}

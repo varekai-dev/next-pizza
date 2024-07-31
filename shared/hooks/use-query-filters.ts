@@ -1,4 +1,4 @@
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import qs from 'qs'
 import React from 'react'
 
@@ -11,9 +11,11 @@ interface Props {
 }
 
 export const useQueryFilters = (filters: Props) => {
+    const searchParams = useSearchParams()
     const router = useRouter()
     React.useEffect(() => {
         const params = {
+            sortBy: searchParams.get('sortBy') || 1,
             priceFrom: filters.priceFrom,
             priceTo: filters.priceTo,
             pizzaTypes: Array.from(filters.selectedPizzaTypes),

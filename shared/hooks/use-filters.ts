@@ -14,6 +14,8 @@ interface ReturnProps {
     priceFrom?: number
     priceTo?: number
     setPrice: React.Dispatch<React.SetStateAction<PriceProps>>
+    sortBy?: number
+    searchParams: Map<paramType, string>
 }
 
 export interface PriceProps {
@@ -27,6 +29,9 @@ type paramType =
     | 'pizzaTypes'
     | 'priceFrom'
     | 'priceTo'
+    | 'sortBy'
+
+export type SearchParams = Map<paramType, string>
 
 export const useFilters = (): ReturnProps => {
     const searchParams = useSearchParams() as unknown as Map<paramType, string>
@@ -57,6 +62,8 @@ export const useFilters = (): ReturnProps => {
         )
     )
 
+    const sortBy = Number(searchParams.get('sortBy')) || 1
+
     return {
         toggleIngredients,
         toggleSizes,
@@ -67,5 +74,7 @@ export const useFilters = (): ReturnProps => {
         selectedPizzaTypes,
         priceFrom,
         priceTo,
+        sortBy,
+        searchParams,
     }
 }

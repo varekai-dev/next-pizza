@@ -25,7 +25,7 @@ export default async function Home({
                     className="font-extrabold"
                 />
             </Container>
-            <TopBar categories={categories} />
+            <TopBar categories={categories} searchParams={searchParams} />
             <Container className="mt-10 pb-14">
                 <div className="flex gap-[60px]">
                     {/* Filters */}

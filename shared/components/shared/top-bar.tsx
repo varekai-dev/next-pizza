@@ -4,13 +4,19 @@ import { SortPopup } from './sort-popup'
 import { cn } from '@/shared/lib/utils'
 import { Container } from './container'
 import { Category } from '@prisma/client'
+import { GetSearchParams } from '@/shared/lib/find-pizzas'
 
 interface Props {
     className?: string
     categories: Category[]
+    searchParams: GetSearchParams
 }
 
-export const TopBar: React.FC<Props> = ({ className, categories }) => {
+export const TopBar: React.FC<Props> = ({
+    className,
+    categories,
+    searchParams,
+}) => {
     return (
         <div
             className={cn(
@@ -20,7 +26,7 @@ export const TopBar: React.FC<Props> = ({ className, categories }) => {
         >
             <Container className="flex justify-between items-center">
                 <Categories items={categories} />
-                <SortPopup />
+                <SortPopup searchParams={searchParams} />
             </Container>
         </div>
     )
