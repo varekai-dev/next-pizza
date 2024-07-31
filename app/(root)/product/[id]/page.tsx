@@ -54,7 +54,6 @@ export default async function ProductPage({
                                 disabled: true,
                             },
                         ]}
-                        selectedValue="2"
                     />
                 </div>
             </div>
