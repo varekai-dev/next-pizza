@@ -8,12 +8,14 @@ import { ChooseProductForm } from '../choose-product-form'
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden'
 import { ProductWithRelations } from '@/@types/prisma'
 import { ChoosePizzaForm } from '../choose-pizza-form'
+import { useCartStore } from '@/shared/store'
 
 interface Props {
     product: ProductWithRelations
 }
 
 export const ChooseProductModal: React.FC<Props> = ({ product }) => {
+    const addCartItem = useCartStore(state => state.addCartItem)
     const router = useRouter()
     const isPizza = Boolean(product.items[0].pizzaType)
 
@@ -28,6 +30,7 @@ export const ChooseProductModal: React.FC<Props> = ({ product }) => {
             <DialogContent className="p-0 w-[1060px] max-w-[1060px] min-h-[510px] bg-white overflow-hidden">
                 {isPizza ? (
                     <ChoosePizzaForm
+                        onClickAdd={addCartItem}
                         name={product.name}
                         items={product.items}
                         imageUrl={product.imageUrl}
@@ -35,6 +38,8 @@ export const ChooseProductModal: React.FC<Props> = ({ product }) => {
                     />
                 ) : (
                     <ChooseProductForm
+                        productItemId={product.items[0].id}
+                        onClickAdd={addCartItem}
                         name={product.name}
                         imageUrl={product.imageUrl}
                     />

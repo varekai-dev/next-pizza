@@ -87,7 +87,7 @@ model ProductItem {
 model Cart {
   id Int @id @default(autoincrement())
 
-  userId Int   @unique
+  userId Int?  @unique
   user   User? @relation(fields: [userId], references: [id])
 
   items CartItem[]

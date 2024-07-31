@@ -4,7 +4,7 @@ import React from 'react'
 import { Title } from './title'
 import { cn } from '@/shared/lib/utils'
 import { ProductCard } from './product-card'
-import { useDebounce, useIntersection, usePrevious } from 'react-use'
+import { useIntersection, usePrevious } from 'react-use'
 import { useCategoryActiveId, useSetCategoryActiveId } from '@/shared/store'
 
 interface Props {

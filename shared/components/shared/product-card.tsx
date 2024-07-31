@@ -25,13 +25,17 @@ export const ProductCard: React.FC<Props> = ({
 }) => {
     return (
         <div className={className}>
-            <Link href={`/product/${id}`} className="block" scroll={false}>
+            <Link
+                href={`/product/${id}`}
+                className="flex flex-col"
+                scroll={false}
+            >
                 <div className="flex justify-center p-6 bg-secondary rounded-lg h=[260px]">
                     <Image width={215} height={215} src={imageUrl} alt="Logo" />
                 </div>
                 <Title text={name} size="sm" className="mb-1 mt-3 font-bold" />
                 {!!ingredients?.length && (
-                    <p className="text-sm text-gray-400">
+                    <p className="text-sm text-gray-400 flex-1">
                         {ingredients
                             ?.map(ingredient => ingredient.name)
                             .join(', ')}

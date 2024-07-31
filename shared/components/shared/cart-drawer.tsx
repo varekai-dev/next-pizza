@@ -14,28 +14,12 @@ import { Button } from '../ui'
 import Link from 'next/link'
 import { CartDrawerItem } from './cart-drawer-item'
 import { getCartItemDetails } from '@/shared/lib'
-import { useCartStore } from '@/shared/store'
 import { PizzaSize, PizzaType } from '@/shared/constants'
+import { useCart } from '@/shared/hooks'
 
 export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
-    const [
-        fetchCartItems,
-        totalAmount,
-        items,
-        updateItemQuantity,
-        removeCartItem,
-    ] = useCartStore(state => [
-        state.fetchCartItems,
-        state.totalAmount,
-        state.items,
-        state.updateItemQuantity,
-        state.removeCartItem,
-    ])
-
-    React.useEffect(() => {
-        fetchCartItems()
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    const { totalAmount, items, updateItemQuantity, removeCartItem, loading } =
+        useCart(true)
 
     const handleClickCountButton = (
         id: number,
@@ -45,6 +29,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
         const newQuantity = type === 'plus' ? quantity + 1 : quantity - 1
         updateItemQuantity(id, newQuantity)
     }
+
     return (
         <Sheet>
             <SheetTrigger asChild>{children}</SheetTrigger>
@@ -64,9 +49,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
                             key={item.id}
                             className="mb-2"
                             id={item.id}
-                            imageUrl={
-                                '/assets/products/pizza/peperoni-fresh.webp'
-                            }
+                            imageUrl={item.imageUrl}
                             name={item.name}
                             price={item.price}
                             quantity={item.quantity}
@@ -104,6 +87,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
                         </div>
                         <Link href="/cart">
                             <Button
+                                loading={loading}
                                 type="submit"
                                 className="w-full h-12 text-base"
                             >

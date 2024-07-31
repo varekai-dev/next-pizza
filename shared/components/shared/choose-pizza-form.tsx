@@ -1,3 +1,5 @@
+'use client'
+
 import { cn } from '@/shared/lib/utils'
 import React from 'react'
 import { ProductImage } from './product-image'
@@ -9,6 +11,8 @@ import { Ingredient, ProductItem } from '@prisma/client'
 import { IngredientItem } from './ingredient-item'
 import { usePizzaOptions } from '@/shared/hooks'
 import { getPizzaDetails } from '@/shared/lib/get-pizza-details'
+import { CreateCartItemValues } from '@/shared/services/dto/cart.dto'
+import { useRouter } from 'next/navigation'
 
 interface Props {
     imageUrl: string
@@ -16,7 +20,7 @@ interface Props {
     className?: string
     ingredients: Ingredient[]
     items: ProductItem[]
-    onClickAddCart?: VoidFunction
+    onClickAdd?: (values: CreateCartItemValues) => void
 }
 
 export const ChoosePizzaForm: React.FC<Props> = ({
@@ -24,9 +28,10 @@ export const ChoosePizzaForm: React.FC<Props> = ({
     items,
     imageUrl,
     ingredients,
-    onClickAddCart,
+    onClickAdd,
     className,
 }) => {
+    const router = useRouter()
     const {
         size,
         type,
@@ -46,8 +51,16 @@ export const ChoosePizzaForm: React.FC<Props> = ({
     })
 
     const handleClickAddCart = () => {
-        onClickAddCart?.()
-        console.log({ size, type, selectedIngredients })
+        const productItemId = items.find(
+            item => item.size === size && item.pizzaType === type
+        )?.id
+        if (productItemId) {
+            onClickAdd?.({
+                productItemId,
+                ingredients: Array.from(selectedIngredients),
+            })
+            router.back()
+        }
     }
 
     return (
