@@ -5,6 +5,7 @@ import { Button } from '../ui'
 import { Plus } from 'lucide-react'
 import Image from 'next/image'
 import { Ingredient } from '@prisma/client'
+import { cn } from '@/shared/lib'
 
 interface Props {
     id: number
@@ -13,6 +14,7 @@ interface Props {
     imageUrl: string
     className?: string
     ingredients?: Ingredient[]
+    isPizza?: boolean
 }
 
 export const ProductCard: React.FC<Props> = ({
@@ -22,20 +24,27 @@ export const ProductCard: React.FC<Props> = ({
     imageUrl,
     className,
     ingredients,
+    isPizza = false,
 }) => {
     return (
         <div className={className}>
             <Link
                 href={`/product/${id}`}
-                className="flex flex-col"
+                className="flex flex-col h-full"
                 scroll={false}
             >
                 <div className="flex justify-center p-6 bg-secondary rounded-lg h=[260px]">
                     <Image width={215} height={215} src={imageUrl} alt="Logo" />
                 </div>
-                <Title text={name} size="sm" className="mb-1 mt-3 font-bold" />
+                <Title
+                    text={name}
+                    size="sm"
+                    className={cn('mb-1 mt-3 font-bold', {
+                        'flex-1': !isPizza,
+                    })}
+                />
                 {!!ingredients?.length && (
-                    <p className="text-sm text-gray-400 flex-1">
+                    <p className="text-sm text-gray-400 flex-1 flex justify-start">
                         {ingredients
                             ?.map(ingredient => ingredient.name)
                             .join(', ')}
@@ -44,7 +53,7 @@ export const ProductCard: React.FC<Props> = ({
 
                 <div className="flex justify-between items-center mt-4">
                     <span className="text-[20px]">
-                        from <b>{price} ₴</b>
+                        {isPizza && 'from'} <b>{price} ₴</b>
                     </span>
                     <Button
                         variant="secondary"

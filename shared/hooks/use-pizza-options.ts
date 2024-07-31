@@ -13,6 +13,7 @@ interface ReturnProps {
     setType: React.Dispatch<React.SetStateAction<PizzaType>>
     availablePizzaSizes: Variant[]
     addIngredient: (id: number) => void
+    currentItemId?: number
 }
 
 export const usePizzaOptions = (items: ProductItem[]): ReturnProps => {
@@ -37,6 +38,10 @@ export const usePizzaOptions = (items: ProductItem[]): ReturnProps => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [type])
 
+    const currentItemId = items.find(
+        item => item.size === size && item.pizzaType === type
+    )?.id
+
     return {
         size,
         setSize,
@@ -45,5 +50,6 @@ export const usePizzaOptions = (items: ProductItem[]): ReturnProps => {
         availablePizzaSizes,
         selectedIngredients,
         addIngredient,
+        currentItemId,
     }
 }

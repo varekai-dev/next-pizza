@@ -2,6 +2,7 @@ import type { Config } from 'tailwindcss'
 
 const config = {
     darkMode: ['class'],
+    safelist: [...Array.from({ length: 101 }, (_, i) => `h-[${i}%]`)],
     content: [
         './pages/**/*.{ts,tsx}',
         './shared/components/**/*.{ts,tsx}',

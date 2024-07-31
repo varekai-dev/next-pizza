@@ -1,4 +1,5 @@
 import { Nunito } from 'next/font/google'
+import { Toaster } from 'react-hot-toast'
 import './globals.css'
 
 const nunito = Nunito({
@@ -16,6 +17,7 @@ export default function MainLayout({
         <html lang="en">
             <body suppressHydrationWarning className={nunito.className}>
                 {children}
+                <Toaster position="top-right" />
             </body>
         </html>
     )

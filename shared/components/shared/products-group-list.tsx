@@ -4,7 +4,7 @@ import React from 'react'
 import { Title } from './title'
 import { cn } from '@/shared/lib/utils'
 import { ProductCard } from './product-card'
-import { useIntersection, usePrevious } from 'react-use'
+import { useFirstMountState, useIntersection, usePrevious } from 'react-use'
 import { useCategoryActiveId, useSetCategoryActiveId } from '@/shared/store'
 
 interface Props {
@@ -24,6 +24,7 @@ export const ProductsGroupList: React.FC<Props> = ({
     categoryId,
     isPageScrolling,
 }) => {
+    const isFirstMount = useFirstMountState()
     const ref = React.createRef<HTMLDivElement>()
     const { categoryActiveId, shouldScroll } = useCategoryActiveId()
     const setActiveCategoryId = useSetCategoryActiveId()
@@ -37,13 +38,21 @@ export const ProductsGroupList: React.FC<Props> = ({
         if (
             categoryId === categoryActiveId &&
             prevCategoryActiveId !== categoryActiveId &&
-            shouldScroll
+            shouldScroll &&
+            !isFirstMount
         ) {
             ref.current?.scrollIntoView({
                 block: 'center',
             })
         }
-    }, [ref, categoryActiveId, prevCategoryActiveId, shouldScroll, categoryId])
+    }, [
+        ref,
+        categoryActiveId,
+        prevCategoryActiveId,
+        shouldScroll,
+        categoryId,
+        isFirstMount,
+    ])
 
     React.useEffect(() => {
         if (intersection?.isIntersecting && !isPageScrolling) {
@@ -62,6 +71,7 @@ export const ProductsGroupList: React.FC<Props> = ({
                 {items.map(product => (
                     <ProductCard
                         key={product.id}
+                        isPizza={!!product.items[0].pizzaType}
                         id={product.id}
                         name={product.name}
                         imageUrl={product.imageUrl}
