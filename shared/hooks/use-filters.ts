@@ -62,7 +62,7 @@ export const useFilters = (): ReturnProps => {
         )
     )
 
-    const sortBy = Number(searchParams.get('sortBy')) || 1
+    const sortBy = Number(searchParams.get('sortBy')) || undefined
 
     return {
         toggleIngredients,

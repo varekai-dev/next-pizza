@@ -25,6 +25,7 @@ export const Filters: React.FC<Props> = ({ className }) => {
         priceFrom,
         priceTo,
         setPrice,
+        sortBy,
     } = useFilters()
 
     const { ingredients, loading } = useIngredients()
@@ -47,6 +48,7 @@ export const Filters: React.FC<Props> = ({ className }) => {
         selectedIngredients,
         selectedSizes,
         selectedPizzaTypes,
+        sortBy,
     })
     return (
         <div className={className}>

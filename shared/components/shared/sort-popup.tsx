@@ -47,11 +47,11 @@ export const SortPopup: React.FC<Props> = ({ className, searchParams }) => {
     }
 
     return (
-        <Popover open={popoverOpen}>
+        <Popover open={popoverOpen} onOpenChange={handleTogglePopover}>
             <PopoverTrigger asChild onClick={handleTogglePopover}>
                 <div
                     className={cn(
-                        'inline-flex items-center gap-1 bg-gray-50 px-5 h-[52px] rounded-2xl cursor-pointer',
+                        'inline-flex items-center gap-1 bg-gray-50 px-5 h-[52px] rounded-2xl cursor-pointer select-none',
                         className
                     )}
                 >
@@ -66,7 +66,7 @@ export const SortPopup: React.FC<Props> = ({ className, searchParams }) => {
                     {sortItems.map((item, index) => (
                         <li
                             key={index}
-                            className="hover:bg-secondary hover:text-primary p-2 px-4 cursor-pointer rounded-md"
+                            className="hover:bg-secondary hover:text-primary p-2 px-4 cursor-pointer rounded-md select-none"
                             onClick={() => handleClickSortItem(index)}
                         >
                             {item}

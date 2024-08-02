@@ -13,6 +13,7 @@ interface State {
     updateItemQuantity: (id: number, quantity: number) => Promise<void>
     addCartItem: (values: CreateCartItemValues) => Promise<void>
     removeCartItem: (id: number) => Promise<void>
+    clearCart: () => void
 }
 
 export const useCartStore = create<State>()(set => ({
@@ -33,7 +34,13 @@ export const useCartStore = create<State>()(set => ({
     },
     removeCartItem: async (id: number) => {
         try {
-            set({ loading: true, error: false })
+            set(state => ({
+                loading: true,
+                error: false,
+                items: state.items.map(item =>
+                    item.id === id ? { ...item, disabled: true } : item
+                ),
+            }))
             const data = await Api.cart.deleteItem(id)
             set(getCartDetails(data))
         } catch (error) {
@@ -58,6 +65,20 @@ export const useCartStore = create<State>()(set => ({
             set({ loading: true, error: false })
             const data = await Api.cart.createCartItem(values)
             set(getCartDetails(data))
+        } catch (error) {
+            set({ error: true })
+        } finally {
+            set({ loading: false })
+        }
+    },
+    clearCart: async () => {
+        try {
+            set({ loading: true, error: false })
+            await Api.cart.removeCartItems()
+            set({
+                totalAmount: 0,
+                items: [],
+            })
         } catch (error) {
             set({ error: true })
         } finally {

@@ -17,7 +17,7 @@ export default function MainLayout({
         <html lang="en">
             <body suppressHydrationWarning className={nunito.className}>
                 {children}
-                <Toaster position="top-right" />
+                <Toaster />
             </body>
         </html>
     )

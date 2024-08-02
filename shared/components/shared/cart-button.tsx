@@ -29,7 +29,7 @@ export const CartButton: React.FC<Props> = ({ className }) => {
                         className="relative"
                         strokeWidth={2}
                     />
-                    <b>{items.length}</b>
+                    <b>{items.length} </b>
                 </div>
                 <ArrowRight
                     size={20}

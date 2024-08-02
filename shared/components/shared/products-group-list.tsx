@@ -1,6 +1,6 @@
 'use client'
 
-import React, { use } from 'react'
+import React from 'react'
 import { Title } from './title'
 import { cn } from '@/shared/lib/utils'
 import { ProductCard } from './product-card'
@@ -36,17 +36,17 @@ export const ProductsGroupList: React.FC<Props> = ({
         threshold: 0.4,
     })
 
-    const sortBy = searchParams.get('sortBy') || 1
+    const sortBy = searchParams.get('sortBy')
 
     // Sort on frontend because prisma doesn't support sorting by nested fields
     const sortedItems =
-        Number(sortBy) === 1
-            ? items.sort((a, b) => a.items[0].price - b.items[0].price)
-            : items.sort(
+        Number(sortBy) === 2
+            ? items.sort(
                   (a, b) =>
                       b.items[b.items.length - 1].price -
                       a.items[a.items.length - 1].price
               )
+            : items.sort((a, b) => a.items[0].price - b.items[0].price)
 
     const prevCategoryActiveId = usePrevious(categoryActiveId)
 

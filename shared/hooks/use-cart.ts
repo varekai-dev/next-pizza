@@ -13,6 +13,7 @@ type ReturnProps = {
     updateItemQuantity: (id: number, quantity: number) => void
     removeCartItem: (id: number) => void
     addCartItem: (values: CreateCartItemValues) => void
+    clearCart: () => void
 }
 
 export const useCart = (runFetch?: boolean): ReturnProps => {
@@ -24,6 +25,7 @@ export const useCart = (runFetch?: boolean): ReturnProps => {
         addCartItem,
         updateItemQuantity,
         removeCartItem,
+        clearCart,
     ] = useCartStore(state => [
         state.totalAmount,
         state.items,
@@ -32,6 +34,7 @@ export const useCart = (runFetch?: boolean): ReturnProps => {
         state.addCartItem,
         debounce(state.updateItemQuantity, 200),
         state.removeCartItem,
+        state.clearCart,
     ])
 
     React.useEffect(() => {
@@ -48,5 +51,6 @@ export const useCart = (runFetch?: boolean): ReturnProps => {
         addCartItem,
         updateItemQuantity,
         removeCartItem,
+        clearCart,
     }
 }
