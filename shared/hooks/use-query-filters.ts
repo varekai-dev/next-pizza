@@ -15,6 +15,7 @@ interface Props {
 
 export const useQueryFilters = (filters: Props) => {
     const router = useRouter()
+
     React.useEffect(() => {
         const params = {
             sortBy: filters.sortBy,

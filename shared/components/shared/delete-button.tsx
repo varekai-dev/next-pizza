@@ -42,7 +42,8 @@ export const DeleteWrapper: React.FC<PropsWithChildren<Props>> = ({
             {children}
             <div
                 className={cn(`absolute left-0 right-0 bottom-0`, {
-                    [`bg-red-500/90 h-[${progressInPercent}%]`]: isPressed,
+                    [`bg-red-500/90 h-[${progressInPercent}%]`]:
+                        isPressed || isFinished,
                 })}
             />
         </div>

@@ -39,18 +39,21 @@ const RangeSlider = React.forwardRef(
 
         const handleValueChange = (newValues: number[]) => {
             setLocalValues(newValues)
-            if (onValueChange) {
-                onValueChange(newValues)
-            }
+        }
+
+        const onValueCommit = (values: number[]) => {
+            onValueChange?.(values)
         }
 
         return (
             <SliderPrimitive.Root
                 ref={ref as React.RefObject<HTMLDivElement>}
+                onMouseUp={() => console.log('work')}
                 min={min}
                 max={max}
                 step={step}
                 value={localValues}
+                onValueCommit={onValueCommit}
                 onValueChange={handleValueChange}
                 className={cn(
                     'relative flex w-full touch-none select-none mb-6 items-center',

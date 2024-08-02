@@ -31,7 +31,13 @@ export const CountButton: React.FC<CountButtonProps> = ({
                 type="minus"
             />
 
-            <b className={size === 'sm' ? 'text-sm' : 'text-md'}>{value}</b>
+            <b
+                className={cn('text-md select-none', {
+                    'text-sm': size === 'sm',
+                })}
+            >
+                {value}
+            </b>
 
             <CountIconButton
                 onClick={() => onClick?.('plus')}

@@ -22,9 +22,18 @@ export const CartItem: React.FC<Props> = ({
     className,
     onClickCountButton,
     onClickRemove,
+    disabled,
 }) => {
     return (
-        <div className={cn('flex items-center justify-between', className)}>
+        <div
+            className={cn(
+                'flex items-center justify-between',
+                {
+                    'opacity-50 pointer-events-none': disabled,
+                },
+                className
+            )}
+        >
             <div className="flex items-center gap-5 flex-1">
                 <CartItemDetails.Image src={imageUrl} />
                 <CartItemDetails.Info name={name} details={details} />

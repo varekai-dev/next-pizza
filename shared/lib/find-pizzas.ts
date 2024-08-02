@@ -22,6 +22,11 @@ export const findPizzas = async (params: GetSearchParams) => {
     const sortBy = Number(params.sortBy) || 1
 
     const categories = await prisma.category.findMany({
+        where: {
+            products: {
+                some: {},
+            },
+        },
         include: {
             products: {
                 orderBy: {

@@ -12,7 +12,6 @@ interface Props extends CartItemProps {
     className?: string
     onClickCountButton?: (type: 'plus' | 'minus') => void
     onClickRemoveButton?: () => void
-    disabled?: boolean
 }
 
 export const CartDrawerItem: React.FC<Props> = ({
