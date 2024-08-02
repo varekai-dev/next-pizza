@@ -51,10 +51,10 @@ export default function CheckoutPage() {
                         endAdornment={
                             totalAmount > 0 && (
                                 <button
-                                    className="flex items-center gap-3 text-gray-400 hover:text-gray-600"
+                                    className="flex items-center gap-2 text-gray-400 hover:text-gray-600"
                                     onClick={clearCart}
                                 >
-                                    <Trash2 size={16} />
+                                    <Trash2 size={18} />
                                     Clear cart
                                 </button>
                             )
