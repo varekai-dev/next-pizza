@@ -58,6 +58,7 @@ export default function CheckoutPage() {
 
     return (
         <Container className="mt-5">
+            <form></form>
             <Title text="Order" size="lg" className="font-extrabold mb-8" />
             <FormProvider {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)}>
