@@ -1,6 +1,6 @@
 import React from 'react'
 import { WhiteBlock } from '../white-block'
-import { FormInput } from '../form'
+import { FormInput, FormPhone } from '../form'
 
 interface Props {
     className?: string
@@ -28,10 +28,11 @@ export const CheckoutPersonalInfo: React.FC<Props> = ({ className }) => {
                     placeholder="Email"
                     allowClear
                 />
-                <FormInput
+
+                <FormPhone
                     name="phone"
                     className="text-base"
-                    placeholder="Phone"
+                    mask="+38(000)000-00-00"
                     allowClear
                 />
             </div>
