@@ -41,8 +41,9 @@ export const CartItem: React.FC<Props> = ({
 
             <CartItemDetails.Price value={price} />
 
-            <div className="flex items-center gap-5 ml-20">
+            <div className="flex items-center gap-5 sm:ml-20">
                 <CartItemDetails.CountButton
+                    className="hidden sm:flex"
                     onClick={onClickCountButton}
                     value={quantity}
                 />

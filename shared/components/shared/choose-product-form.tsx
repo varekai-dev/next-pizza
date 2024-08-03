@@ -15,6 +15,7 @@ interface Props {
     productItemId: number
     price: number
     loading?: boolean
+    isDrawer?: boolean
 }
 
 export const ChooseProductForm: React.FC<Props> = ({
@@ -25,6 +26,7 @@ export const ChooseProductForm: React.FC<Props> = ({
     productItemId,
     price,
     loading,
+    isDrawer,
 }) => {
     const handleClickAddCart = () => {
         onClickAdd?.({
@@ -33,9 +35,17 @@ export const ChooseProductForm: React.FC<Props> = ({
     }
 
     return (
-        <div className={cn(className, 'flex flex-1')}>
+        <div
+            className={cn('flex flex-1', className, {
+                'flex-col max-h-[70vh] scrollbar overflow-x-auto': isDrawer,
+            })}
+        >
             <ProductImage src={imageUrl} alt={name} />
-            <div className="w-[490px] bg-[#f7f6f5] p-7">
+            <div
+                className={cn('w-[490px] bg-[#f7f6f5] p-7', {
+                    'w-full': isDrawer,
+                })}
+            >
                 <Title text={name} />
                 <Button
                     loading={loading}

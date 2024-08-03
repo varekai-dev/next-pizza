@@ -57,14 +57,13 @@ export default function CheckoutPage() {
     }
 
     return (
-        <Container className="mt-5">
-            <form></form>
+        <Container className="mt-5 ">
             <Title text="Order" size="lg" className="font-extrabold mb-8" />
             <FormProvider {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)}>
-                    <div className="flex gap-10">
+                    <div className="flex gap-10 flex-col lg:flex-row lg:gap-10 pb-5">
                         {/* Left side */}
-                        <div className="flex flex-col gap-10 flex-1 mb-20">
+                        <div className="flex flex-col gap-10 flex-1 lg:mb-20">
                             <CheckoutCart
                                 items={items}
                                 totalAmount={totalAmount}
@@ -77,7 +76,7 @@ export default function CheckoutPage() {
                             <CheckoutAddressForm />
                         </div>
                         {/* Right side */}
-                        <div className="w-[450px]">
+                        <div className="w-full lg:w-[450px]">
                             <CheckoutItemDetails
                                 totalPrice={totalPrice}
                                 totalAmount={totalAmount}

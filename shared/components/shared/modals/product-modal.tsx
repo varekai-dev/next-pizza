@@ -4,17 +4,16 @@ import { Dialog } from '@/shared/components/ui'
 import { DialogContent, DialogTitle } from '@/shared/components/ui/dialog'
 import React from 'react'
 import { useRouter } from 'next/navigation'
-import * as VisuallyHidden from '@radix-ui/react-visually-hidden'
+import { Root } from '@radix-ui/react-visually-hidden'
 import { ProductWithRelations } from '@/@types/prisma'
 
 import { ProductForm } from '../product-form'
 
 interface Props {
     product: ProductWithRelations
-    id?: string
 }
 
-export const ChooseProductModal: React.FC<Props> = ({ product, id }) => {
+export const ProductModal: React.FC<Props> = ({ product }) => {
     const router = useRouter()
 
     const onCloseModal = () => {
@@ -23,13 +22,10 @@ export const ChooseProductModal: React.FC<Props> = ({ product, id }) => {
 
     return (
         <Dialog open={Boolean(product)} onOpenChange={onCloseModal}>
-            <VisuallyHidden.Root>
+            <Root>
                 <DialogTitle>Title</DialogTitle>
-            </VisuallyHidden.Root>
-            <DialogContent
-                className="p-0 min-h-[510px] bg-white overflow-hidden xl:w-[1060px] xl:max-w-[1060px]
-            md:w-[600px] md:max-w-[600px]"
-            >
+            </Root>
+            <DialogContent className="p-0 w-[1060px] max-w-[1060px] min-h-[510px] bg-white overflow-hidden">
                 <ProductForm product={product} onSubmit={onCloseModal} />
             </DialogContent>
         </Dialog>

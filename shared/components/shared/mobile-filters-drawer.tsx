@@ -1,19 +1,21 @@
 import React from 'react'
-import { Sheet, SheetContent, SheetTrigger } from '../ui/sheet'
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '../ui/sheet'
 import { Filters } from './filters'
-
+import { Root } from '@radix-ui/react-visually-hidden'
 interface Props {
     className?: string
 }
 
 export const MobileFilterDrawer: React.FC<React.PropsWithChildren<Props>> = ({
-    className,
     children,
 }) => {
     return (
         <Sheet>
             <SheetTrigger asChild>{children}</SheetTrigger>
-            <SheetContent className="bg-[#fff] px-12">
+            <Root>
+                <SheetTitle>Title</SheetTitle>
+            </Root>
+            <SheetContent className="bg-[#fff] p-4 pb-[50px] pr-12 max-h-[100vh] overflow-scroll scrollbar">
                 <React.Suspense>
                     <Filters />
                 </React.Suspense>

@@ -11,11 +11,13 @@ import { ChooseProductForm } from './choose-product-form'
 interface Props {
     product: ProductWithRelations
     onSubmit?: () => void
+    isDrawer?: boolean
 }
 
 export const ProductForm: React.FC<Props> = ({
     product,
     onSubmit: _onSubmit,
+    isDrawer = false,
 }) => {
     const [addCartItem, loading] = useCartStore(state => [
         state.addCartItem,
@@ -34,9 +36,11 @@ export const ProductForm: React.FC<Props> = ({
             console.log(error)
         }
     }
+
     if (isPizzaForm) {
         return (
             <ChoosePizzaForm
+                isDrawer={isDrawer}
                 onClickAdd={onSubmit}
                 name={product.name}
                 items={product.items}
@@ -49,6 +53,7 @@ export const ProductForm: React.FC<Props> = ({
 
     return (
         <ChooseProductForm
+            isDrawer={isDrawer}
             price={product.items[0].price}
             productItemId={product.items[0].id}
             onClickAdd={onSubmit}

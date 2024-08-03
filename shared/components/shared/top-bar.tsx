@@ -25,12 +25,16 @@ export const TopBar: React.FC<Props> = ({
                 className
             )}
         >
-            <Container className="flex lg:justify-between lg:items-center lg:flex-row flex-col gap-5 items-start">
+            <Container className="flex justify-between gap-5 items-center">
                 <Categories items={categories} />
-                <div className="w-full lg:justify-end flex items-center justify-between">
-                    <SortPopup searchParams={searchParams} />
-                    <MobileFilterButton className="block lg:hidden" />
-                </div>
+                <SortPopup
+                    searchParams={searchParams}
+                    className="hidden lg:flex"
+                />
+                <MobileFilterButton
+                    className="block lg:hidden"
+                    searchParams={searchParams}
+                />
             </Container>
         </div>
     )

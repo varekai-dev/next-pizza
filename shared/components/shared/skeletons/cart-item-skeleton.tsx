@@ -14,7 +14,7 @@ export const CartItemSkeleton: React.FC<Props> = ({ className }) => {
             </div>
             <div className="flex items-center gap-20">
                 <div className="h-5 w-[50px] bg-gray-200 rounded animate-pulse" />
-                <div className="h-8 w-[140px] bg-gray-200 rounded animate-pulse" />
+                <div className="h-8 w-[140px] bg-gray-200 rounded animate-pulse hidden sm:block" />
             </div>
         </div>
     )
