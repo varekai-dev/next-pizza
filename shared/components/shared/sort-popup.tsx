@@ -15,13 +15,13 @@ import { GetSearchParams } from '@/shared/lib/find-pizzas'
 
 interface Props {
     className?: string
-    searchParams: GetSearchParams
+    searchParams?: GetSearchParams
 }
 
 const sortItems = ['First Cheap', 'First Expensive']
 
 export const SortPopup: React.FC<Props> = ({ className, searchParams }) => {
-    const sortByQuery = Number(searchParams.sortBy) || 1
+    const sortByQuery = Number(searchParams?.sortBy) || 1
     const router = useRouter()
     const [sortBy, setSortBy] = React.useState(sortByQuery)
     const [popoverOpen, setPopoverOpen] = React.useState(false)

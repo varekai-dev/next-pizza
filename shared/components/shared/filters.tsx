@@ -2,20 +2,32 @@
 
 import React from 'react'
 import { Title } from './title'
-import { Input } from '../ui'
+import { Button, Input } from '../ui'
 import { RangeSlider } from './range-slider'
 import { CheckboxFiltersGroup } from './checkbox-filters-group'
 import { useFilters, useIngredients, useQueryFilters } from '@/shared/hooks'
 import { PriceProps } from '@/shared/hooks/use-filters'
 import { pizzaTypesItems, pizzaSizesOptions } from '@/shared/constants'
-import { DEFAULT_MAX_PRICE, DEFAULT_MIN_PRICE } from '@/shared/lib/find-pizzas'
+import {
+    DEFAULT_MAX_PRICE,
+    DEFAULT_MIN_PRICE,
+    GetSearchParams,
+} from '@/shared/lib/find-pizzas'
 import { SortPopup } from './sort-popup'
+import { cn } from '@/shared/lib'
+import { CircleX } from 'lucide-react'
 
 interface Props {
     className?: string
+    activeFiltersCount?: number
+    searchParams?: GetSearchParams
 }
 
-export const Filters: React.FC<Props> = ({ className }) => {
+export const Filters: React.FC<Props> = ({
+    className,
+    activeFiltersCount,
+    searchParams,
+}) => {
     const {
         selectedIngredients,
         selectedSizes,
@@ -27,7 +39,7 @@ export const Filters: React.FC<Props> = ({ className }) => {
         priceTo,
         setPrice,
         sortBy,
-        searchParams,
+        clearFilters,
     } = useFilters()
 
     const { ingredients, loading } = useIngredients()
@@ -52,11 +64,12 @@ export const Filters: React.FC<Props> = ({ className }) => {
         selectedPizzaTypes,
         sortBy,
     })
+
     return (
-        <div className={className}>
+        <div className={cn('relative', className)}>
             <Title text="Filters" size="sm" className="mb-2 font-bold" />
             <div className="block lg:hidden">
-                <SortPopup searchParams={searchParams as any} />
+                <SortPopup searchParams={searchParams} />
             </div>
             {/* Upper checkboxes */}
             <div className="flex flex-col gap-4">
@@ -87,9 +100,12 @@ export const Filters: React.FC<Props> = ({ className }) => {
                         min={DEFAULT_MIN_PRICE}
                         step={10}
                         max={DEFAULT_MAX_PRICE}
-                        value={String(priceFrom || 0)}
+                        value={String(priceFrom ?? 0)}
                         onChange={e =>
-                            updatePrice('priceFrom', +e.target.value)
+                            updatePrice(
+                                'priceFrom',
+                                +e.target.value > 1000 ? 1000 : +e.target.value
+                            )
                         }
                     />
                     <Input
@@ -98,8 +114,13 @@ export const Filters: React.FC<Props> = ({ className }) => {
                         min={50}
                         max={DEFAULT_MAX_PRICE}
                         step={10}
-                        value={String(priceTo || DEFAULT_MAX_PRICE)}
-                        onChange={e => updatePrice('priceTo', +e.target.value)}
+                        value={String(priceTo ?? DEFAULT_MAX_PRICE)}
+                        onChange={e =>
+                            updatePrice(
+                                'priceTo',
+                                +e.target.value > 1000 ? 1000 : +e.target.value
+                            )
+                        }
                     />
                 </div>
                 <RangeSlider
@@ -126,6 +147,18 @@ export const Filters: React.FC<Props> = ({ className }) => {
                 selectedValues={selectedIngredients}
                 sortSelectedFirst
             />
+            {!!activeFiltersCount && activeFiltersCount > 0 && (
+                <div className="fixed bottom-2 right-2">
+                    <Button
+                        variant="link"
+                        className="text-md flex items-center gap-2"
+                        onClick={clearFilters}
+                    >
+                        Clear all
+                        <CircleX />
+                    </Button>
+                </div>
+            )}
         </div>
     )
 }

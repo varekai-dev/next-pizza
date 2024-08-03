@@ -5,12 +5,21 @@ import { useLoadScript, Autocomplete } from '@react-google-maps/api'
 import { FormInput } from './form'
 import { Skeleton } from '../ui'
 import { useFormContext } from 'react-hook-form'
+import { FormInputProps } from './form/form-input'
 
 const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
 
 type AutocompleteType = google.maps.places.Autocomplete
 
-const AddressAutocomplete = () => {
+interface Props extends FormInputProps {
+    className?: string
+}
+
+export const AddressInput: React.FC<Props> = ({
+    className,
+    name,
+    ...props
+}) => {
     const { trigger } = useFormContext()
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: String(API_KEY),
@@ -21,8 +30,6 @@ const AddressAutocomplete = () => {
     const autocompleteRef = React.useRef<any>()
 
     const onPlaceChanged = React.useCallback(() => {
-        const place = autocompleteRef?.current?.getPlace()
-
         trigger('address')
     }, [trigger])
 
@@ -43,7 +50,7 @@ const AddressAutocomplete = () => {
     }
 
     return (
-        <div className="w-full relative">
+        <div className={className}>
             <Autocomplete
                 onPlaceChanged={onPlaceChanged}
                 onLoad={onLoad}
@@ -51,21 +58,15 @@ const AddressAutocomplete = () => {
                 options={{
                     types: ['address'], // Restrict to addresses
                     componentRestrictions: { country: 'ua' }, // Restrict to Ukraine
-                    bounds: new window.google.maps.LatLngBounds(
-                        new window.google.maps.LatLng(49.528, 25.553), // Southwest corner of Ternopil
-                        new window.google.maps.LatLng(49.568, 25.623) // Northeast corner of Ternopil
-                    ),
                 }}
             >
                 <FormInput
                     autoComplete="shipping address-line1"
-                    name="address"
-                    placeholder="Address"
+                    name={name}
+                    {...props}
                     className="text-base"
                 />
             </Autocomplete>
         </div>
     )
 }
-
-export default AddressAutocomplete

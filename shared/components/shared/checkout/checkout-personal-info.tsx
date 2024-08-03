@@ -15,18 +15,24 @@ export const CheckoutPersonalInfo: React.FC<Props> = ({ className }) => {
                     className="text-base"
                     placeholder="First Name"
                     allowClear
+                    required
+                    label="First Name"
                 />
                 <FormInput
                     name="lastName"
                     className="text-base"
                     placeholder="Last Name"
                     allowClear
+                    required
+                    label="Last Name"
                 />
                 <FormInput
                     name="email"
                     className="text-base"
                     placeholder="Email"
                     allowClear
+                    required
+                    label="Email"
                 />
 
                 <FormPhone
@@ -34,6 +40,8 @@ export const CheckoutPersonalInfo: React.FC<Props> = ({ className }) => {
                     className="text-base"
                     mask="+38(000)000-00-00"
                     allowClear
+                    required
+                    label="Phone Number"
                 />
             </div>
         </WhiteBlock>

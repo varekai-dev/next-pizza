@@ -16,6 +16,7 @@ interface ReturnProps {
     setPrice: React.Dispatch<React.SetStateAction<PriceProps>>
     sortBy?: number
     searchParams: Map<paramType, string>
+    clearFilters: () => void
 }
 
 export interface PriceProps {
@@ -40,21 +41,28 @@ export const useFilters = (): ReturnProps => {
         priceTo: Number(searchParams.get('priceTo')) || undefined,
     })
 
-    const [selectedSizes, { toggle: toggleSizes }] = useSet(
-        new Set<string>(
-            searchParams.get('sizes')
-                ? searchParams.get('sizes')?.split(',')
-                : []
+    const [selectedSizes, { toggle: toggleSizes, clear: clearSelectedSizes }] =
+        useSet(
+            new Set<string>(
+                searchParams.get('sizes')
+                    ? searchParams.get('sizes')?.split(',')
+                    : []
+            )
         )
-    )
-    const [selectedIngredients, { toggle: toggleIngredients }] = useSet(
+    const [
+        selectedIngredients,
+        { toggle: toggleIngredients, clear: clearIngredients },
+    ] = useSet(
         new Set<string>(
             searchParams.get('ingredients')
                 ? searchParams.get('ingredients')?.split(',')
                 : []
         )
     )
-    const [selectedPizzaTypes, { toggle: togglePizzaTypes }] = useSet(
+    const [
+        selectedPizzaTypes,
+        { toggle: togglePizzaTypes, clear: clearPizzaSizes },
+    ] = useSet(
         new Set<string>(
             searchParams.get('pizzaTypes')
                 ? searchParams.get('pizzaTypes')?.split(',')
@@ -63,6 +71,13 @@ export const useFilters = (): ReturnProps => {
     )
 
     const sortBy = Number(searchParams.get('sortBy')) || undefined
+
+    const clearFilters = () => {
+        clearSelectedSizes()
+        clearIngredients()
+        clearPizzaSizes()
+        setPrice({})
+    }
 
     return {
         toggleIngredients,
@@ -76,5 +91,6 @@ export const useFilters = (): ReturnProps => {
         priceTo,
         sortBy,
         searchParams,
+        clearFilters,
     }
 }

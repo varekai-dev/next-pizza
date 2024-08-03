@@ -13,7 +13,7 @@ interface Props {
 }
 
 export const Products: React.FC<Props> = ({ className, categories }) => {
-    const isPageScrolling = useIsPageScrolling()
+    const { isScrolling } = useIsPageScrolling()
     return (
         <div className={cn('flex-1', className)}>
             <Suspense>
@@ -22,7 +22,7 @@ export const Products: React.FC<Props> = ({ className, categories }) => {
                         if (!category.products.length) return null
                         return (
                             <ProductsGroupList
-                                isPageScrolling={isPageScrolling}
+                                isPageScrolling={isScrolling}
                                 key={category.id}
                                 items={category.products}
                                 title={category.name}

@@ -6,30 +6,30 @@ import { CartItem } from '../cart-item'
 import { CartItemSkeleton } from '../skeletons/cart-item-skeleton'
 import { WhiteBlock } from '../white-block'
 import { CartStateItem } from '@/shared/lib/get-cart-details'
+import { useCart } from '@/shared/hooks'
 
 interface Props {
-    items: CartStateItem[]
     className?: string
-    totalAmount: number
-    loading: boolean
-    clearCart: () => void
-    removeCartItem: (id: number) => void
-    onClickCountButton: (
+}
+
+export const CheckoutCart: React.FC<Props> = ({ className }) => {
+    const {
+        items,
+        loading,
+        totalAmount,
+        removeCartItem,
+        updateItemQuantity,
+        clearCart,
+    } = useCart(true)
+
+    const onClickCountButton = (
         id: number,
         quantity: number,
         type: 'plus' | 'minus'
-    ) => void
-}
-
-export const CheckoutCart: React.FC<Props> = ({
-    className,
-    loading,
-    items,
-    totalAmount,
-    clearCart,
-    removeCartItem,
-    onClickCountButton,
-}) => {
+    ) => {
+        const value = type === 'plus' ? quantity + 1 : quantity - 1
+        updateItemQuantity(id, value)
+    }
     return (
         <WhiteBlock
             title="1. Cart"
@@ -82,7 +82,7 @@ export const CheckoutCart: React.FC<Props> = ({
                       ))}
             </div>
 
-            {!totalAmount && items && (
+            {!totalAmount && (
                 <p className="text-center text-gray-400 p-10">Cart is empty</p>
             )}
         </WhiteBlock>

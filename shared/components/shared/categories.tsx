@@ -22,7 +22,7 @@ export const Categories: React.FC<Props> = ({ className, items }) => {
     return (
         <div
             className={cn(
-                'inline-flex gap-1 bg-gray-50 p-1 rounded-2xl relative max-w-[800px] overflow-x-auto ',
+                'inline-flex gap-1 bg-gray-50 p-1 rounded-2xl relative overflow-x-scroll md:overflow-hidden',
                 className
             )}
         >

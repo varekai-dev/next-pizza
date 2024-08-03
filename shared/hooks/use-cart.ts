@@ -38,7 +38,7 @@ export const useCart = (runFetch?: boolean): ReturnProps => {
     ])
 
     React.useEffect(() => {
-        if (runFetch) {
+        if (runFetch && !items.length) {
             fetchCartItems()
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps

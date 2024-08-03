@@ -1,4 +1,5 @@
 import {
+    CartButtonFixed,
     Container,
     Filters,
     Products,
@@ -27,7 +28,7 @@ export default async function Home({
             </Container>
             <TopBar categories={categories} searchParams={searchParams} />
             <Container className="mt-10 pb-14">
-                <div className="flex gap-[60px]">
+                <div className="flex gap-[60px] relative">
                     {/* Filters */}
                     <div className="w-[250px] lg:block hidden">
                         <Suspense>
@@ -36,6 +37,7 @@ export default async function Home({
                     </div>
                     {/* Products */}
                     <Products categories={categories} />
+                    <CartButtonFixed />
                 </div>
             </Container>
         </>

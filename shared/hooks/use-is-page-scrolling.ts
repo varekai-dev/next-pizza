@@ -2,11 +2,19 @@ import React from 'react'
 
 export const useIsPageScrolling = () => {
     const [isScrolling, setIsScrolling] = React.useState(false)
+    const [scrollY, setScrollY] = React.useState(0)
 
     React.useEffect(() => {
         let scrollTimeout: NodeJS.Timeout
 
         const handleScroll = () => {
+            const currentScrollY = window.scrollY
+
+            if (currentScrollY === scrollY) {
+                return
+            }
+
+            setScrollY(currentScrollY)
             setIsScrolling(true)
             clearTimeout(scrollTimeout)
             scrollTimeout = setTimeout(() => {
@@ -22,5 +30,5 @@ export const useIsPageScrolling = () => {
         }
     }, [])
 
-    return isScrolling
+    return { isScrolling, scrollY }
 }

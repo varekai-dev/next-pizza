@@ -8,7 +8,7 @@ import { ErrorText } from '../error-text'
 import { ClearButton } from '../clear-button'
 import { useFormContext } from 'react-hook-form'
 
-interface Props extends InputProps {
+export interface FormInputProps extends InputProps {
     className?: string
     name: string
     label?: string
@@ -16,7 +16,7 @@ interface Props extends InputProps {
     allowClear?: boolean
 }
 
-export const FormInput: React.FC<Props> = ({
+export const FormInput: React.FC<FormInputProps> = ({
     className,
     name,
     label,
