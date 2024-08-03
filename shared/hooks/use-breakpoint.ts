@@ -14,9 +14,14 @@ type Breakpoint = keyof typeof widthBreakpoints
 
 export const useBreakpoint = (breakpoint: Breakpoint) => {
     const minWidth = widthBreakpoints[breakpoint]
-    const [isMinWidth, setIsMinWidth] = useState(window.innerWidth >= minWidth)
+    const [isMinWidth, setIsMinWidth] = useState(
+        typeof window !== 'undefined' ? window.innerWidth >= minWidth : false
+    )
 
     useEffect(() => {
+        if (typeof window === 'undefined') {
+            return
+        }
         const handleResize = () => {
             setIsMinWidth(window.innerWidth >= minWidth)
         }

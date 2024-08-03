@@ -16,16 +16,17 @@ interface Props {
 export const ProductDrawer: React.FC<Props> = ({ className, product }) => {
     const router = useRouter()
 
-    const onCloseModal = (open?: boolean) => {
-        if (open === false) {
-            router.back()
-        }
+    const onCloseModal = () => {
+        router.back()
     }
 
     const isLg = useBreakpoint('lg')
 
     return (
-        <Drawer open={Boolean(product)} onOpenChange={onCloseModal}>
+        <Drawer
+            open={Boolean(product)}
+            onOpenChange={() => !open && router.back()}
+        >
             <Root>
                 <DrawerTitle>Title</DrawerTitle>
             </Root>
