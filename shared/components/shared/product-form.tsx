@@ -12,12 +12,14 @@ interface Props {
     product: ProductWithRelations
     onSubmit?: () => void
     isDrawer?: boolean
+    productPage?: boolean
 }
 
 export const ProductForm: React.FC<Props> = ({
     product,
     onSubmit: _onSubmit,
     isDrawer = false,
+    productPage = false,
 }) => {
     const [addCartItem, loading] = useCartStore(state => [
         state.addCartItem,
@@ -40,6 +42,7 @@ export const ProductForm: React.FC<Props> = ({
     if (isPizzaForm) {
         return (
             <ChoosePizzaForm
+                productPage={productPage}
                 isDrawer={isDrawer}
                 onClickAdd={onSubmit}
                 name={product.name}
@@ -53,6 +56,7 @@ export const ProductForm: React.FC<Props> = ({
 
     return (
         <ChooseProductForm
+            productPage={productPage}
             isDrawer={isDrawer}
             price={product.items[0].price}
             productItemId={product.items[0].id}

@@ -21,7 +21,8 @@ interface Props {
     items: ProductItem[]
     onClickAdd?: (values: CreateCartItemValues) => void
     loading?: boolean
-    isDrawer?: boolean
+    isDrawer: boolean
+    productPage: boolean
 }
 
 export const ChoosePizzaForm: React.FC<Props> = ({
@@ -33,6 +34,7 @@ export const ChoosePizzaForm: React.FC<Props> = ({
     className,
     loading,
     isDrawer,
+    productPage,
 }) => {
     const {
         size,
@@ -66,17 +68,20 @@ export const ChoosePizzaForm: React.FC<Props> = ({
         <div
             className={cn('flex flex-1 rounded', className, {
                 'flex-col max-h-[70vh] scrollbar overflow-x-auto': isDrawer,
+                'lg:flex-row flex-col': productPage,
             })}
         >
             <ProductImage
                 size={size}
                 src={imageUrl}
                 alt={name}
-                isMobile={isDrawer}
+                productPage={productPage}
+                isDrawer={isDrawer}
             />
             <div
                 className={cn('w-[490px] bg-[#f7f6f5] p-7', {
                     'w-full': isDrawer,
+                    'lg:w-[490px] w-full ': productPage,
                 })}
             >
                 <Title text={name} />
@@ -112,11 +117,7 @@ export const ChoosePizzaForm: React.FC<Props> = ({
                         })}
                     </div>
                 </div>
-                <span
-                    className={cn({
-                        'sticky bottom-6 z-10': isDrawer,
-                    })}
-                >
+                <span className="sticky bottom-6 sm:block sm:bottom-0 z-10">
                     <Button
                         loading={loading}
                         className={cn(

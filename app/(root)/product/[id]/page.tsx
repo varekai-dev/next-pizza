@@ -31,8 +31,8 @@ export default async function ProductPage({
     }
 
     return (
-        <Container className="flex flex-col my-10">
-            <ProductForm product={product} />
+        <Container className="flex flex-col my-10 px-0">
+            <ProductForm product={product} productPage />
         </Container>
     )
 }

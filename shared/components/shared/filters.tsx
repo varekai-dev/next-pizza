@@ -5,12 +5,7 @@ import { Title } from './title'
 import { Input } from '../ui'
 import { RangeSlider } from './range-slider'
 import { CheckboxFiltersGroup } from './checkbox-filters-group'
-import {
-    useBreakpoint,
-    useFilters,
-    useIngredients,
-    useQueryFilters,
-} from '@/shared/hooks'
+import { useFilters, useIngredients, useQueryFilters } from '@/shared/hooks'
 import { PriceProps } from '@/shared/hooks/use-filters'
 import { pizzaTypesItems, pizzaSizesOptions } from '@/shared/constants'
 import { DEFAULT_MAX_PRICE, DEFAULT_MIN_PRICE } from '@/shared/lib/find-pizzas'
@@ -21,7 +16,6 @@ interface Props {
 }
 
 export const Filters: React.FC<Props> = ({ className }) => {
-    const isLg = useBreakpoint('lg')
     const {
         selectedIngredients,
         selectedSizes,
@@ -61,9 +55,10 @@ export const Filters: React.FC<Props> = ({ className }) => {
     return (
         <div className={className}>
             <Title text="Filters" size="sm" className="mb-2 font-bold" />
+            <div className="block lg:hidden">
+                <SortPopup searchParams={searchParams as any} />
+            </div>
             {/* Upper checkboxes */}
-            {!isLg && <SortPopup searchParams={searchParams as any} />}
-
             <div className="flex flex-col gap-4">
                 <CheckboxFiltersGroup
                     name="pizzaTypes"

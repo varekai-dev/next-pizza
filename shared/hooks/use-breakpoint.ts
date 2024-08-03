@@ -12,14 +12,16 @@ const widthBreakpoints = {
 
 type Breakpoint = keyof typeof widthBreakpoints
 
+const isClient = typeof window !== 'undefined'
+
 export const useBreakpoint = (breakpoint: Breakpoint) => {
     const minWidth = widthBreakpoints[breakpoint]
     const [isMinWidth, setIsMinWidth] = useState(
-        typeof window !== 'undefined' ? window.innerWidth >= minWidth : false
+        isClient ? window.innerWidth >= minWidth : false
     )
 
     useEffect(() => {
-        if (typeof window === 'undefined') {
+        if (!isClient) {
             return
         }
         const handleResize = () => {
