@@ -61,9 +61,19 @@ export const ChoosePizzaForm: React.FC<Props> = ({
     }
 
     return (
-        <div className={cn(className, 'flex flex-1 rounded')}>
-            <ProductImage size={size} src={imageUrl} alt={name} />
-            <div className="w-[490px] bg-[#f7f6f5] p-7">
+        <div
+            className={cn(
+                className,
+                'flex flex-1 rounded xl:flex-row flex-col'
+            )}
+        >
+            <ProductImage
+                size={size}
+                src={imageUrl}
+                alt={name}
+                className="h-[500px] h-min-[500px] flex-auto md:h-auto md:h-min-auto md:flex-1"
+            />
+            <div className="xl:w-[490px] bg-[#f7f6f5] p-7 w-full">
                 <Title text={name} />
                 <p className="text-gray-400">{textDetails}</p>
                 <div className="flex flex-col gap-4 mt-4">

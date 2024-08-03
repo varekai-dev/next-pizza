@@ -31,7 +31,7 @@ export const Header: React.FC<Props> = ({
                             height={35}
                             alt="logo"
                         />
-                        <div>
+                        <div className="sm:block hidden">
                             <h1 className="text-2xl uppercase font-black">
                                 Next Pizza
                             </h1>
@@ -42,7 +42,7 @@ export const Header: React.FC<Props> = ({
                     </div>
                 </Link>
                 {hasSearch && (
-                    <div className="mx-10 flex-1">
+                    <div className="mx-10 flex-1 md:block hidden">
                         <SearchInput />
                     </div>
                 )}

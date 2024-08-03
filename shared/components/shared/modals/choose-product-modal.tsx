@@ -26,7 +26,10 @@ export const ChooseProductModal: React.FC<Props> = ({ product, id }) => {
             <VisuallyHidden.Root>
                 <DialogTitle>Title</DialogTitle>
             </VisuallyHidden.Root>
-            <DialogContent className="p-0 w-[1060px] max-w-[1060px] min-h-[510px] bg-white overflow-hidden">
+            <DialogContent
+                className="p-0 min-h-[510px] bg-white overflow-hidden xl:w-[1060px] xl:max-w-[1060px]
+            md:w-[600px] md:max-w-[600px]"
+            >
                 <ProductForm product={product} onSubmit={onCloseModal} />
             </DialogContent>
         </Dialog>

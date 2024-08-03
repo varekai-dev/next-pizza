@@ -5,6 +5,7 @@ import { cn } from '@/shared/lib/utils'
 import { Container } from './container'
 import { Category } from '@prisma/client'
 import { GetSearchParams } from '@/shared/lib/find-pizzas'
+import { MobileFilterButton } from './mobile-filter-button'
 
 interface Props {
     className?: string
@@ -24,9 +25,12 @@ export const TopBar: React.FC<Props> = ({
                 className
             )}
         >
-            <Container className="flex justify-between items-center">
+            <Container className="flex lg:justify-between lg:items-center lg:flex-row flex-col gap-5 items-start">
                 <Categories items={categories} />
-                <SortPopup searchParams={searchParams} />
+                <div className="w-full lg:justify-end flex items-center justify-between">
+                    <SortPopup searchParams={searchParams} />
+                    <MobileFilterButton className="block lg:hidden" />
+                </div>
             </Container>
         </div>
     )
