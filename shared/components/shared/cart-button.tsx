@@ -5,7 +5,7 @@ import React from 'react'
 import { Button } from '../ui'
 import { cn } from '@/shared/lib'
 import { CartDrawer } from './cart-drawer'
-import { useCart } from '@/shared/hooks'
+import { useCart, useIsPageScrolling } from '@/shared/hooks'
 
 interface Props {
     className?: string
@@ -13,6 +13,9 @@ interface Props {
 
 export const CartButton: React.FC<Props> = ({ className }) => {
     const { totalAmount, items, loading } = useCart()
+    const { scrollY } = useIsPageScrolling()
+
+    const show = scrollY > 150
     return (
         <CartDrawer>
             <Button

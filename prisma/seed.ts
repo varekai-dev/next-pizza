@@ -180,15 +180,15 @@ async function up() {
     // })
 }
 async function down() {
-    await prisma.user.deleteMany()
-    await prisma.product.deleteMany()
-    await prisma.ingredient.deleteMany()
-    await prisma.order.deleteMany()
-    await prisma.productItem.deleteMany()
-    await prisma.verificationCode.deleteMany()
-    await prisma.category.deleteMany()
-    await prisma.cart.deleteMany()
-    await prisma.cartItem.deleteMany()
+    await prisma.user.deleteMany({})
+    await prisma.product.deleteMany({})
+    await prisma.ingredient.deleteMany({})
+    await prisma.order.deleteMany({})
+    await prisma.productItem.deleteMany({})
+    await prisma.verificationCode.deleteMany({})
+    await prisma.category.deleteMany({})
+    await prisma.cart.deleteMany({})
+    await prisma.cartItem.deleteMany({})
 }
 
 async function main() {

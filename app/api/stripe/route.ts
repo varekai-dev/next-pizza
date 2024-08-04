@@ -2,6 +2,7 @@ import { OrderStatus } from '@prisma/client'
 import { prisma } from '@/prisma/prisma-client'
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
+import { sendEmail } from '@/app/action'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
 
@@ -10,33 +11,27 @@ const paymentSucceed = async (event: any) => {
     const userCartId = event.data.object.metadata?.userCartId
 
     try {
-        if (userCartId) {
-            await prisma.cart.deleteMany({
-                where: {
-                    id: String(userCartId),
-                },
-            })
-            await prisma.cartItem.deleteMany({
-                where: {
-                    id: String(userCartId),
-                },
-            })
-        } else {
-            return NextResponse.json({ message: 'No token' }, { status: 400 })
+        if (!userCartId) {
+            return NextResponse.json({ message: 'No Card id' }, { status: 400 })
         }
-
-        if (orderId) {
-            await prisma.order.update({
-                where: {
-                    id: String(orderId),
-                },
-                data: {
-                    status: OrderStatus.SUCCEEDED,
-                },
-            })
-        } else {
+        if (!orderId) {
             return NextResponse.json({ message: 'No orderId' }, { status: 400 })
         }
+
+        const order = await prisma.order.update({
+            where: {
+                id: String(orderId),
+            },
+            data: {
+                status: OrderStatus.SUCCEEDED,
+                paymentId: event.data.object.id,
+            },
+        })
+        await sendEmail({
+            to: order.email,
+            subject: 'Order paid',
+            html: `<p>Your order is paid. Order id: ${order.id.toString()}</p>`,
+        })
     } catch (error) {
         console.log('error', error)
         return NextResponse.json({ message: 'Error' }, { status: 400 })

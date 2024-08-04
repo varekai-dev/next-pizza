@@ -20,9 +20,16 @@ import { useCart } from '@/shared/hooks'
 import Image from 'next/image'
 import { Title } from './title'
 
-export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
+type Props = {
+    runFetch?: boolean
+}
+
+export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({
+    children,
+    runFetch = true,
+}) => {
     const { totalAmount, items, updateItemQuantity, removeCartItem, loading } =
-        useCart(true)
+        useCart(runFetch)
 
     const handleClickCountButton = (
         id: string,
