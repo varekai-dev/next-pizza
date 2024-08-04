@@ -61,7 +61,7 @@ export async function POST(req: NextRequest) {
 
         const data = (await req.json()) as CreateCartItemValues
 
-        const sortedIngredients = data.ingredients?.sort((a, b) => a - b) ?? []
+        const sortedIngredients = data.ingredients?.sort() ?? []
 
         const findCartItems = await prisma.cartItem.findMany({
             include: {

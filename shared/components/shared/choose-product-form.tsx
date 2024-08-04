@@ -12,7 +12,7 @@ interface Props {
     name: string
     className?: string
     onClickAdd?: (values: CreateCartItemValues) => void
-    productItemId: number
+    productItemId: string
     price: number
     loading?: boolean
     isDrawer: boolean

@@ -15,7 +15,7 @@ interface Props {
     items: ProductWithRelations[]
     className?: string
     listClassName?: string
-    categoryId: number
+    categoryId: string
     isPageScrolling: boolean
 }
 

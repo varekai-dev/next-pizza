@@ -10,9 +10,9 @@ interface State {
     totalAmount: number
     items: CartStateItem[]
     fetchCartItems: () => Promise<void>
-    updateItemQuantity: (id: number, quantity: number) => Promise<void>
+    updateItemQuantity: (id: string, quantity: number) => Promise<void>
     addCartItem: (values: CreateCartItemValues) => Promise<void>
-    removeCartItem: (id: number) => Promise<void>
+    removeCartItem: (id: string) => Promise<void>
     clearCart: () => void
 }
 
@@ -32,7 +32,7 @@ export const useCartStore = create<State>()(set => ({
             set({ loading: false })
         }
     },
-    removeCartItem: async (id: number) => {
+    removeCartItem: async (id: string) => {
         try {
             set(state => ({
                 loading: true,
@@ -49,7 +49,7 @@ export const useCartStore = create<State>()(set => ({
             set({ loading: false })
         }
     },
-    updateItemQuantity: async (id: number, quantity: number) => {
+    updateItemQuantity: async (id: string, quantity: number) => {
         try {
             set({ loading: true, error: false })
             const data = await Api.cart.updateItemQuantity(id, quantity)

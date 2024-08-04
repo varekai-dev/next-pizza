@@ -9,11 +9,11 @@ interface ReturnProps {
     size: PizzaSize
     setSize: React.Dispatch<React.SetStateAction<PizzaSize>>
     type: PizzaType
-    selectedIngredients: Set<number>
+    selectedIngredients: Set<string>
     setType: React.Dispatch<React.SetStateAction<PizzaType>>
     availablePizzaSizes: Variant[]
-    addIngredient: (id: number) => void
-    currentItemId?: number
+    addIngredient: (id: string) => void
+    currentItemId?: string
 }
 
 export const usePizzaOptions = (items: ProductItem[]): ReturnProps => {
@@ -21,7 +21,7 @@ export const usePizzaOptions = (items: ProductItem[]): ReturnProps => {
     const [type, setType] = React.useState<PizzaType>(1)
 
     const [selectedIngredients, { toggle: addIngredient }] = useSet(
-        new Set<number>([])
+        new Set<string>([])
     )
 
     const availablePizzaSizes = getAvailablePizzaSizes(items, type)

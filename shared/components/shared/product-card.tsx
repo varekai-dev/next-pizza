@@ -8,7 +8,7 @@ import { Ingredient } from '@prisma/client'
 import { cn } from '@/shared/lib'
 
 interface Props {
-    id: number
+    id: string
     name: string
     price: number
     imageUrl: string

@@ -1,13 +1,13 @@
 import { create } from 'zustand'
 
 interface State {
-    activeId: number
+    activeId?: string
     shouldScroll: boolean
-    setActiveId: (activeId: number, shouldScroll?: boolean) => void
+    setActiveId: (activeId: string, shouldScroll?: boolean) => void
 }
 
 const useCategoryStore = create<State>()(set => ({
-    activeId: 1,
+    activeId: undefined,
     shouldScroll: true,
     setActiveId: (activeId, shouldScroll = true) =>
         set({ activeId, shouldScroll }),

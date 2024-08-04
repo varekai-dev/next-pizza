@@ -10,8 +10,8 @@ type ReturnProps = {
     totalAmount: number
     items: CartStateItem[]
     loading: boolean
-    updateItemQuantity: (id: number, quantity: number) => void
-    removeCartItem: (id: number) => void
+    updateItemQuantity: (id: string, quantity: number) => void
+    removeCartItem: (id: string) => void
     addCartItem: (values: CreateCartItemValues) => void
     clearCart: () => void
 }

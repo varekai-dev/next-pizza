@@ -2,7 +2,7 @@ import { CartResponse } from '../services/dto/cart.dto'
 import { calcCartItemTotalPrice } from './calc-cart-item-total-price'
 
 export type CartStateItem = {
-    id: number
+    id: string
     quantity: number
     name: string
     disabled?: boolean

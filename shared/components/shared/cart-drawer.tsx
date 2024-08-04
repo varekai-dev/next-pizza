@@ -25,7 +25,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
         useCart(true)
 
     const handleClickCountButton = (
-        id: number,
+        id: string,
         quantity: number,
         type: 'plus' | 'minus'
     ) => {

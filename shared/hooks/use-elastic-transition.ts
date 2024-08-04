@@ -5,7 +5,7 @@ export const useElasticTransition = ({
     items,
     findBy = 'id',
 }: {
-    activeEl: number | string
+    activeEl?: number | string
     items: any[]
     findBy?: 'id' | 'value'
 }) => {

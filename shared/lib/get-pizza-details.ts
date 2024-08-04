@@ -18,7 +18,7 @@ export const getPizzaDetails = ({
     type: PizzaType
     ingredients: Ingredient[]
     items: ProductItem[]
-    selectedIngredients: Set<number>
+    selectedIngredients: Set<string>
 }): ReturnProps => {
     const totalPrice = calcTotalPizzaPrice({
         items,

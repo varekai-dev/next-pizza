@@ -23,7 +23,7 @@ export const CheckoutCart: React.FC<Props> = ({ className }) => {
     } = useCart(true)
 
     const onClickCountButton = (
-        id: number,
+        id: string,
         quantity: number,
         type: 'plus' | 'minus'
     ) => {

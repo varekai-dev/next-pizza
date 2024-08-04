@@ -7,7 +7,7 @@ export const getCart = async (): Promise<CartResponse> => {
 }
 
 export const updateItemQuantity = async (
-    itemId: number,
+    itemId: string,
     quantity: number
 ): Promise<CartDTO> => {
     return (
@@ -17,7 +17,7 @@ export const updateItemQuantity = async (
     ).data
 }
 
-export const deleteItem = async (itemId: number): Promise<CartDTO> => {
+export const deleteItem = async (itemId: string): Promise<CartDTO> => {
     return (await axiosInstance.delete<CartDTO>(`${ApiRoutes.CART}/${itemId}`))
         .data
 }

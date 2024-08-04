@@ -25,7 +25,7 @@ export const calcTotalPizzaPrice = ({
     type: PizzaType
     ingredients: Ingredient[]
     size: PizzaSize
-    selectedIngredients: Set<number>
+    selectedIngredients: Set<string>
 }) => {
     const pizzaPrice =
         items.find(item => item.pizzaType === type && item.size === size)

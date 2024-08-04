@@ -23,5 +23,5 @@ export type CartResponse = Cart & {
 
 export interface CreateCartItemValues {
     productItemId: string
-    ingredients?: number[]
+    ingredients?: string[]
 }
