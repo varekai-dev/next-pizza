@@ -27,6 +27,8 @@ const paymentSucceed = async (event: any) => {
                 cartId: cart?.id,
             },
         })
+    } else {
+        return NextResponse.json({ message: 'No token' }, { status: 400 })
     }
 
     if (orderId) {
@@ -60,7 +62,7 @@ export async function POST(req: NextRequest) {
 
     // Handle the event
     switch (event.type) {
-        case 'charge.succeeded':
+        case 'checkout.session.completed':
             await paymentSucceed(event)
             // Then define and call a function to handle the event payment_intent.succeeded
             break
