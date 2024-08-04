@@ -28,13 +28,15 @@ export const FormPhone: React.FC<Props> = ({
     ...props
 }) => {
     const {
-        formState: { errors },
+        formState: { errors, defaultValues },
         watch,
         setValue: setFormValue,
         trigger,
     } = useFormContext()
 
     const errorText = errors?.[name]?.message as string
+
+    const defaultValue = defaultValues?.[name] as string
 
     const text = watch(name)
 
@@ -44,6 +46,13 @@ export const FormPhone: React.FC<Props> = ({
         setFormValue(name, '')
         setValue('')
     }
+
+    React.useEffect(() => {
+        if (defaultValue) {
+            setValue(defaultValue)
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     React.useEffect(() => {
         setFormValue(name, value)

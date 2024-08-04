@@ -7,23 +7,18 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
 
 const paymentSucceed = async (event: any) => {
     const orderId = event.data.object.metadata?.orderId
-    const token = event.data.object.metadata?.token
+    const userCartId = event.data.object.metadata?.userCartId
 
     try {
-        if (token) {
-            const cart = await prisma.cart.findFirst({
-                where: {
-                    token,
-                },
-            })
+        if (userCartId) {
             await prisma.cart.deleteMany({
                 where: {
-                    token,
+                    id: Number(userCartId),
                 },
             })
             await prisma.cartItem.deleteMany({
                 where: {
-                    cartId: cart?.id,
+                    id: Number(userCartId),
                 },
             })
         } else {
