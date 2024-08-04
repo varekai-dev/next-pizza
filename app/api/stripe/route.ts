@@ -9,37 +9,42 @@ const paymentSucceed = async (event: any) => {
     const orderId = event.data.object.metadata?.orderId
     const token = event.data.object.metadata?.token
 
-    if (token) {
-        const cart = await prisma.cart.findFirst({
-            where: {
-                token,
-            },
-        })
-        await prisma.cart.deleteMany({
-            where: {
-                token,
-            },
-        })
-        await prisma.cartItem.deleteMany({
-            where: {
-                cartId: cart?.id,
-            },
-        })
-    } else {
-        return NextResponse.json({ message: 'No token' }, { status: 400 })
-    }
+    try {
+        if (token) {
+            const cart = await prisma.cart.findFirst({
+                where: {
+                    token,
+                },
+            })
+            await prisma.cart.deleteMany({
+                where: {
+                    token,
+                },
+            })
+            await prisma.cartItem.deleteMany({
+                where: {
+                    cartId: cart?.id,
+                },
+            })
+        } else {
+            return NextResponse.json({ message: 'No token' }, { status: 400 })
+        }
 
-    if (orderId) {
-        await prisma.order.update({
-            where: {
-                id: orderId,
-            },
-            data: {
-                status: OrderStatus.SUCCEEDED,
-            },
-        })
-    } else {
-        return NextResponse.json({ message: 'No orderId' }, { status: 400 })
+        if (orderId) {
+            await prisma.order.update({
+                where: {
+                    id: Number(orderId),
+                },
+                data: {
+                    status: OrderStatus.SUCCEEDED,
+                },
+            })
+        } else {
+            return NextResponse.json({ message: 'No orderId' }, { status: 400 })
+        }
+    } catch (error) {
+        console.log('error', error)
+        return NextResponse.json({ message: 'Error' }, { status: 400 })
     }
 }
 
