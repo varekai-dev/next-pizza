@@ -10,7 +10,22 @@ export type CartItemWithRelations = CartItem & {
     ingredients: Ingredient[]
 }
 
-export const getStripeItems = (items: CartItemWithRelations[]) => {
+export type StripeItem = {
+    price_data: {
+        currency: string
+        product_data: {
+            name: string
+            images?: string[]
+            description: string
+        }
+        unit_amount: number
+    }
+    quantity: number
+}
+
+export const getStripeItems = (
+    items: CartItemWithRelations[]
+): StripeItem[] => {
     return items.map(item => ({
         price_data: {
             currency: 'uah',

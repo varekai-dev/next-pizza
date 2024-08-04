@@ -3,13 +3,14 @@ import { prisma } from '@/prisma/prisma-client'
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
 import { sendEmail } from '@/app/action'
+import { CartItemDTO } from '@/shared/services/dto/cart.dto'
+import { getItemPrice } from '@/shared/lib'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
 
 const paymentSucceed = async (event: any) => {
     const orderId = event.data.object.metadata?.orderId
     const userCartId = event.data.object.metadata?.userCartId
-
     try {
         if (!userCartId) {
             return NextResponse.json({ message: 'No Card id' }, { status: 400 })
@@ -24,13 +25,19 @@ const paymentSucceed = async (event: any) => {
             },
             data: {
                 status: OrderStatus.SUCCEEDED,
-                paymentId: event.data.object.id,
+                paymentId: event.id,
             },
         })
+
+        const orderItems: CartItemDTO[] = JSON.parse(order.items as string)
+
         await sendEmail({
             to: order.email,
             subject: 'Order paid',
-            html: `<p>Your order is paid. Order id: ${order.id.toString()}</p>`,
+            html: `<p>Your order is paid. Order id: ${order.id.toString()}</p>
+            <ul>
+            ${getItemPrice(orderItems)}
+            </ul>`,
         })
     } catch (error) {
         console.log('error', error)
