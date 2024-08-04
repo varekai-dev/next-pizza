@@ -1,7 +1,9 @@
 import { OrderStatus } from '@prisma/client'
 import { prisma } from '@/prisma/prisma-client'
 import { NextRequest, NextResponse } from 'next/server'
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
+import Stripe from 'stripe'
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
 
 const paymentSucceed = async (event: any) => {
     console.log('orderId', event.metadata?.orderId)
@@ -48,8 +50,8 @@ export async function POST(req: NextRequest) {
     try {
         event = stripe.webhooks.constructEvent(
             payload,
-            sig,
-            process.env.STRIPE_WEBHOOK_SECRET
+            sig!,
+            String(process.env.STRIPE_WEBHOOK_SECRET)
         )
     } catch (err) {
         console.log('error', err)
