@@ -19,7 +19,7 @@ model User {
   provider   String?
   providerId String?
 
-  cart             Cart?
+  cart             Cart[]
   orders           Order[]
   verificationCode VerificationCode?
 
@@ -90,7 +90,7 @@ model ProductItem {
 model Cart {
   id String @id @default(auto()) @map("_id") @db.ObjectId
 
-  userId String? @unique @db.ObjectId
+  userId String? @db.ObjectId
   user   User?   @relation(fields: [userId], references: [id])
 
   items   CartItem[]
