@@ -6,10 +6,8 @@ import Stripe from 'stripe'
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
 
 const paymentSucceed = async (event: any) => {
-    console.log('orderId', event.metadata?.orderId)
-
-    const orderId = event.metadata?.orderId
-    const token = event.metadata?.token
+    const orderId = event.data.object.metadata?.orderId
+    const token = event.data.object.metadata?.token
 
     if (token) {
         const cart = await prisma.cart.findFirst({
