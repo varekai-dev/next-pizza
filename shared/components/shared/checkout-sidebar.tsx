@@ -4,29 +4,22 @@ import React from 'react'
 import { WhiteBlock } from './white-block'
 import { Button, Skeleton } from '../ui'
 import { ArrowRight, Package, Percent, Truck } from 'lucide-react'
-import { useFormContext } from 'react-hook-form'
-import { CheckoutFormValues } from './checkout/checkout-form-schema'
 import { useCart } from '@/shared/hooks'
 import { CheckoutSidebarItem } from './checkout-sidebar-item'
 
 interface Props {
     className?: string
+    submitting?: boolean
 }
 
 const VAT = 15
 const DELIVERY_PRICE = 100
 
-export const CheckoutSidebar: React.FC<Props> = ({ className }) => {
+export const CheckoutSidebar: React.FC<Props> = ({ className, submitting }) => {
     const { totalAmount, loading } = useCart()
     const vatPrice = (totalAmount * VAT) / 100
     const deliveryPrice = totalAmount ? DELIVERY_PRICE : 0
     const totalPrice = totalAmount + deliveryPrice + vatPrice
-
-    const { handleSubmit } = useFormContext<CheckoutFormValues>()
-
-    const onSubmit = (data: CheckoutFormValues) => {
-        console.log('data', data)
-    }
 
     return (
         <div className={className}>
@@ -62,7 +55,8 @@ export const CheckoutSidebar: React.FC<Props> = ({ className }) => {
                     icon={<Truck size={18} className="mr-2 text-gray-400" />}
                 />
                 <Button
-                    onClick={handleSubmit(onSubmit)}
+                    loading={loading || submitting}
+                    type="submit"
                     disabled={!totalAmount}
                     className="w-full h-14 rounded-2xl mt-6 text-base font-bold"
                 >
