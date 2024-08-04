@@ -13,12 +13,12 @@ const paymentSucceed = async (event: any) => {
         if (userCartId) {
             await prisma.cart.deleteMany({
                 where: {
-                    id: Number(userCartId),
+                    id: String(userCartId),
                 },
             })
             await prisma.cartItem.deleteMany({
                 where: {
-                    id: Number(userCartId),
+                    id: String(userCartId),
                 },
             })
         } else {
@@ -28,7 +28,7 @@ const paymentSucceed = async (event: any) => {
         if (orderId) {
             await prisma.order.update({
                 where: {
-                    id: Number(orderId),
+                    id: String(orderId),
                 },
                 data: {
                     status: OrderStatus.SUCCEEDED,

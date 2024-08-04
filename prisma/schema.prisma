@@ -3,12 +3,12 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("POSTGRES_URL")
+  provider = "mongodb"
+  url      = env("MONGODB_URL")
 }
 
 model User {
-  id Int @id @default(autoincrement())
+  id String @id @default(auto()) @map("_id") @db.ObjectId
 
   email    String    @unique
   fullName String
@@ -28,7 +28,7 @@ model User {
 }
 
 model Product {
-  id Int @id @default(autoincrement())
+  id String @id @default(auto()) @map("_id") @db.ObjectId
 
   name     String
   imageUrl String
@@ -36,9 +36,10 @@ model Product {
   items ProductItem[]
 
   category   Category @relation(fields: [categoryId], references: [id])
-  categoryId Int
+  categoryId String   @db.ObjectId
 
-  ingredients Ingredient[]
+  ingredients   Ingredient[] @relation(fields: [ingredientIds], references: [id])
+  ingredientIds String[]     @default([]) @db.ObjectId
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -47,7 +48,7 @@ model Product {
 }
 
 model Category {
-  id Int @id @default(autoincrement())
+  id String @id @default(auto()) @map("_id") @db.ObjectId
 
   name String @unique
 
@@ -55,21 +56,23 @@ model Category {
 }
 
 model Ingredient {
-  id Int @id @default(autoincrement())
+  id String @id @default(auto()) @map("_id") @db.ObjectId
 
   name     String @unique
   price    Int
   imageUrl String
 
-  products  Product[]
-  cartItems CartItem[]
+  products    Product[]  @relation(fields: [productIds], references: [id])
+  productIds  String[]   @default([]) @db.ObjectId
+  cartItems   CartItem[] @relation(fields: [cartItemIds], references: [id])
+  cartItemIds String[]   @default([]) @db.ObjectId
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model ProductItem {
-  id Int @id @default(autoincrement())
+  id String @id @default(auto()) @map("_id") @db.ObjectId
 
   price     Int
   size      Int?
@@ -77,7 +80,7 @@ model ProductItem {
 
   cartItems CartItem[]
 
-  productId Int
+  productId String  @db.ObjectId
   product   Product @relation(fields: [productId], references: [id])
 
   createdAt DateTime @default(now())
@@ -85,12 +88,13 @@ model ProductItem {
 }
 
 model Cart {
-  id Int @id @default(autoincrement())
+  id String @id @default(auto()) @map("_id") @db.ObjectId
 
-  userId Int?  @unique
-  user   User? @relation(fields: [userId], references: [id])
+  userId String? @unique @db.ObjectId
+  user   User?   @relation(fields: [userId], references: [id])
 
-  items CartItem[]
+  items   CartItem[]
+  itemIds String[]   @default([]) @db.ObjectId
 
   token String?
 
@@ -101,27 +105,28 @@ model Cart {
 }
 
 model CartItem {
-  id Int @id @default(autoincrement())
+  id String @id @default(auto()) @map("_id") @db.ObjectId
 
   productItem   ProductItem @relation(fields: [productItemId], references: [id])
-  productItemId Int
+  productItemId String      @db.ObjectId
 
-  cart   Cart @relation(fields: [cartId], references: [id])
-  cartId Int
+  cart   Cart   @relation(fields: [cartId], references: [id])
+  cartId String @db.ObjectId
 
   quantity Int @default(1)
 
-  ingredients Ingredient[]
+  ingredients   Ingredient[] @relation(fields: [ingredientIds], references: [id])
+  ingredientIds String[]     @default([]) @db.ObjectId
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Order {
-  id Int @id @default(autoincrement())
+  id String @id @default(auto()) @map("_id") @db.ObjectId
 
-  user   User? @relation(fields: [userId], references: [id])
-  userId Int?
+  user   User?   @relation(fields: [userId], references: [id])
+  userId String? @db.ObjectId
 
   token String
 
@@ -142,10 +147,10 @@ model Order {
 }
 
 model VerificationCode {
-  id Int @id @default(autoincrement())
+  id String @id @default(auto()) @map("_id") @db.ObjectId
 
-  user   User @relation(fields: [userId], references: [id])
-  userId Int  @unique
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @unique @db.ObjectId
 
   code String
 

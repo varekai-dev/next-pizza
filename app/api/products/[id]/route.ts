@@ -6,7 +6,7 @@ export async function GET(_: Request, { params }: { params: { id: string } }) {
 
     const product = await prisma.product.findFirst({
         where: {
-            id: Number(id),
+            id: String(id),
         },
         include: {
             ingredients: true,

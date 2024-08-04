@@ -7,7 +7,7 @@ export async function PATCH(
     { params }: { params: { id: string } }
 ) {
     try {
-        const id = Number(params.id)
+        const id = String(params.id)
         const data = (await req.json()) as { quantity: number }
         const token = req.cookies.get('cartToken')?.value
 
@@ -57,7 +57,7 @@ export async function DELETE(
 ) {
     try {
         const token = req.cookies.get('cartToken')?.value
-        const id = Number(params.id)
+        const id = String(params.id)
         if (!token) {
             return NextResponse.json(
                 { message: 'Cart not found' },

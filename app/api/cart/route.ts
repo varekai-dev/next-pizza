@@ -100,7 +100,7 @@ export async function POST(req: NextRequest) {
                     quantity: 1,
                     ingredients: {
                         connect: data.ingredients?.map(id => ({
-                            id,
+                            id: String(id),
                         })),
                     },
                 },
