@@ -5,7 +5,7 @@ export const getItemPrice = (orderItems: CartItemDTO[]): string => {
     return orderItems
         .map(
             item =>
-                `<li>${item.productItem.product.name} | ${item.quantity} x ${
+                `<li>${item.productItem.product.name} | ${
                     getIngredientsCost(item) + item.productItem.price
                 } ₴ x ${item.quantity} = ${
                     (getIngredientsCost(item) + item.productItem.price) *

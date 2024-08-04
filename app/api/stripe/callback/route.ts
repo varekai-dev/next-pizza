@@ -10,11 +10,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
 
 const paymentSucceed = async (event: any) => {
     const orderId = event.data.object.metadata?.orderId
-    const userCartId = event.data.object.metadata?.userCartId
     try {
-        if (!userCartId) {
-            return NextResponse.json({ message: 'No Card id' }, { status: 400 })
-        }
         if (!orderId) {
             return NextResponse.json({ message: 'No orderId' }, { status: 400 })
         }
@@ -41,7 +37,33 @@ const paymentSucceed = async (event: any) => {
         })
     } catch (error) {
         console.log('error', error)
-        return NextResponse.json({ message: 'Error' }, { status: 400 })
+        return NextResponse.json(
+            { message: 'paymentSucceed error' },
+            { status: 400 }
+        )
+    }
+}
+
+const sessionExpired = (event: any) => {
+    try {
+        const orderId = event.data.object.metadata?.orderId
+        if (!orderId) {
+            return NextResponse.json({ message: 'No orderId' }, { status: 400 })
+        }
+        prisma.order.update({
+            where: {
+                id: orderId,
+            },
+            data: {
+                status: OrderStatus.CANCELLED,
+            },
+        })
+    } catch (error) {
+        console.log('error', error)
+        return NextResponse.json(
+            { message: 'sessionExpired error' },
+            { status: 400 }
+        )
     }
 }
 
@@ -66,6 +88,9 @@ export async function POST(req: NextRequest) {
             await paymentSucceed(event)
             // Then define and call a function to handle the event payment_intent.succeeded
             break
+
+        case 'checkout.session.expired':
+            await sessionExpired(event)
         // ... handle other event types
         default:
             console.log(`Unhandled event type ${event.type}`)
