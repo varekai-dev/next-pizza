@@ -60,9 +60,7 @@ export async function POST(req: NextRequest) {
 
     // Handle the event
     switch (event.type) {
-        case 'payment_intent.succeeded':
-            console.log('PaymentIntent was successful!')
-
+        case 'charge.succeeded':
             await paymentSucceed(event)
             // Then define and call a function to handle the event payment_intent.succeeded
             break
