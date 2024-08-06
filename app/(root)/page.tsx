@@ -6,9 +6,9 @@ import {
     Title,
     TopBar,
 } from '@/shared/components/shared'
-import { Suspense } from 'react'
 import { findPizzas } from '@/shared/lib'
 import { GetSearchParams } from '@/shared/lib/find-pizzas'
+import React from 'react'
 
 export default async function Home({
     searchParams,
@@ -27,9 +27,9 @@ export default async function Home({
                 <div className="flex gap-[60px] relative">
                     {/* Filters */}
                     <div className="w-[250px] lg:block hidden">
-                        <Suspense>
+                        <React.Suspense>
                             <Filters />
-                        </Suspense>
+                        </React.Suspense>
                     </div>
                     {/* Products */}
                     <Products categories={categories} />

@@ -7,7 +7,7 @@ import GoogleProvider from 'next-auth/providers/google'
 import { prisma } from '@/prisma/prisma-client'
 import { ObjectId } from 'bson'
 
-export const authOptions: NextAuthOptions = {
+const authOptions: NextAuthOptions = {
     session: {
         strategy: 'jwt',
     },

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Header } from '@/shared/components/shared'
 import '../globals.css'
+import React from 'react'
 
 export const metadata: Metadata = {
     title: 'Next Pizza | Checkout',
@@ -14,11 +15,14 @@ export default function CheckoutLayout({
 }>) {
     return (
         <main className="min-h-screen bg-[#f4f1ee]">
-            <Header
-                className=" border-b-gray-200"
-                hasSearch={false}
-                hasCart={false}
-            />
+            <React.Suspense>
+                <Header
+                    className=" border-b-gray-200"
+                    hasSearch={false}
+                    hasCart={false}
+                />
+            </React.Suspense>
+
             {children}
         </main>
     )
