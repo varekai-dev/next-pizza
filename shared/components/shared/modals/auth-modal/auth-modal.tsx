@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import { Button, Dialog } from '../../../ui'
 import { signIn } from 'next-auth/react'

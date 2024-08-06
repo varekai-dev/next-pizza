@@ -10,6 +10,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
 
 const paymentSucceed = async (event: any) => {
     const orderId = event.data.object.metadata?.orderId
+    const paymentId = event.id
     try {
         if (!orderId) {
             return NextResponse.json({ message: 'No orderId' }, { status: 400 })
@@ -21,7 +22,7 @@ const paymentSucceed = async (event: any) => {
             },
             data: {
                 status: OrderStatus.SUCCEEDED,
-                paymentId: event.id,
+                paymentId,
             },
         })
 
@@ -30,7 +31,7 @@ const paymentSucceed = async (event: any) => {
         await sendEmail({
             to: order.email,
             subject: 'Order paid',
-            html: `<h1>Thanks for the order 🥳</h1><p>Your order is paid. Order id: ${order.id.toString()}</p>
+            html: `<h1>Thanks for the order 🥳</h1><p>Your order is paid. Order id: ${paymentId}</p>
             <hr/>
             <ul>
             ${getItemPrice(orderItems)}
