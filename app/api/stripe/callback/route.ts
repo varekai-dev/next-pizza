@@ -45,13 +45,13 @@ const paymentSucceed = async (event: any) => {
     }
 }
 
-const sessionExpired = (event: any) => {
+const sessionExpired = async (event: any) => {
     try {
         const orderId = event.data.object.metadata?.orderId
         if (!orderId) {
             return NextResponse.json({ message: 'No orderId' }, { status: 400 })
         }
-        prisma.order.update({
+        await prisma.order.update({
             where: {
                 id: orderId,
             },
@@ -78,26 +78,27 @@ export async function POST(req: NextRequest) {
             sig!,
             String(process.env.STRIPE_WEBHOOK_SECRET)
         )
+        console.log('event.type', event.type)
+        // Handle the event
+        switch (event.type) {
+            case 'checkout.session.completed':
+                await paymentSucceed(event)
+                // Then define and call a function to handle the event payment_intent.succeeded
+                break
+
+            case 'checkout.session.expired':
+                await sessionExpired(event)
+                break
+            // ... handle other event types
+            default:
+                console.log(`Unhandled event type ${event.type}`)
+        }
+
+        // Return a 200 response to acknowledge receipt of the event
+
+        return NextResponse.json({ received: true })
     } catch (err) {
         console.log('error', err)
         return NextResponse.json({ message: 'Webhook error' }, { status: 400 })
     }
-
-    // Handle the event
-    switch (event.type) {
-        case 'checkout.session.completed':
-            await paymentSucceed(event)
-            // Then define and call a function to handle the event payment_intent.succeeded
-            break
-
-        case 'checkout.session.expired':
-            await sessionExpired(event)
-        // ... handle other event types
-        default:
-            console.log(`Unhandled event type ${event.type}`)
-    }
-
-    // Return a 200 response to acknowledge receipt of the event
-
-    return NextResponse.json({ received: true })
 }

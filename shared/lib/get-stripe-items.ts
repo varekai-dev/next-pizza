@@ -16,7 +16,7 @@ export type StripeItem = {
         product_data: {
             name: string
             images?: string[]
-            description: string
+            description?: string
         }
         unit_amount: number
     }
@@ -26,27 +26,39 @@ export type StripeItem = {
 export const getStripeItems = (
     items: CartItemWithRelations[]
 ): StripeItem[] => {
-    return items.map(item => ({
-        price_data: {
-            currency: 'uah',
-            product_data: {
-                name: item.productItem.product.name,
-                images: [
-                    `${process.env.FRONTEND_URL}${item.productItem.product.imageUrl}`,
-                ],
-                description: getCartItemDetails(
-                    item.ingredients,
-                    item.productItem.pizzaType as PizzaType,
-                    item.productItem.size as PizzaSize
-                ),
+    return items.map(item => {
+        const description = getCartItemDetails(
+            item.ingredients,
+            item.productItem.pizzaType as PizzaType,
+            item.productItem.size as PizzaSize
+        )
+
+        const itemIngredientsExist = item?.ingredients?.length > 0
+        const ingredientsPrice = itemIngredientsExist
+            ? item?.ingredients?.reduce((acc, ingredient) => {
+                  return acc + ingredient.price
+              }, 0)
+            : 0
+
+        const unitPrice = (item.productItem.price + ingredientsPrice) * 100
+
+        return {
+            price_data: {
+                currency: 'uah',
+                product_data: {
+                    name: item.productItem.product.name,
+                    images: [
+                        `${process.env.FRONTEND_URL}${item.productItem.product.imageUrl}`,
+                    ],
+                    ...(description
+                        ? {
+                              description,
+                          }
+                        : {}),
+                },
+                unit_amount: unitPrice,
             },
-            unit_amount:
-                (item.productItem.price +
-                    item.ingredients.reduce((acc, ingredient) => {
-                        return acc + ingredient.price
-                    }, 0)) *
-                100,
-        },
-        quantity: item.quantity,
-    }))
+            quantity: item.quantity,
+        }
+    })
 }

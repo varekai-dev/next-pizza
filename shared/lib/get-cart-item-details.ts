@@ -13,7 +13,7 @@ export const getCartItemDetails = (
         details.push(`${typeName} ${pizzaSize} cm`)
     }
 
-    if (ingredients) {
+    if (ingredients && !!ingredients?.length) {
         details.push(...ingredients.map(ingredient => ingredient.name))
     }
 

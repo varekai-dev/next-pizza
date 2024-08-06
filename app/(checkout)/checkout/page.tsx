@@ -18,19 +18,21 @@ import { createOrder } from '@/app/action'
 import toast from 'react-hot-toast'
 import React from 'react'
 
+const defaultValues = {
+    email: 'serhijsav@gmail.com',
+    firstName: 'Firstname',
+    lastName: 'lastName',
+    phone: '+38(099)999-99-99',
+    address: 'Bandery 1',
+    comment: '',
+}
+
 export default function CheckoutPage() {
     const [submitting, setSubmitting] = React.useState(false)
     const { loading, totalAmount } = useCart()
     const form = useForm<CheckoutFormValues>({
         resolver: zodResolver(checkoutFormSchema),
-        defaultValues: {
-            email: '',
-            firstName: '',
-            lastName: '',
-            phone: '',
-            address: '',
-            comment: '',
-        },
+        defaultValues,
     })
 
     const onSubmit = async (data: CheckoutFormValues) => {

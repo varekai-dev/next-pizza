@@ -40,13 +40,13 @@ export const ChooseProductForm: React.FC<Props> = ({
         <div
             className={cn('flex flex-1', className, {
                 'flex-col max-h-[70vh] scrollbar overflow-x-auto': isDrawer,
-                'flex-col scrollbar overflow-x-auto': productPage,
+                'lg:flex-row flex-col': productPage,
             })}
         >
             <ProductImage src={imageUrl} alt={name} />
             <div
                 className={cn('w-[490px] bg-[#f7f6f5] p-7', {
-                    'w-full': isDrawer || productPage,
+                    'lg:w-[490px] w-full': isDrawer || productPage,
                 })}
             >
                 <Title text={name} />
