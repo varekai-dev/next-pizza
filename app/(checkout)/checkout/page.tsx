@@ -20,7 +20,7 @@ import React from 'react'
 
 export default function CheckoutPage() {
     const [submitting, setSubmitting] = React.useState(false)
-    const { loading } = useCart()
+    const { loading, totalAmount } = useCart()
     const form = useForm<CheckoutFormValues>({
         resolver: zodResolver(checkoutFormSchema),
         defaultValues: {
@@ -58,20 +58,33 @@ export default function CheckoutPage() {
                     <div className="flex gap-10 flex-col lg:flex-row lg:gap-10 pb-5">
                         {/* Left side */}
                         <div className="flex flex-col gap-10 flex-1 lg:mb-20">
-                            <CheckoutCart />
+                            <CheckoutCart
+                                className={cn({
+                                    'opacity-40  pointer-events-none':
+                                        loading || totalAmount === 0,
+                                })}
+                            />
                             <CheckoutPersonalInfo
                                 className={cn({
-                                    'opacity-40  pointer-events-none': loading,
+                                    'opacity-40  pointer-events-none':
+                                        loading || totalAmount === 0,
                                 })}
                             />
                             <CheckoutAddressForm
                                 className={cn({
-                                    'opacity-40 pointer-events-none': loading,
+                                    'opacity-40 pointer-events-none':
+                                        loading || totalAmount === 0,
                                 })}
                             />
                         </div>
+
                         {/* Right side */}
-                        <div className="w-full lg:w-[450px]">
+                        <div
+                            className={cn('w-full lg:w-[450px]', {
+                                'opacity-40 pointer-events-none':
+                                    loading || totalAmount === 0,
+                            })}
+                        >
                             <CheckoutSidebar
                                 submitting={loading || submitting}
                             />

@@ -15,22 +15,26 @@ interface Props {
 
 export const useQueryFilters = (filters: Props) => {
     const router = useRouter()
+    const isMounted = React.useRef(false)
 
     React.useEffect(() => {
-        const params = {
-            sortBy: filters.sortBy,
-            priceFrom: filters.priceFrom,
-            priceTo: filters.priceTo,
-            pizzaTypes: Array.from(filters.selectedPizzaTypes),
-            sizes: Array.from(filters.selectedSizes),
-            ingredients: Array.from(filters.selectedIngredients),
+        if (isMounted.current) {
+            const params = {
+                sortBy: filters.sortBy,
+                priceFrom: filters.priceFrom,
+                priceTo: filters.priceTo,
+                pizzaTypes: Array.from(filters.selectedPizzaTypes),
+                sizes: Array.from(filters.selectedSizes),
+                ingredients: Array.from(filters.selectedIngredients),
+            }
+
+            const query = qs.stringify(params, {
+                arrayFormat: 'comma',
+            })
+
+            router.push(`?${query}`, { scroll: false })
         }
-
-        const query = qs.stringify(params, {
-            arrayFormat: 'comma',
-        })
-
-        router.push(`?${query}`, { scroll: false })
+        isMounted.current = true
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [

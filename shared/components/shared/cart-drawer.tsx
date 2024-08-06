@@ -19,6 +19,7 @@ import { PizzaSize, PizzaType } from '@/shared/constants'
 import { useCart } from '@/shared/hooks'
 import Image from 'next/image'
 import { Title } from './title'
+import { Root } from '@radix-ui/react-visually-hidden'
 
 type Props = {
     runFetch?: boolean
@@ -28,6 +29,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({
     children,
     runFetch = true,
 }) => {
+    const [sheetOpen, setSheetOpen] = React.useState(false)
     const { totalAmount, items, updateItemQuantity, removeCartItem, loading } =
         useCart(runFetch)
 
@@ -41,7 +43,10 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({
     }
 
     return (
-        <Sheet>
+        <Sheet
+            open={sheetOpen}
+            onOpenChange={(value: boolean) => setSheetOpen(value)}
+        >
             <SheetTrigger asChild>{children}</SheetTrigger>
             <SheetContent className="flex flex-col justify-between pb-0 bg-[#f4f1ee]">
                 <div
@@ -62,16 +67,21 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({
                             <p className="text-center text-neutral-500 mb-5">
                                 Add some items to your cart
                             </p>
-                            <SheetClose>
-                                <Button
-                                    className="w-56 h-12 text-base"
-                                    size="lg"
-                                >
-                                    <ArrowLeft size={20} className="mr-2" />
-                                    Turn back
-                                </Button>
-                            </SheetClose>
+
+                            <Button
+                                className="w-56 h-12 text-base"
+                                size="lg"
+                                onClick={() => setSheetOpen(false)}
+                            >
+                                <ArrowLeft size={20} className="mr-2" />
+                                Turn back
+                            </Button>
                         </div>
+                    )}
+                    {totalAmount === 0 && (
+                        <Root>
+                            <SheetTitle>Title</SheetTitle>
+                        </Root>
                     )}
                     {totalAmount > 0 && (
                         <>

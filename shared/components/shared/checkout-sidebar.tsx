@@ -21,13 +21,17 @@ export const CheckoutSidebar: React.FC<Props> = ({ className, submitting }) => {
     const deliveryPrice = totalAmount ? DELIVERY_PRICE : 0
     const totalPrice = totalAmount + deliveryPrice + vatPrice
 
+    if (totalAmount === 0) {
+        return
+    }
+
     return (
         <div className={className}>
             <WhiteBlock className="p-6 sticky top-4">
                 <div className="flex flex-col gap-1">
                     <span className="text-xl">Total:</span>
 
-                    {loading || totalPrice === 0 ? (
+                    {loading ? (
                         <Skeleton className="w-48 h-11" />
                     ) : (
                         <span className="h-11 text-4xl font-extrabold">

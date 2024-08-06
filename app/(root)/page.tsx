@@ -20,11 +20,7 @@ export default async function Home({
     return (
         <>
             <Container className="mt-10">
-                <Title
-                    text="All pizza's"
-                    size="lg"
-                    className="font-extrabold"
-                />
+                <Title text="Categories" size="lg" className="font-extrabold" />
             </Container>
             <TopBar categories={categories} searchParams={searchParams} />
             <Container className="mt-10 pb-14">

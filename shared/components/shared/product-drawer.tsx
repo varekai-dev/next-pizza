@@ -25,7 +25,7 @@ export const ProductDrawer: React.FC<Props> = ({ className, product }) => {
     return (
         <Drawer
             open={Boolean(product)}
-            onOpenChange={() => !open && router.back()}
+            onOpenChange={open => !open && router.back()}
         >
             <Root>
                 <DrawerTitle>Title</DrawerTitle>

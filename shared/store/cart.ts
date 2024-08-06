@@ -25,7 +25,9 @@ export const useCartStore = create<State>()(set => ({
         try {
             set({ loading: true, error: false })
             const data = await Api.cart.getCart()
-            set(getCartDetails(data))
+            if (data) {
+                set(getCartDetails(data))
+            }
         } catch (error) {
             throw new Error('Could not fetch cart items')
         } finally {

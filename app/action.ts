@@ -27,8 +27,8 @@ export async function stripeOrder({
         line_items: lineItems,
         metadata,
         mode: 'payment',
-        success_url: `${process.env.FRONTEND_URL}/checkout?success=true`,
-        cancel_url: `${process.env.FRONTEND_URL}/checkout?canceled=true`,
+        success_url: `${process.env.FRONTEND_URL}?success=true`,
+        cancel_url: `${process.env.FRONTEND_URL}`,
     })
 
     return session.url

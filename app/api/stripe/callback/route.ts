@@ -30,7 +30,8 @@ const paymentSucceed = async (event: any) => {
         await sendEmail({
             to: order.email,
             subject: 'Order paid',
-            html: `<p>Your order is paid. Order id: ${order.id.toString()}</p>
+            html: `<h1>Thanks for the order 🥳</h1><p>Your order is paid. Order id: ${order.id.toString()}</p>
+            <hr/>
             <ul>
             ${getItemPrice(orderItems)}
             </ul>`,

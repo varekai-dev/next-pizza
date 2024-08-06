@@ -1,7 +1,6 @@
 'use client'
 
 import { Dialog } from '@/shared/components/ui'
-import { DialogContent, DialogTitle } from '@/shared/components/ui/dialog'
 import React from 'react'
 import { useRouter } from 'next/navigation'
 import { Root } from '@radix-ui/react-visually-hidden'
@@ -21,13 +20,13 @@ export const ProductModal: React.FC<Props> = ({ product }) => {
     }
 
     return (
-        <Dialog open={Boolean(product)} onOpenChange={onCloseModal}>
+        <Dialog.Dialog open={Boolean(product)} onOpenChange={onCloseModal}>
             <Root>
-                <DialogTitle>Title</DialogTitle>
+                <Dialog.DialogTitle>Title</Dialog.DialogTitle>
             </Root>
-            <DialogContent className="p-0 w-[1060px] max-w-[1060px] min-h-[510px] bg-white overflow-hidden">
+            <Dialog.DialogContent className="p-0 w-[1060px] max-w-[1060px] min-h-[510px] bg-white overflow-hidden">
                 <ProductForm product={product} onSubmit={onCloseModal} />
-            </DialogContent>
-        </Dialog>
+            </Dialog.DialogContent>
+        </Dialog.Dialog>
     )
 }

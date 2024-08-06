@@ -19,7 +19,7 @@ export const CheckoutSidebarItem: React.FC<Props> = ({
 }) => {
     return (
         <div className={cn('flex my-4', className)}>
-            {loading || value === 0 ? (
+            {loading ? (
                 <Skeleton className="h-7 w-full" />
             ) : (
                 <>

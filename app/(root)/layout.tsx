@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     description: 'The best pizza in town!',
 }
 
-export default function RootLayout({
+export default async function RootLayout({
     children,
     modal,
 }: Readonly<{

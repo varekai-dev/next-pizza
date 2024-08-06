@@ -21,19 +21,23 @@ interface Props {
 const sortItems = ['First Cheap', 'First Expensive']
 
 export const SortPopup: React.FC<Props> = ({ className, searchParams }) => {
+    const isMounted = React.useRef(false)
     const sortByQuery = Number(searchParams?.sortBy) || 1
     const router = useRouter()
     const [sortBy, setSortBy] = React.useState(sortByQuery)
     const [popoverOpen, setPopoverOpen] = React.useState(false)
 
     React.useEffect(() => {
-        const query = qs.stringify(
-            { ...searchParams, sortBy },
-            {
-                arrayFormat: 'comma',
-            }
-        )
-        router.push(`?${query}`, { scroll: false })
+        if (isMounted.current) {
+            const query = qs.stringify(
+                { ...searchParams, sortBy },
+                {
+                    arrayFormat: 'comma',
+                }
+            )
+            router.push(`?${query}`, { scroll: false })
+        }
+        isMounted.current = true
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [sortBy])
 
