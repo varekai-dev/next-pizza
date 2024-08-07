@@ -38,6 +38,7 @@ export const users: Omit<
         password: hashSync('111111', 10),
         verified: new Date(),
         role: 'USER',
+        phone: '+38(000)-000-00-00',
     },
     {
         id: usersIds.admin,
@@ -46,6 +47,7 @@ export const users: Omit<
         password: hashSync('111111', 10),
         verified: new Date(),
         role: 'ADMIN',
+        phone: '+38(000)-000-00-00',
     },
 ]
 
