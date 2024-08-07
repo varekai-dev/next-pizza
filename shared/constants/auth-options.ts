@@ -1,35 +1,8 @@
-import { NextAuthOptions, DefaultSession, DefaultUser } from 'next-auth'
+import { NextAuthOptions } from 'next-auth'
 import { compare, hashSync } from 'bcrypt'
-import { UserRole } from '@prisma/client'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import GoogleProvider from 'next-auth/providers/google'
 import { prisma } from '../../prisma/prisma-client'
-
-import { DefaultJWT } from 'next-auth/jwt'
-
-import { ObjectId } from 'bson'
-
-declare module 'next-auth' {
-    interface Session {
-        user: {
-            id: string
-            role: UserRole
-            name: string
-            image: string
-        }
-    }
-
-    interface User extends DefaultUser {
-        role: UserRole
-    }
-}
-
-declare module 'next-auth/jwt' {
-    interface JWT extends DefaultJWT {
-        id: string
-        role: UserRole
-    }
-}
 
 export const authOptions: NextAuthOptions = {
     session: {
@@ -40,15 +13,6 @@ export const authOptions: NextAuthOptions = {
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID || '',
             clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
-            profile(profile) {
-                return {
-                    id: new ObjectId().toHexString(),
-                    name: profile.name || profile.login,
-                    email: profile.email,
-                    image: profile.avatar_url,
-                    role: 'USER' as UserRole,
-                }
-            },
         }),
 
         CredentialsProvider({
@@ -71,16 +35,22 @@ export const authOptions: NextAuthOptions = {
                     where: values,
                 })
 
-                if (!findUser) return null
+                if (!findUser) {
+                    throw new Error('Invalid email or password')
+                }
 
                 const isPasswordValid = await compare(
                     credentials.password,
                     findUser.password
                 )
 
-                if (!isPasswordValid) return null
+                if (!isPasswordValid) {
+                    throw new Error('Invalid email or password')
+                }
 
-                if (!findUser.verified) return null
+                if (!findUser.verified) {
+                    throw new Error('Verify your email')
+                }
 
                 return {
                     id: String(findUser.id),
@@ -158,13 +128,14 @@ export const authOptions: NextAuthOptions = {
                 token.email = findUser.email
                 token.fullName = findUser.fullName
                 token.role = findUser.role
+                token.phone = findUser.phone
             }
 
             return token
         },
-        session({ session, token }) {
+        async session({ session, token }) {
             if (session?.user) {
-                session.user.id = token.id
+                session.user.id = String(token.id)
                 session.user.role = token.role
             }
 

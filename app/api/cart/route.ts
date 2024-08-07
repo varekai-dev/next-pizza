@@ -1,5 +1,6 @@
 import { prisma } from '@/prisma/prisma-client'
 import { findOrCreateCart } from '@/shared/lib'
+import { getUserSession } from '@/shared/lib/get-user-session'
 import { updateCartTotalAmount } from '@/shared/lib/update-cart-total-amount'
 import { CreateCartItemValues } from '@/shared/services/dto/cart.dto'
 import { Prisma } from '@prisma/client'
@@ -9,6 +10,7 @@ import isEqual from 'react-fast-compare'
 export async function GET(req: NextRequest) {
     try {
         const token = req.cookies.get('cartToken')?.value
+        const currentUser = await getUserSession()
 
         if (!token) {
             return NextResponse.json({ totalAmount: 0, items: [] })
@@ -31,7 +33,12 @@ export async function GET(req: NextRequest) {
                 },
             },
             where: {
-                token,
+                OR: [
+                    { userId: currentUser?.id },
+                    {
+                        token,
+                    },
+                ],
             },
         })
 
@@ -52,12 +59,13 @@ export async function GET(req: NextRequest) {
 export async function POST(req: NextRequest) {
     try {
         let token = req.cookies.get('cartToken')?.value
+        const currentUser = await getUserSession()
 
         if (!token) {
             token = crypto.randomUUID()
         }
 
-        const userCart = await findOrCreateCart(token)
+        const userCart = await findOrCreateCart(token, currentUser?.id)
 
         const data = (await req.json()) as CreateCartItemValues
 
@@ -129,6 +137,7 @@ export async function POST(req: NextRequest) {
 export async function DELETE(req: NextRequest) {
     try {
         const token = req.cookies.get('cartToken')?.value
+        const currentUser = await getUserSession()
 
         if (!token) {
             return NextResponse.json({ totalAmount: 0, items: [] })
@@ -136,7 +145,12 @@ export async function DELETE(req: NextRequest) {
 
         const userCart = await prisma.cart.findFirst({
             where: {
-                token,
+                OR: [
+                    { userId: currentUser?.id },
+                    {
+                        token,
+                    },
+                ],
             },
         })
 

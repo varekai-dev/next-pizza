@@ -1,4 +1,5 @@
 import { prisma } from '@/prisma/prisma-client'
+import { getUserSession } from '@/shared/lib/get-user-session'
 import { updateCartTotalAmount } from '@/shared/lib/update-cart-total-amount'
 import { NextRequest, NextResponse } from 'next/server'
 
@@ -10,6 +11,7 @@ export async function PATCH(
         const id = String(params.id)
         const data = (await req.json()) as { quantity: number }
         const token = req.cookies.get('cartToken')?.value
+        const currentUser = await getUserSession()
 
         if (!token) {
             return NextResponse.json(
@@ -40,7 +42,10 @@ export async function PATCH(
             },
         })
 
-        const updatedUserCart = await updateCartTotalAmount(token)
+        const updatedUserCart = await updateCartTotalAmount(
+            token,
+            currentUser?.id
+        )
         return NextResponse.json(updatedUserCart)
     } catch (error) {
         console.log('[CART_PATCH] Server error', error)

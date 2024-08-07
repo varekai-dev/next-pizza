@@ -52,7 +52,7 @@ export const FormPhone: React.FC<Props> = ({
             setValue(defaultValue)
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [defaultValue])
 
     React.useEffect(() => {
         setFormValue(name, value)

@@ -5,8 +5,9 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import toast from 'react-hot-toast'
 import { Title } from '../../../title'
 import Image from 'next/image'
-import { FormInput } from '../../../form'
+import { FormInput, FormPhone } from '../../../form'
 import { Button } from '@/shared/components/ui'
+import { registerUser } from '@/app/action'
 
 interface Props {
     className?: string
@@ -21,10 +22,21 @@ export const RegisterForm: React.FC<Props> = ({ className, onClose }) => {
             password: '',
             fullName: '',
             confirmPassword: '',
+            phone: '',
         },
     })
     const onSubmit = async (data: formRegisterValues) => {
         try {
+            await registerUser({
+                email: data.email,
+                fullName: data.fullName,
+                password: data.password,
+                phone: data.phone,
+            })
+
+            toast.error('Register success 📝. Confirm your email', {
+                icon: '✅',
+            })
             onClose()
         } catch (error) {
             console.log('Error [Register]', error)
@@ -84,6 +96,14 @@ export const RegisterForm: React.FC<Props> = ({ className, onClose }) => {
                         type="password"
                         placeholder="Confirm Password"
                         required
+                    />
+                    <FormPhone
+                        name="phone"
+                        className="text-base"
+                        mask="+38(000)000-00-00"
+                        allowClear
+                        required
+                        label="Phone Number"
                     />
                     <Button
                         type="submit"

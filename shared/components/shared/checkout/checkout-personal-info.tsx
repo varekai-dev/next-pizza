@@ -11,20 +11,12 @@ export const CheckoutPersonalInfo: React.FC<Props> = ({ className }) => {
         <WhiteBlock title="2. Personal info" className={className}>
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                 <FormInput
-                    name="firstName"
+                    name="fullName"
                     className="text-base"
-                    placeholder="First Name"
+                    placeholder="Full Name"
                     allowClear
                     required
-                    label="First Name"
-                />
-                <FormInput
-                    name="lastName"
-                    className="text-base"
-                    placeholder="Last Name"
-                    allowClear
-                    required
-                    label="Last Name"
+                    label="Full Name"
                 />
                 <FormInput
                     name="email"

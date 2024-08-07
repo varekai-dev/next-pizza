@@ -11,6 +11,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import toast from 'react-hot-toast'
 import { ProfileButton } from './profile-button'
 import { AuthModal } from './modals/auth-modal'
+import { CodeVerificationModal } from './modals/code-verification-modal'
 
 interface Props {
     className?: string
@@ -30,6 +31,14 @@ export const Header: React.FC<Props> = ({
         if (searchParams.has('success')) {
             setTimeout(() => {
                 toast.success('Order paid successfully')
+            }, 1000)
+            setTimeout(() => {
+                router.replace('/')
+            }, 2000)
+        }
+        if (searchParams.has('verified')) {
+            setTimeout(() => {
+                toast.success('Account verified')
             }, 1000)
             setTimeout(() => {
                 router.replace('/')

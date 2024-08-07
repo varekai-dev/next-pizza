@@ -8,6 +8,7 @@ import { Title } from '../../../title'
 import Image from 'next/image'
 import toast from 'react-hot-toast'
 import { signIn } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 
 interface Props {
     className?: string
@@ -15,6 +16,7 @@ interface Props {
 }
 
 export const LoginForm: React.FC<Props> = ({ className, onClose }) => {
+    const router = useRouter()
     const form = useForm<formLoginValues>({
         resolver: zodResolver(formLoginSchema),
         defaultValues: {
@@ -29,13 +31,19 @@ export const LoginForm: React.FC<Props> = ({ className, onClose }) => {
                 ...data,
                 redirect: false,
             })
+
             if (!resp?.ok) {
-                throw Error('Could not login')
+                console.log('resp', resp?.error)
+                if (resp?.error === 'Verify your email') {
+                    router.push('?verify&email=' + data.email)
+                } else {
+                    throw Error(resp?.error || 'Could not login')
+                }
             }
             onClose()
-        } catch (error) {
+        } catch (error: any) {
             console.log('Error [Login]', error)
-            toast.error('Could not login', {
+            toast.error(error.message || 'Could not login', {
                 icon: '❌',
             })
         }

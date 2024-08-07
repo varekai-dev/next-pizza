@@ -2,15 +2,21 @@
 
 import { prisma } from '@/prisma/prisma-client'
 import { CheckoutFormValues } from '@/shared/components/shared'
-import { getStripeItems } from '@/shared/lib'
+import {
+    generateRandomCode,
+    getStripeItems,
+    sendConfirmationCode,
+} from '@/shared/lib'
 import {
     CartItemWithRelations,
     StripeItem,
 } from '@/shared/lib/get-stripe-items'
-import { OrderStatus } from '@prisma/client'
+import { OrderStatus, Prisma } from '@prisma/client'
 import { cookies } from 'next/headers'
 import Stripe from 'stripe'
 import nodemailer from 'nodemailer'
+import { hashSync } from 'bcrypt'
+import { getUserSession } from '@/shared/lib/get-user-session'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string)
 
@@ -36,6 +42,7 @@ export async function stripeOrder({
 
 export async function createOrder(data: CheckoutFormValues) {
     try {
+        const currentUser = await getUserSession()
         const cookieStore = cookies()
         const cartToken = cookieStore.get('cartToken')?.value
 
@@ -57,7 +64,14 @@ export async function createOrder(data: CheckoutFormValues) {
                 },
             },
             where: {
-                token: cartToken,
+                OR: [
+                    {
+                        userId: currentUser?.id,
+                    },
+                    {
+                        token: cartToken,
+                    },
+                ],
             },
         })
         if (!userCart) {
@@ -70,7 +84,7 @@ export async function createOrder(data: CheckoutFormValues) {
 
         const order = await prisma.order.create({
             data: {
-                fullName: data.firstName + ' ' + data.lastName,
+                fullName: data.fullName,
                 email: data.email,
                 phone: data.phone,
                 address: data.address,
@@ -116,13 +130,13 @@ export async function createOrder(data: CheckoutFormValues) {
     }
 }
 
-type Props = {
+type SendEmailProps = {
     to: string
     subject: string
     html: string
 }
 
-export const sendEmail = async ({ to, subject, html }: Props) => {
+export const sendEmail = async ({ to, subject, html }: SendEmailProps) => {
     try {
         const transporter = nodemailer.createTransport({
             host: process.env.NODEMAILER_HOST,
@@ -154,5 +168,109 @@ export const sendEmail = async ({ to, subject, html }: Props) => {
     } catch (error) {
         console.log('error', error)
         throw new Error('Error sending email')
+    }
+}
+
+export const updateUserInfo = async (body: Prisma.UserCreateInput) => {
+    try {
+        const currentUser = await getUserSession()
+        if (!currentUser) {
+            throw new Error('User not found')
+        }
+
+        const emailExists = await prisma.user.findFirst({
+            where: {
+                email: body.email,
+            },
+        })
+        if (emailExists && emailExists.id !== currentUser.id) {
+            throw new Error('Email already exists')
+        }
+
+        const updateData = {
+            email: body.email,
+            fullName: body.fullName,
+            password: hashSync(body.password, 10),
+            phone: body.phone,
+        }
+        await prisma.user.update({
+            where: {
+                id: currentUser.id,
+            },
+            data: updateData,
+        })
+        console.log('updateData', updateData)
+    } catch (error) {
+        console.log('Error [UPDATE_USER]', error)
+        throw error
+    }
+}
+
+export const registerUser = async (body: Prisma.UserCreateInput) => {
+    try {
+        const user = await prisma.user.findFirst({
+            where: {
+                email: body.email,
+            },
+        })
+
+        if (user) {
+            if (!user.verified) {
+                throw new Error('Email not verified')
+            }
+
+            throw new Error('User already exists')
+        }
+
+        const createdUser = await prisma.user.create({
+            data: {
+                email: body.email,
+                fullName: body.fullName,
+                password: hashSync(body.password, 10),
+            },
+        })
+
+        const code = generateRandomCode()
+
+        await prisma.verificationCode.create({
+            data: {
+                code,
+                userId: createdUser.id,
+            },
+        })
+
+        await sendConfirmationCode(createdUser.email, code)
+    } catch (error) {
+        console.log('Error [REGISTER]', error)
+        throw error
+    }
+}
+
+export const requestVerificationCode = async (email: string) => {
+    try {
+        const code = generateRandomCode()
+
+        const user = await prisma.user.findFirst({
+            where: {
+                email,
+            },
+        })
+
+        if (!user) {
+            return
+        }
+
+        await prisma.verificationCode.update({
+            where: {
+                userId: user.id,
+            },
+            data: {
+                code,
+            },
+        })
+        await sendConfirmationCode(email, code)
+    } catch (error) {
+        console.log('Error [REQUEST_VERIFICATION_CODE]', error)
+        throw error
     }
 }

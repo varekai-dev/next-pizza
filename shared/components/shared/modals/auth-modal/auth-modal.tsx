@@ -24,61 +24,77 @@ export const AuthModal: React.FC<Props> = ({ className, open, onClose }) => {
 
     const handleClose = () => {
         onClose()
+        setType('login')
     }
     return (
         <Dialog.Dialog open={open} onOpenChange={onClose}>
-            <Dialog.DialogContent className="max-w-[450px] bg-white p-10">
-                <div className="flex justify-center items-center gap-5 mb-2">
-                    <label
-                        htmlFor="auth-switch"
-                        className={cn('text-base font-bold cursor-pointer', {
-                            'text-red-400 pointer-events-none':
-                                type === 'login',
-                        })}
-                    >
-                        Login
-                    </label>
-                    <Switch
-                        id="auth-switch"
-                        checked={type === 'register'}
-                        onCheckedChange={() => onSwitchType()}
-                    />
-                    <label
-                        htmlFor="auth-switch"
-                        className={cn('text-base font-bold cursor-pointer', {
-                            'text-red-400 pointer-events-none':
-                                type === 'register',
-                        })}
-                    >
-                        Register
-                    </label>
-                </div>
-                {type === 'register' ? (
-                    <RegisterForm onClose={handleClose} />
-                ) : (
-                    <LoginForm onClose={handleClose} />
+            <Dialog.DialogContent
+                className={cn(
+                    ' bg-white p-10 sm:max-w-[450px] max-w-[90vw]',
+                    className
                 )}
-
-                <hr />
-                <div className="flex items-center w-full justify-center">
-                    <Button
-                        onClick={() =>
-                            signIn('google', {
-                                callbackUrl: '/',
-                                redirect: true,
-                            })
-                        }
-                        variant="secondary"
-                        className="flex items-center gap-3 w-full h-12 text-base"
-                    >
-                        <Image
-                            width={24}
-                            height={24}
-                            alt="google-logo"
-                            src="/assets/logo/google-logo.svg"
+            >
+                <div className="overflow-x-auto max-h-[80vh] scrollbar p-2">
+                    <div className="flex justify-center items-center gap-5 mb-2">
+                        <label
+                            htmlFor="auth-switch"
+                            className={cn(
+                                'text-base font-bold cursor-pointer',
+                                {
+                                    'text-red-400 pointer-events-none':
+                                        type === 'login',
+                                }
+                            )}
+                        >
+                            Login
+                        </label>
+                        <Switch
+                            id="auth-switch"
+                            checked={type === 'register'}
+                            onCheckedChange={() => onSwitchType()}
                         />
-                        Google
-                    </Button>
+                        <label
+                            htmlFor="auth-switch"
+                            className={cn(
+                                'text-base font-bold cursor-pointer',
+                                {
+                                    'text-red-400 pointer-events-none':
+                                        type === 'register',
+                                }
+                            )}
+                        >
+                            Register
+                        </label>
+                    </div>
+                    {type === 'register' ? (
+                        <RegisterForm onClose={handleClose} />
+                    ) : (
+                        <LoginForm onClose={handleClose} />
+                    )}
+                    <div className="py-3">
+                        <hr />
+                    </div>
+
+                    <div className="flex items-center w-full justify-center">
+                        <Button
+                            onClick={() =>
+                                signIn('google', {
+                                    callbackUrl: '/',
+                                    redirect: true,
+                                })
+                            }
+                            variant="secondary"
+                            className="flex items-center gap-3 w-full h-12 text-base"
+                        >
+                            <Image
+                                width={24}
+                                height={24}
+                                alt="google-logo"
+                                src="/assets/logo/google-logo.svg"
+                            />
+                            Google
+                        </Button>
+                    </div>
                 </div>
             </Dialog.DialogContent>
         </Dialog.Dialog>

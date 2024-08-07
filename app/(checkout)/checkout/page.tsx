@@ -17,23 +17,37 @@ import { useCart } from '@/shared/hooks'
 import { createOrder } from '@/app/action'
 import toast from 'react-hot-toast'
 import React from 'react'
-
-const defaultValues = {
-    email: 'serhijsav@gmail.com',
-    firstName: 'Firstname',
-    lastName: 'lastName',
-    phone: '+38(099)999-99-99',
-    address: 'Bandery 1',
-    comment: '',
-}
+import { useSession } from 'next-auth/react'
+import { Api } from '@/shared/services/api-client'
 
 export default function CheckoutPage() {
+    const { data: session } = useSession()
     const [submitting, setSubmitting] = React.useState(false)
     const { loading, totalAmount } = useCart()
     const form = useForm<CheckoutFormValues>({
         resolver: zodResolver(checkoutFormSchema),
-        defaultValues,
+        defaultValues: {
+            email: '',
+            fullName: '',
+            phone: '',
+            address: '',
+            comment: '',
+        },
     })
+
+    React.useEffect(() => {
+        async function fetchUserInfo() {
+            const data = await Api.auth.getMe()
+            form.setValue('fullName', data.fullName)
+            form.setValue('email', data.email)
+            form.setValue('phone', data.phone)
+        }
+
+        if (session) {
+            fetchUserInfo()
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [session])
 
     const onSubmit = async (data: CheckoutFormValues) => {
         try {

@@ -14,6 +14,7 @@ export const formRegisterSchema = formLoginSchema
                 .string()
                 .min(2, { message: 'Enter First and Last name' }),
             confirmPassword: passwordSchema,
+            phone: z.string().min(17, 'Not valid phone number'),
         })
     )
     .refine(data => data.password === data.confirmPassword, {
