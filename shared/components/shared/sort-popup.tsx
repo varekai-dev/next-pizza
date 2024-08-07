@@ -11,7 +11,7 @@ import {
 } from '@/shared/components/ui/popover'
 import qs from 'qs'
 import { useRouter } from 'next/navigation'
-import { GetSearchParams } from '@/shared/lib/find-pizzas'
+import { GetSearchParams } from '@/shared/lib/find-categories'
 
 interface Props {
     className?: string

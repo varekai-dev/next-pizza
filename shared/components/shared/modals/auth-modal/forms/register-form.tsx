@@ -34,7 +34,7 @@ export const RegisterForm: React.FC<Props> = ({ className, onClose }) => {
                 phone: data.phone,
             })
 
-            toast.error('Register success 📝. Confirm your email', {
+            toast.error('Registration successful 📝. Confirm your email', {
                 icon: '✅',
             })
             onClose()

@@ -7,7 +7,7 @@ import {
     DEFAULT_MAX_PRICE,
     DEFAULT_MIN_PRICE,
     GetSearchParams,
-} from '@/shared/lib/find-pizzas'
+} from '@/shared/lib/find-categories'
 
 interface Props {
     className?: string

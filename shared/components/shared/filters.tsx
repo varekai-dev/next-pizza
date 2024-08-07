@@ -12,7 +12,7 @@ import {
     DEFAULT_MAX_PRICE,
     DEFAULT_MIN_PRICE,
     GetSearchParams,
-} from '@/shared/lib/find-pizzas'
+} from '@/shared/lib/find-categories'
 import { SortPopup } from './sort-popup'
 import { cn } from '@/shared/lib'
 import { CircleX } from 'lucide-react'

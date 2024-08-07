@@ -28,21 +28,18 @@ export const Header: React.FC<Props> = ({
     const router = useRouter()
     const searchParams = useSearchParams()
     React.useEffect(() => {
+        let message = ''
         if (searchParams.has('success')) {
-            setTimeout(() => {
-                toast.success('Order paid successfully')
-            }, 1000)
-            setTimeout(() => {
-                router.replace('/')
-            }, 2000)
+            message = 'Order paid successfully'
         }
         if (searchParams.has('verified')) {
-            setTimeout(() => {
-                toast.success('Account verified')
-            }, 1000)
+            message = 'Email verified successfully'
+        }
+        if (message) {
             setTimeout(() => {
                 router.replace('/')
-            }, 2000)
+                toast.success(message)
+            }, 1000)
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])

@@ -360,3 +360,54 @@ export const products = [
         categoryId: categoriesIds.coffee,
     },
 ]
+
+export const storiesIds = {
+    1: String(new ObjectId()),
+    2: String(new ObjectId()),
+    3: String(new ObjectId()),
+    4: String(new ObjectId()),
+    5: String(new ObjectId()),
+    6: String(new ObjectId()),
+}
+
+export const stories = [
+    {
+        previewImageUrl: '/assets/stories/11.jpg',
+        id: storiesIds[1],
+    },
+    {
+        previewImageUrl: '/assets/stories/21.jpg',
+        id: storiesIds[2],
+    },
+]
+
+export const storyItems = [
+    {
+        storyId: storiesIds[1],
+        sourceUrl: '/assets/stories/11.jpg',
+    },
+    {
+        storyId: storiesIds[1],
+        sourceUrl: '/assets/stories/12.jpg',
+    },
+    {
+        storyId: storiesIds[1],
+        sourceUrl: '/assets/stories/13.jpg',
+    },
+    {
+        storyId: storiesIds[2],
+        sourceUrl: '/assets/stories/21.jpg',
+    },
+    {
+        storyId: storiesIds[2],
+        sourceUrl: '/assets/stories/22.jpg',
+    },
+    {
+        storyId: storiesIds[2],
+        sourceUrl: '/assets/stories/23.jpg',
+    },
+    {
+        storyId: storiesIds[2],
+        sourceUrl: '/assets/stories/24.jpg',
+    },
+]

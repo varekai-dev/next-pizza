@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     reactStrictMode: false,
+    images: {
+        domains: ['cdn.inappstory.ru'],
+    },
 }
 
 export default nextConfig

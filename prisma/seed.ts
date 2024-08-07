@@ -5,8 +5,9 @@ import {
     ingredients,
     pizzas,
     products,
-    usersIds,
     productsIds,
+    stories,
+    storyItems,
 } from './constants'
 import { prisma } from './prisma-client'
 import { PizzaSize, PizzaType } from '@/shared/constants'
@@ -178,6 +179,14 @@ async function up() {
     //         },
     //     },
     // })
+
+    await prisma.story.createMany({
+        data: stories,
+    })
+
+    await prisma.storyItem.createMany({
+        data: storyItems,
+    })
 }
 async function down() {
     await prisma.user.deleteMany({})
@@ -189,6 +198,8 @@ async function down() {
     await prisma.category.deleteMany({})
     await prisma.cart.deleteMany({})
     await prisma.cartItem.deleteMany({})
+    await prisma.story.deleteMany({})
+    await prisma.storyItem.deleteMany({})
 }
 
 async function main() {

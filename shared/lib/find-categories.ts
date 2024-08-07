@@ -13,7 +13,7 @@ export interface GetSearchParams {
 export const DEFAULT_MIN_PRICE = 0
 export const DEFAULT_MAX_PRICE = 1000
 
-export const findPizzas = async (params: GetSearchParams) => {
+export const findCategories = async (params: GetSearchParams) => {
     const sizes = params.sizes?.split(',').map(Number)
     const pizzaTypes = params.pizzaTypes?.split(',').map(Number)
     const ingredientsIdArr = params.ingredients?.split(',').map(String)
@@ -26,6 +26,9 @@ export const findPizzas = async (params: GetSearchParams) => {
             products: {
                 some: {},
             },
+        },
+        orderBy: {
+            id: 'asc',
         },
         include: {
             products: {

@@ -4,7 +4,7 @@ import { SortPopup } from './sort-popup'
 import { cn } from '@/shared/lib/utils'
 import { Container } from './container'
 import { Category } from '@prisma/client'
-import { GetSearchParams } from '@/shared/lib/find-pizzas'
+import { GetSearchParams } from '@/shared/lib/find-categories'
 import { MobileFilterButton } from './mobile-filter-button'
 
 interface Props {
