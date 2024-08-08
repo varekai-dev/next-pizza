@@ -9,7 +9,6 @@ import {
     formRegisterValues,
 } from './modals/auth-modal/forms/schemas'
 import toast from 'react-hot-toast'
-import { signOut } from 'next-auth/react'
 import { updateUserInfo } from '@/app/action'
 import { Container } from './container'
 import { Title } from './title'
@@ -52,16 +51,10 @@ export const ProfileForm: React.FC<Props> = ({ className, data }) => {
         }
     }
 
-    const onClickSignOut = () => {
-        signOut({
-            callbackUrl: '/',
-        })
-    }
-
     return (
         <div className={className}>
-            <Container className="my-10">
-                <Title text="User data" size="md" className="font-bold" />
+            <Container className="md:px-5 px-0 md:block flex flex-col items-center">
+                <Title text="Profile" size="md" className="font-bold" />
 
                 <FormProvider {...form}>
                     <form
@@ -76,7 +69,7 @@ export const ProfileForm: React.FC<Props> = ({ className, data }) => {
                         />
                         <FormInput
                             name="fullName"
-                            label="Full name"
+                            label="Full Name"
                             required
                             allowClear
                         />
@@ -91,14 +84,14 @@ export const ProfileForm: React.FC<Props> = ({ className, data }) => {
                         <FormInput
                             type="password"
                             name="password"
-                            label="New password"
+                            label="New Password"
                             required
                             allowClear
                         />
                         <FormInput
                             type="password"
                             name="confirmPassword"
-                            label="Confirm password"
+                            label="Confirm Password"
                             required
                             allowClear
                         />
@@ -109,16 +102,6 @@ export const ProfileForm: React.FC<Props> = ({ className, data }) => {
                             type="submit"
                         >
                             Save
-                        </Button>
-
-                        <Button
-                            onClick={onClickSignOut}
-                            variant="secondary"
-                            disabled={form.formState.isSubmitting}
-                            className="text-base"
-                            type="button"
-                        >
-                            Logout
                         </Button>
                     </form>
                 </FormProvider>

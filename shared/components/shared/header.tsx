@@ -9,9 +9,8 @@ import { SearchInput } from './search-input'
 import { CartButton } from './cart-button'
 import { useRouter, useSearchParams } from 'next/navigation'
 import toast from 'react-hot-toast'
-import { ProfileButton } from './profile-button'
+import { SettingButton } from './setting-button'
 import { AuthModal } from './modals/auth-modal'
-import { CodeVerificationModal } from './modals/code-verification-modal'
 
 interface Props {
     className?: string
@@ -79,7 +78,7 @@ export const Header: React.FC<Props> = ({
                             setOpenAuthModal(false)
                         }}
                     />
-                    <ProfileButton
+                    <SettingButton
                         onClickSignIn={() => setOpenAuthModal(true)}
                     />
 

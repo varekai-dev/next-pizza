@@ -84,6 +84,7 @@ export async function createOrder(data: CheckoutFormValues) {
 
         const order = await prisma.order.create({
             data: {
+                userId: currentUser?.id,
                 fullName: data.fullName,
                 email: data.email,
                 phone: data.phone,
@@ -199,7 +200,6 @@ export const updateUserInfo = async (body: Prisma.UserCreateInput) => {
             },
             data: updateData,
         })
-        console.log('updateData', updateData)
     } catch (error) {
         console.log('Error [UPDATE_USER]', error)
         throw error

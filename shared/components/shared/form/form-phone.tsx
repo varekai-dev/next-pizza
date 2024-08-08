@@ -71,7 +71,7 @@ export const FormPhone: React.FC<Props> = ({
             <div className="relative">
                 <Input
                     placeholder={mask}
-                    className="h-12 text-md"
+                    className="h-12 text-md bg-white"
                     {...props}
                     ref={ref as LegacyRef<HTMLInputElement>}
                     name={name}

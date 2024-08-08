@@ -38,31 +38,34 @@ export const Stories: React.FC<Props> = ({ className }) => {
 
     return (
         <>
-            <Container className={cn('w-full overflow-x-auto', className)}>
-                <div className="flex flex-start gap-2 my-10 w-[600px]">
-                    {stories.length === 0 &&
-                        [...Array(6)].map((_, index) => (
-                            <div
-                                key={index}
-                                className="w-[200px] h-[250px] bg-gray-200 rounded-md animate-pulse"
-                            />
-                        ))}
-                    {stories.map(story => (
+            <Container
+                className={cn(
+                    'flex flex-start gap-2 my-10 overflow-x-auto',
+                    className
+                )}
+            >
+                {stories.length === 0 &&
+                    [...Array(2)].map((_, index) => (
                         <div
-                            key={story.id}
-                            className="w-[200px] h-[250px] overflow-hidden rounded-md cursor-pointer"
-                        >
-                            <Image
-                                alt="story"
-                                onClick={() => onClickStory(story)}
-                                className=""
-                                height={250}
-                                width={200}
-                                src={story.previewImageUrl}
-                            />
-                        </div>
+                            key={index}
+                            className="min-w-[200px] h-[250px] bg-gray-200 rounded-md animate-pulse"
+                        />
                     ))}
-                </div>
+                {stories.map(story => (
+                    <div
+                        key={story.id}
+                        className="min-w-[200px] w-[200px] h-[250px] overflow-hidden rounded-md cursor-pointer"
+                    >
+                        <Image
+                            alt="story"
+                            onClick={() => onClickStory(story)}
+                            className=""
+                            height={250}
+                            width={200}
+                            src={story.previewImageUrl}
+                        />
+                    </div>
+                ))}
             </Container>
             {open && (
                 <div className="fixed left-0 top-0 w-full h-full bg-black/80 flex items-center justify-center z-40">

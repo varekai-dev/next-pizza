@@ -38,9 +38,11 @@ export default function CheckoutPage() {
     React.useEffect(() => {
         async function fetchUserInfo() {
             const data = await Api.auth.getMe()
-            form.setValue('fullName', data.fullName)
-            form.setValue('email', data.email)
-            form.setValue('phone', data.phone)
+            form.reset({
+                fullName: data.fullName,
+                email: data.email,
+                phone: data.phone,
+            })
         }
 
         if (session) {

@@ -1,0 +1,36 @@
+import type { Metadata } from 'next'
+import { Header, SettingNavigation } from '@/shared/components/shared'
+import '../globals.css'
+import React from 'react'
+import { getUserSession } from '@/shared/lib/get-user-session'
+
+export const metadata: Metadata = {
+    title: 'Next Pizza | Settings',
+    description: 'The best pizza in town!',
+}
+
+export default async function SettingsLayout({
+    children,
+}: Readonly<{
+    children: React.ReactNode
+}>) {
+    const session = await getUserSession()
+    return (
+        <main className="min-h-screen bg-[#f4f1ee] ">
+            <React.Suspense>
+                <Header
+                    className="border-b-gray-200 bg-white"
+                    hasSearch={false}
+                    hasCart={false}
+                />
+            </React.Suspense>
+            <div className="flex gap-5 m-5 h-[calc(100vh-148px)] md:flex-row flex-col-reverse justify-between md:justify-normal">
+                <SettingNavigation
+                    className="ml-0 md:ml-5"
+                    role={session?.role}
+                />
+                {children}
+            </div>
+        </main>
+    )
+}

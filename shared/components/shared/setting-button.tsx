@@ -1,19 +1,24 @@
-import { useSession, signIn } from 'next-auth/react'
+'use client'
+
+import { useSession } from 'next-auth/react'
 import React from 'react'
 import { Button, Skeleton } from '../ui'
 import { CircleUser, User } from 'lucide-react'
-import Link from 'next/link'
+
+import { SettingPopup } from './setting-popup'
+import { usePathname } from 'next/navigation'
 
 interface Props {
     className?: string
     onClickSignIn?: () => void
 }
 
-export const ProfileButton: React.FC<Props> = ({
+export const SettingButton: React.FC<Props> = ({
     className,
     onClickSignIn,
 }) => {
     const { data: session } = useSession()
+    const pathname = usePathname()
     const isLoading = session === undefined
 
     if (isLoading) {
@@ -23,15 +28,15 @@ export const ProfileButton: React.FC<Props> = ({
     return (
         <div className={className}>
             {session ? (
-                <Link href="/profile">
+                <SettingPopup role={session.user.role} pathname={pathname}>
                     <Button
                         variant="secondary"
-                        className="flex items-center gap-2"
+                        className="flex items-center gap-2 font-semibold text-md"
                     >
                         <CircleUser size={18} />
-                        Profile
+                        Settings
                     </Button>
-                </Link>
+                </SettingPopup>
             ) : (
                 <Button
                     onClick={onClickSignIn}

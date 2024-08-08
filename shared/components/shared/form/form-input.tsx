@@ -48,7 +48,7 @@ export const FormInput: React.FC<FormInputProps> = ({
             )}
             <div className="relative">
                 <Input
-                    className="h-12 text-md"
+                    className="h-12 text-md bg-white"
                     {...register(name)}
                     {...props}
                     name={name}

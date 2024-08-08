@@ -78,9 +78,9 @@ export const RegisterForm: React.FC<Props> = ({ className, onClose }) => {
                         required
                     />
                     <FormInput
-                        label="Full name"
+                        label="Full Name"
                         name="fullName"
-                        placeholder="Full name"
+                        placeholder="Full Name"
                         required
                     />
                     <FormInput
