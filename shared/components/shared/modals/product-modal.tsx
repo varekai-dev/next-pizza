@@ -6,6 +6,7 @@ import { Root } from '@radix-ui/react-visually-hidden'
 
 import { ProductWithRelations } from '@/@types/prisma'
 import { Dialog } from '@/shared/components/ui'
+
 import { ProductForm } from '../product'
 
 interface Props {

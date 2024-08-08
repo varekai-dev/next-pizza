@@ -1,10 +1,10 @@
 import { redirect } from 'next/navigation'
+import { dehydrate,HydrationBoundary, QueryClient } from '@tanstack/react-query'
 import { UserRole } from '@prisma/client'
 
+import { QueryKey } from '@/@types'
 import { SingleStory } from '@/shared/components/shared'
 import { getUserSession } from '@/shared/lib/get-user-session'
-import { QueryKey } from '@/@types'
-import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query'
 import { Api } from '@/shared/services/api-client'
 
 export default async function StoryPage({ params: { id } }: { params: { id: string } }) {

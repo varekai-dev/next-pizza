@@ -8,11 +8,10 @@ import { useStories } from '@/shared/hooks'
 import { IStory } from '@/shared/services/stories'
 
 interface Props {
-  className?: string
   onClickStory?: (story: IStory) => void
 }
 
-export const StoriesList: React.FC<Props> = ({ className, onClickStory }) => {
+export const StoriesList: React.FC<Props> = ({ onClickStory }) => {
   const { stories, isLoading } = useStories()
   return (
     <>

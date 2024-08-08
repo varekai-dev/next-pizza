@@ -9,8 +9,8 @@ import { ProductWithRelations } from '@/@types/prisma'
 import { cn } from '@/shared/lib/utils'
 import { useCategoryActiveId, useSetCategoryActiveId } from '@/shared/store'
 
-import { ProductCard } from './product-card'
 import { Title } from '../title'
+import { ProductCard } from './product-card'
 
 interface Props {
   title: string

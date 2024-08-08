@@ -4,6 +4,7 @@ import React from 'react'
 
 import { ProductWithRelations } from '@/@types/prisma'
 import { useBreakpoint } from '@/shared/hooks'
+
 import { ProductModal } from '../modals/product-modal'
 import { ProductDrawer } from './product-drawer'
 

@@ -3,8 +3,7 @@
 import React, { ChangeEvent } from 'react'
 import toast from 'react-hot-toast'
 
-import { uploadFiles } from '@/shared/hooks'
-import { cn, compressFile } from '@/shared/lib'
+import { compressFile } from '@/shared/lib'
 import { CompressFileOptions } from '@/shared/lib/compress-file'
 
 import { Button, Input } from '../ui'
@@ -47,23 +46,6 @@ export const UploadImage: React.FC<Props> = ({ className, aspect, ...props }) =>
     setFile(undefined)
   }
 
-  const [uploading, setUploading] = React.useState(false)
-
-  const handleUploadToServer = async () => {
-    try {
-      if (modifiedFile) {
-        setUploading(true)
-        await uploadFiles('imageUploader', {
-          files: [modifiedFile],
-        })
-      }
-    } catch (error) {
-      console.error('error [UPLOAD_FILE]: ', error)
-      toast.error('Error uploading file')
-    } finally {
-      setUploading(false)
-    }
-  }
   const inputRef = React.useRef<HTMLInputElement>(null)
 
   const onClickUpload = () => {

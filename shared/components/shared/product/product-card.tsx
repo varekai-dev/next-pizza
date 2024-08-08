@@ -1,11 +1,13 @@
-import Link from 'next/link'
 import React from 'react'
-import { Title } from '../title'
-import { Button } from '../../ui'
-import { Plus } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { Ingredient } from '@prisma/client'
+import { Plus } from 'lucide-react'
+
 import { cn } from '@/shared/lib'
+
+import { Button } from '../../ui'
+import { Title } from '../title'
 
 interface Props {
   id: string

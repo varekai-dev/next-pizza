@@ -4,6 +4,8 @@ import React from 'react'
 import type { ReactCropperElement } from 'react-cropper'
 import { Cropper } from 'react-cropper'
 
+import { cn } from '@/shared/lib'
+
 import { Button } from '../ui'
 
 import 'cropperjs/dist/cropper.css'
@@ -20,7 +22,7 @@ export const ImageCropper: React.FC<Props> = ({ className, file, aspect = 4 / 3,
 
   const getCropData = () => {
     if (typeof cropperRef.current?.cropper !== 'undefined') {
-      const blog = cropperRef.current?.cropper.getCroppedCanvas().toBlob((blob) => {
+      cropperRef.current?.cropper.getCroppedCanvas().toBlob((blob) => {
         if (blob) {
           const croppedFile = new File([blob], file.name, {
             type: file.type,
@@ -29,8 +31,6 @@ export const ImageCropper: React.FC<Props> = ({ className, file, aspect = 4 / 3,
           onComplete?.(croppedFile)
         }
       }, file.type)
-
-      // onComplete?.()
     }
   }
 
@@ -38,7 +38,7 @@ export const ImageCropper: React.FC<Props> = ({ className, file, aspect = 4 / 3,
     <>
       <Cropper
         ref={cropperRef}
-        className="w-full max-h-[800px]"
+        className={cn('w-full max-h-[800px]', className)}
         initialAspectRatio={aspect}
         src={URL.createObjectURL(file)}
         viewMode={1}

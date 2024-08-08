@@ -1,12 +1,12 @@
-import { QueryKey } from '@/@types'
-import { Api } from '../services/api-client'
-
 import { useQuery } from '@tanstack/react-query'
+
+import { QueryKey } from '@/@types'
+
+import { Api } from '../services/api-client'
 
 export const useStories = () => {
   const {
     data: stories,
-    isSuccess,
     isFetching,
     isLoading,
     ...rest

@@ -3,7 +3,7 @@
 import React from 'react'
 import { ArrowRight, ShoppingCart } from 'lucide-react'
 
-import { useCart, useIsPageScrolling } from '@/shared/hooks'
+import { useCart } from '@/shared/hooks'
 import { cn } from '@/shared/lib'
 
 import { Button } from '../../ui'
@@ -15,9 +15,7 @@ interface Props {
 
 export const CartButton: React.FC<Props> = ({ className }) => {
   const { totalAmount, items, loading } = useCart()
-  const { scrollY } = useIsPageScrolling()
 
-  const show = scrollY > 150
   return (
     <CartDrawer>
       <Button

@@ -12,7 +12,8 @@
     "prisma:seed": "prisma db seed",
     "prisma:generate": "prisma generate",
     "postinstall": "prisma generate",
-    "prettier": "prettier shared --write"
+    "prettier": "prettier  --write .",
+     "eslint":"npx eslint . --fix"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"

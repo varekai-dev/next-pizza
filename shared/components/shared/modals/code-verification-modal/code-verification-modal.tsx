@@ -72,6 +72,7 @@ export const CodeVerificationModal: React.FC<Props> = ({ className }) => {
     if (value.length === 6) {
       handleSubmit(value)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value])
 
   const { timeLeft, setTimeLeft } = useTimer(TIME_TO_REQUEST, () => setIsRequestActive(true))

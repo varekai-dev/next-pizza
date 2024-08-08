@@ -5,10 +5,10 @@ import { Trash2Icon } from 'lucide-react'
 
 import { cn } from '@/shared/lib'
 
-import * as CartItem from './cart-item-details'
-import { CartItemProps } from './cart-item-details/cart-item-details.types'
 import { CountButton } from '../count-button'
 import { DeleteWrapper } from '../delete-button'
+import * as CartItem from './cart-item-details'
+import { CartItemProps } from './cart-item-details/cart-item-details.types'
 
 interface Props extends CartItemProps {
   className?: string

@@ -6,14 +6,13 @@ import { Dialog } from '@/shared/components/ui'
 import { ImageCropper } from '../image-cropper'
 
 interface Props {
-  className?: string
   file: File
   aspect?: number
   onModalClose?: () => void
   onComplete?: (file: File) => void
 }
 
-export const CropModal: React.FC<Props> = ({ className, file, aspect, onModalClose, onComplete }) => {
+export const CropModal: React.FC<Props> = ({ file, aspect, onModalClose, onComplete }) => {
   const [open, setOpen] = React.useState(!!file)
 
   React.useEffect(() => {

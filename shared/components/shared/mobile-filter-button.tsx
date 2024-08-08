@@ -13,7 +13,7 @@ interface Props {
 }
 
 export const MobileFilterButton: React.FC<Props> = ({ className, searchParams }) => {
-  const { sortBy, priceTo, priceFrom, ...rest } = searchParams
+  const { priceTo, priceFrom, ...rest } = searchParams
   const activeFiltersCount =
     Object.values(rest).length +
     (priceFrom && Number(priceFrom) !== DEFAULT_MIN_PRICE ? 1 : 0) +

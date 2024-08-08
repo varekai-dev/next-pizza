@@ -10,11 +10,7 @@ import { IStory } from '@/shared/services/stories'
 import { Container } from '../container'
 import { StoriesList } from './stories-list'
 
-interface Props {
-  className?: string
-}
-
-export const Stories: React.FC<Props> = ({ className }) => {
+export const Stories: React.FC = () => {
   const [open, setOpen] = React.useState(false)
   const [selectedStory, setSelectedStory] = React.useState<IStory | null>(null)
 
