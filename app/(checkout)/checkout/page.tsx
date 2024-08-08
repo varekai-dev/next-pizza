@@ -36,8 +36,6 @@ export default function CheckoutPage() {
     },
   })
 
-  const t = true
-
   React.useEffect(() => {
     async function fetchUserInfo() {
       const data = await Api.auth.getMe()

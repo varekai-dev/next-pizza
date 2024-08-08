@@ -7,12 +7,6 @@ import { getUserSession } from '@/shared/lib/get-user-session'
 
 const f = createUploadthing()
 
-const imageCompressionOptions = {
-  maxSizeMB: 1,
-  maxWidthOrHeight: 1920,
-  useWebWorker: true,
-}
-
 // FileRouter for your app, can contain multiple FileRoutes
 export const ourFileRouter = {
   // Define as many FileRoutes as you like, each with a unique routeSlug

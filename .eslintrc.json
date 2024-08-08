@@ -4,8 +4,9 @@
   "plugin:import/typescript",
   "plugin:import/errors",
   "plugin:import/warnings"],
-  "plugins":["simple-import-sort"],
+  "plugins": ["@typescript-eslint/eslint-plugin","simple-import-sort"],
   "rules":{
+    "@typescript-eslint/no-unused-vars": "warn",
     "@next/next/no-img-element":"off",
     "simple-import-sort/imports": [
       "error",
