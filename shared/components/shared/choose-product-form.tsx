@@ -45,7 +45,7 @@ export const ChooseProductForm: React.FC<Props> = ({
         'lg:flex-row flex-col': productPage,
       })}
     >
-      <ProductImage src={imageUrl} alt={name} />
+      <ProductImage src={imageUrl} alt={name} isDrawer={isDrawer} />
       <div
         className={cn('w-[490px] bg-[#f7f6f5] p-7', {
           'lg:w-[490px] w-full': isDrawer || productPage,

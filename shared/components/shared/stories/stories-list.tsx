@@ -13,14 +13,15 @@ interface Props {
 }
 
 export const StoriesList: React.FC<Props> = ({ className, onClickStory }) => {
-  const { stories, loading } = useStories()
+  const { stories, isLoading } = useStories()
   return (
     <>
-      {loading &&
+      {isLoading &&
         [...Array(2)].map((_, index) => (
           <div key={index} className="min-w-[200px] h-[250px] bg-gray-200 rounded-md animate-pulse" />
         ))}
-      {!loading &&
+      {!isLoading &&
+        stories &&
         stories.map((story) => (
           <div key={story.id} className="min-w-[200px] w-[200px] h-[250px] overflow-hidden rounded-md cursor-pointer">
             <Image

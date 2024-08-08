@@ -1,26 +1,19 @@
-import React from 'react'
-
+import { QueryKey } from '@/@types'
 import { Api } from '../services/api-client'
-import { IStory } from '../services/stories'
+
+import { useQuery } from '@tanstack/react-query'
 
 export const useStories = () => {
-  const [stories, setStories] = React.useState<IStory[]>([])
-  const [loading, setLoading] = React.useState(true)
+  const {
+    data: stories,
+    isSuccess,
+    isFetching,
+    isLoading,
+    ...rest
+  } = useQuery({
+    queryKey: [QueryKey.GET_STORIES],
+    queryFn: Api.stories.getAll,
+  })
 
-  React.useEffect(() => {
-    async function fetchStories() {
-      try {
-        setLoading(true)
-        const stories = await Api.stories.getAll()
-        setStories(stories)
-      } catch (error) {
-        console.log('error [FETCH_STORIES]: ', error)
-      } finally {
-        setLoading(false)
-      }
-    }
-    fetchStories()
-  }, [])
-
-  return { stories, loading }
+  return { stories, isLoading: isLoading || isFetching, ...rest }
 }

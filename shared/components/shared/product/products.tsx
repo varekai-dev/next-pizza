@@ -18,7 +18,7 @@ interface Props {
 export const Products: React.FC<Props> = ({ className, searchParams }) => {
   const { isScrolling } = useIsPageScrolling()
   const { data: categories } = useQuery({
-    queryKey: [QueryKey.CATEGORIES],
+    queryKey: [QueryKey.GET_CATEGORIES, searchParams],
     queryFn: () => findCategories(searchParams),
   })
   return (

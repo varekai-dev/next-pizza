@@ -18,7 +18,7 @@ export const Categories: React.FC<Props> = ({ className, searchParams }) => {
   const { categoryActiveId } = useCategoryActiveId()
   const setCategoryActiveId = useSetCategoryActiveId()
   const { data: categories } = useQuery({
-    queryKey: [QueryKey.CATEGORIES],
+    queryKey: [QueryKey.GET_CATEGORIES, searchParams],
     queryFn: () => findCategories(searchParams),
   })
 

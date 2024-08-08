@@ -24,7 +24,7 @@ export const ProductImage: React.FC<Props> = ({ className, src, alt, size, produ
       case 40:
         return isDrawer ? 250 : 500
       default:
-        return 175
+        return isDrawer ? 200 : 350
     }
   })()
   return (

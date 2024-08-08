@@ -11,3 +11,9 @@ export const getAll = async () => {
 
   return data
 }
+
+export const getStory = async (id: string) => {
+  const { data } = await axiosInstance.get<IStory>(`/stories/${id}`)
+
+  return data
+}

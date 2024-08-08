@@ -10,7 +10,7 @@ export default async function Home({ searchParams }: { searchParams: GetSearchPa
   const queryClient = new QueryClient()
 
   await queryClient.prefetchQuery({
-    queryKey: [QueryKey.CATEGORIES],
+    queryKey: [QueryKey.GET_CATEGORIES, searchParams],
     queryFn: () => findCategories(searchParams),
   })
 
