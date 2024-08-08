@@ -1,4 +1,4 @@
-import { CircleUser, Gauge, Truck } from 'lucide-react'
+import { CircleUser, Gauge, Truck, Instagram } from 'lucide-react'
 
 export const navList = [
     {
@@ -6,6 +6,12 @@ export const navList = [
         href: '/settings/dashboard',
         isAdmin: true,
         icon: <Gauge size={18} />,
+    },
+    {
+        name: 'Stories',
+        href: '/settings/stories',
+        isAdmin: true,
+        icon: <Instagram size={18} />,
     },
     {
         name: 'Profile',

@@ -7,7 +7,7 @@ import dayjs from 'dayjs'
 import { CartItemDTO } from '@/shared/services/dto/cart.dto'
 import { getIngredientsCost } from '@/shared/lib'
 
-export default async function Orders() {
+export default async function OrdersPage() {
     const session = await getUserSession()
     if (!session) {
         return redirect('/not-auth')

@@ -2,7 +2,7 @@
 const nextConfig = {
     reactStrictMode: false,
     images: {
-        domains: ['cdn.inappstory.ru'],
+        domains: ['cdn.inappstory.ru', 'utfs.io'],
     },
 }
 

@@ -21,24 +21,22 @@ export const NavigationItem: React.FC<Props> = ({
     const pathname = usePathname()
     const isActive = pathname === href
     return (
-        <Link href={href}>
+        <Link
+            className={cn({
+                'pointer-events-none': isActive,
+            })}
+            href={href}
+        >
             <li
                 className={cn(
-                    'px-4 md:py-3 md:px-2 text-gray-500 font-semibold text-lg flex items-center gap-3 cursor-pointer select-none',
+                    'px-4 my-2 md:py-3 md:px-2 text-gray-500 font-bold text-lg flex items-center gap-3 cursor-pointer select-none hover:bg-secondary hover:text-primary',
                     className,
                     {
-                        'bg-secondary rounded-md font-bold cursor-auto':
-                            isActive,
+                        'bg-secondary rounded-md ': isActive,
                     }
                 )}
             >
-                <div
-                    className={cn('md:scale-100 scale-150', {
-                        'text-primary': isActive,
-                    })}
-                >
-                    {icon}
-                </div>
+                <div className={cn('md:scale-100 scale-150', {})}>{icon}</div>
                 <span className="md:inline-block hidden">{name}</span>
             </li>
         </Link>

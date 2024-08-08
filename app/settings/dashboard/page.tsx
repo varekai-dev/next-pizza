@@ -3,7 +3,7 @@ import { getUserSession } from '@/shared/lib/get-user-session'
 import { UserRole } from '@prisma/client'
 import { redirect } from 'next/navigation'
 
-export default async function Dashboard() {
+export default async function DashboardPage() {
     const session = await getUserSession()
     if (session?.role !== UserRole.ADMIN) {
         return redirect('/not-auth')

@@ -3,7 +3,7 @@ import { ProfileForm } from '@/shared/components/shared'
 import { getUserSession } from '@/shared/lib/get-user-session'
 import { redirect } from 'next/navigation'
 
-export default async function ProductPage() {
+export default async function ProfilePage() {
     const session = await getUserSession()
 
     if (!session) {
