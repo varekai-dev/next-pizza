@@ -1,4 +1,5 @@
 import { Ingredient, ProductItem } from '@prisma/client'
+
 import { PizzaSize, PizzaType } from '../constants'
 
 /**
@@ -15,30 +16,28 @@ import { PizzaSize, PizzaType } from '../constants'
  * @returns number total price of pizza
  */
 export const calcTotalPizzaPrice = ({
-    items,
-    type,
-    size,
-    ingredients,
-    selectedIngredients,
+  items,
+  type,
+  size,
+  ingredients,
+  selectedIngredients,
 }: {
-    items: ProductItem[]
-    type: PizzaType
-    ingredients: Ingredient[]
-    size: PizzaSize
-    selectedIngredients: Set<string>
+  items: ProductItem[]
+  type: PizzaType
+  ingredients: Ingredient[]
+  size: PizzaSize
+  selectedIngredients: Set<string>
 }) => {
-    const pizzaPrice =
-        items.find(item => item.pizzaType === type && item.size === size)
-            ?.price || 0
+  const pizzaPrice = items.find((item) => item.pizzaType === type && item.size === size)?.price || 0
 
-    const totalIngredientsPrice = ingredients.reduce((acc, ingredient) => {
-        if (selectedIngredients.has(ingredient.id)) {
-            return acc + ingredient.price
-        }
-        return acc
-    }, 0)
+  const totalIngredientsPrice = ingredients.reduce((acc, ingredient) => {
+    if (selectedIngredients.has(ingredient.id)) {
+      return acc + ingredient.price
+    }
+    return acc
+  }, 0)
 
-    const totalPrice = pizzaPrice + totalIngredientsPrice
+  const totalPrice = pizzaPrice + totalIngredientsPrice
 
-    return totalPrice
+  return totalPrice
 }

@@ -67,44 +67,46 @@ html {
 }
 
 .pac-container {
-  z-index:100;
+  z-index: 100;
   margin-top: 12px;
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  border-radius:16px;
+  box-shadow:
+    0 4px 6px -1px rgb(0 0 0 / 0.1),
+    0 2px 4px -2px rgb(0 0 0 / 0.1);
+  border-radius: 16px;
   padding: 8px;
-  border:none;
+  border: none;
 }
 
-.pac-item{
+.pac-item {
   cursor: pointer;
-  border:none;
-  font-size:16px;
-  line-height:24px;
+  border: none;
+  font-size: 16px;
+  line-height: 24px;
   padding: 5px 0;
-  border-radius:16px;
+  border-radius: 16px;
 }
 
-.pac-item:hover{
+.pac-item:hover {
   background-color: #fffaf5;
 }
 
 .pac-item:hover,
-.pac-item:hover .pac-item-query{
+.pac-item:hover .pac-item-query {
   color: #ff5900;
 }
 
-.pac-icon{
-transform: scale(1.3);
-margin-right:10px;
+.pac-icon {
+  transform: scale(1.3);
+  margin-right: 10px;
 }
 
-.pac-item-query{
-  font-size:16px;
-  line-height:24px;
+.pac-item-query {
+  font-size: 16px;
+  line-height: 24px;
 }
 
-.pac-container::after{
-  display:none;
+.pac-container::after {
+  display: none;
 }
 
 @layer utilities {

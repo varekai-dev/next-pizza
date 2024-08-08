@@ -4,8 +4,56 @@
   "plugin:import/typescript",
   "plugin:import/errors",
   "plugin:import/warnings"],
+  "plugins":["simple-import-sort"],
   "rules":{
-    "@next/next/no-img-element":"off"
+    "@next/next/no-img-element":"off",
+    "simple-import-sort/imports": [
+      "error",
+      {
+        "groups": [
+          [
+            "^react",
+            "react-cropper",
+            "react-hot-toast",
+            "react-insta-stories",
+            "react-easy-crop",
+            "react-fast-compare",
+            "react-imask",
+            "react-use",
+            "react-hook-form",
+            "@hookform",
+            "zod",
+            "next",
+            "next-auth",
+            "nextjs-toploader",
+            "@react-google-maps/api",
+            "@tanstack/react-query",
+            "qs",
+            "@radix-ui",
+            "zustand",
+            "axios",
+            "dayjs",
+            "prisma",
+            "lucide-react",
+            "stripe",
+            "zustand",
+            "@uploadthing/react",
+            "axios",
+            "bcrypt",
+            "browser-image-compression",
+            "bson",
+            "clsx",
+            "input-otp",
+            "lodash.debounce",
+            "nodemailer"
+          ],
+          ["^@/shared/components", "@/shared/ui", "modules", "@/app"],
+          ["^@?\\w"],
+          ["@/(.*)"],
+          ["^[./]"]
+        ]
+      }
+    ]
   }
 
 }

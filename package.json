@@ -11,7 +11,8 @@
     "prisma:studio": "prisma studio",
     "prisma:seed": "prisma db seed",
     "prisma:generate": "prisma generate",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "prettier": "prettier shared --write"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
@@ -32,7 +33,6 @@
     "@stripe/react-stripe-js": "^2.7.3",
     "@stripe/stripe-js": "^4.1.0",
     "@tanstack/react-query": "^5.51.23",
-    "@types/qs": "^6.9.15",
     "@uploadthing/react": "^6.7.2",
     "axios": "^1.7.2",
     "bcrypt": "^5.1.1",
@@ -53,7 +53,6 @@
     "react": "^18",
     "react-cropper": "^2.3.3",
     "react-dom": "^18",
-    "react-easy-crop": "^5.0.8",
     "react-fast-compare": "^3.2.2",
     "react-hook-form": "^7.52.1",
     "react-hot-toast": "^2.4.1",
@@ -74,10 +73,14 @@
     "@types/lodash.debounce": "^4.0.9",
     "@types/node": "^20",
     "@types/nodemailer": "^6.4.15",
+    "@types/qs": "^6.9.15",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"

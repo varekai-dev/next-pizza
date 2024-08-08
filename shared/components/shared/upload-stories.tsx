@@ -1,17 +1,19 @@
 'use client'
 
 import React from 'react'
-import { UploadImage } from './upload-image'
+
 import { STORY_ITEM_ASPECT } from '@/shared/constants'
 
+import { UploadImage } from './upload-image'
+
 interface Props {
-    className?: string
+  className?: string
 }
 
 export const UploadStories: React.FC<Props> = ({ className }) => {
-    return (
-        <div className={className}>
-            <UploadImage aspect={STORY_ITEM_ASPECT} />
-        </div>
-    )
+  return (
+    <div className={className}>
+      <UploadImage aspect={STORY_ITEM_ASPECT} />
+    </div>
+  )
 }

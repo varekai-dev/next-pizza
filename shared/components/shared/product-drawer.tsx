@@ -1,42 +1,37 @@
 'use client'
 
-import { ProductWithRelations } from '@/@types/prisma'
 import React from 'react'
+import { useRouter } from 'next/navigation'
+import { Root } from '@radix-ui/react-visually-hidden'
+
+import { ProductWithRelations } from '@/@types/prisma'
+import { useBreakpoint } from '@/shared/hooks'
+
 import { Drawer } from '../ui'
 import { DrawerContent, DrawerTitle } from '../ui/drawer'
-import { useRouter } from 'next/navigation'
 import { ProductForm } from './product-form'
-import { Root } from '@radix-ui/react-visually-hidden'
-import { useBreakpoint } from '@/shared/hooks'
 interface Props {
-    className?: string
-    product: ProductWithRelations
+  className?: string
+  product: ProductWithRelations
 }
 
 export const ProductDrawer: React.FC<Props> = ({ className, product }) => {
-    const router = useRouter()
+  const router = useRouter()
 
-    const onCloseModal = () => {
-        router.back()
-    }
+  const onCloseModal = () => {
+    router.back()
+  }
 
-    const isLg = useBreakpoint('lg')
+  const isLg = useBreakpoint('lg')
 
-    return (
-        <Drawer
-            open={Boolean(product)}
-            onOpenChange={open => !open && router.back()}
-        >
-            <Root>
-                <DrawerTitle>Title</DrawerTitle>
-            </Root>
-            <DrawerContent className="bg-[#f4f1ee]">
-                <ProductForm
-                    product={product}
-                    onSubmit={onCloseModal}
-                    isDrawer={!isLg}
-                />
-            </DrawerContent>
-        </Drawer>
-    )
+  return (
+    <Drawer open={Boolean(product)} onOpenChange={(open) => !open && router.back()}>
+      <Root>
+        <DrawerTitle>Title</DrawerTitle>
+      </Root>
+      <DrawerContent className="bg-[#f4f1ee]">
+        <ProductForm product={product} onSubmit={onCloseModal} isDrawer={!isLg} />
+      </DrawerContent>
+    </Drawer>
+  )
 }
