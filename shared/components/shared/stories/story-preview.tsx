@@ -1,12 +1,11 @@
 'use client'
 
 import React from 'react'
-import { Button } from '../ui'
+import { Button } from '../../ui'
 import Image from 'next/image'
 import { STORY_PREVIEW_HEIGHT, STORY_PREVIEW_WIDTH } from '@/shared/constants'
-import { IStory } from '@/shared/services/stories'
 import { cn } from '@/shared/lib'
-import { DeleteWrapper } from './delete-button'
+import { DeleteWrapper } from '../delete-button'
 import { X } from 'lucide-react'
 
 interface Props {

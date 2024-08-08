@@ -1,9 +1,7 @@
 'use client'
 
 import { useStories } from '@/shared/hooks'
-import { cn } from '@/shared/lib'
 import React from 'react'
-import { Container } from './container'
 import Image from 'next/image'
 import { STORY_PREVIEW_HEIGHT, STORY_PREVIEW_WIDTH } from '@/shared/constants'
 import { IStory } from '@/shared/services/stories'

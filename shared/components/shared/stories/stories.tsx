@@ -1,9 +1,8 @@
 'use client'
 
-import { cn } from '@/shared/lib'
 import { IStory } from '@/shared/services/stories'
 import React from 'react'
-import { Container } from './container'
+import { Container } from '../container'
 import { X } from 'lucide-react'
 import ReactStories from 'react-insta-stories'
 
