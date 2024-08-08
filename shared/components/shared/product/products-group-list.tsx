@@ -10,7 +10,7 @@ import { cn } from '@/shared/lib/utils'
 import { useCategoryActiveId, useSetCategoryActiveId } from '@/shared/store'
 
 import { ProductCard } from './product-card'
-import { Title } from './title'
+import { Title } from '../title'
 
 interface Props {
   title: string

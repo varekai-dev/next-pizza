@@ -7,8 +7,8 @@ import { Root } from '@radix-ui/react-visually-hidden'
 import { ProductWithRelations } from '@/@types/prisma'
 import { useBreakpoint } from '@/shared/hooks'
 
-import { Drawer } from '../ui'
-import { DrawerContent, DrawerTitle } from '../ui/drawer'
+import { Drawer } from '../../ui'
+import { DrawerContent, DrawerTitle } from '../../ui/drawer'
 import { ProductForm } from './product-form'
 interface Props {
   className?: string

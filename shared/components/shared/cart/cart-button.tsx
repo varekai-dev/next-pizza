@@ -6,7 +6,7 @@ import { ArrowRight, ShoppingCart } from 'lucide-react'
 import { useCart, useIsPageScrolling } from '@/shared/hooks'
 import { cn } from '@/shared/lib'
 
-import { Button } from '../ui'
+import { Button } from '../../ui'
 import { CartDrawer } from './cart-drawer'
 
 interface Props {

@@ -7,8 +7,8 @@ import { cn } from '@/shared/lib/utils'
 
 import * as CartItemDetails from './cart-item-details'
 import { CartItemProps } from './cart-item-details/cart-item-details.types'
-import { CountButtonProps } from './count-button'
-import { DeleteWrapper } from './delete-button'
+import { CountButtonProps } from '../count-button'
+import { DeleteWrapper } from '../delete-button'
 
 interface Props extends CartItemProps {
   onClickRemove: () => void

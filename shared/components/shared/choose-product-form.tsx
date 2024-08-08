@@ -6,7 +6,7 @@ import { cn } from '@/shared/lib/utils'
 import { CreateCartItemValues } from '@/shared/services/dto/cart.dto'
 
 import { Button } from '../ui'
-import { ProductImage } from './product-image'
+import { ProductImage } from './product/product-image'
 import { Title } from './title'
 
 interface Props {

@@ -1,5 +1,4 @@
 import React from 'react'
-import { Category } from '@prisma/client'
 
 import { GetSearchParams } from '@/shared/lib/find-categories'
 import { cn } from '@/shared/lib/utils'

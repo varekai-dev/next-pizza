@@ -5,9 +5,9 @@ import { ArrowRight, Package, Percent, Truck } from 'lucide-react'
 
 import { useCart } from '@/shared/hooks'
 
-import { Button, Skeleton } from '../ui'
-import { CheckoutSidebarItem } from './checkout-sidebar-item'
-import { WhiteBlock } from './white-block'
+import { Button, Skeleton } from '../../ui'
+import { CheckoutSidebarItem } from '../checkout-sidebar-item'
+import { WhiteBlock } from '../white-block'
 
 interface Props {
   className?: string

@@ -6,8 +6,8 @@ import { UserRole } from '@prisma/client'
 import { navList } from '@/shared/constants'
 import { cn } from '@/shared/lib'
 
-import { Button, Popover } from '../ui'
-import { PopoverContent, PopoverTrigger } from '../ui/popover'
+import { Button, Popover } from '../../ui'
+import { PopoverContent, PopoverTrigger } from '../../ui/popover'
 
 interface Props {
   className?: string

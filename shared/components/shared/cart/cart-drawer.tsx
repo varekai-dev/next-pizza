@@ -10,10 +10,10 @@ import { PizzaSize, PizzaType } from '@/shared/constants'
 import { useCart } from '@/shared/hooks'
 import { cn, getCartItemDetails } from '@/shared/lib'
 
-import { Button } from '../ui'
-import { Sheet, SheetClose, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from '../ui/sheet'
+import { Button } from '../../ui'
+import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from '../../ui/sheet'
 import { CartDrawerItem } from './cart-drawer-item'
-import { Title } from './title'
+import { Title } from '../title'
 
 type Props = {
   runFetch?: boolean

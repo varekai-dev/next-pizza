@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import { CircleUser, User } from 'lucide-react'
 
-import { Button, Skeleton } from '../ui'
+import { Button, Skeleton } from '../../ui'
 import { SettingPopup } from './setting-popup'
 
 interface Props {

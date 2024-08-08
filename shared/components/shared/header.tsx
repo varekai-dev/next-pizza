@@ -8,11 +8,11 @@ import { useRouter, useSearchParams } from 'next/navigation'
 
 import { cn } from '@/shared/lib/utils'
 
-import { CartButton } from './cart-button'
 import { Container } from './container'
 import { AuthModal } from './modals/auth-modal'
 import { SearchInput } from './search-input'
-import { SettingButton } from './setting-button'
+import { CartButton } from './cart'
+import { SettingButton } from './settings'
 
 interface Props {
   className?: string

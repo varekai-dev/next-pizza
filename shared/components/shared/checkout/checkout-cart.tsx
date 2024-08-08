@@ -4,9 +4,8 @@ import { Trash2 } from 'lucide-react'
 import { PizzaSize, PizzaType } from '@/shared/constants'
 import { useCart } from '@/shared/hooks'
 import { getCartItemDetails } from '@/shared/lib'
-import { CartStateItem } from '@/shared/lib/get-cart-details'
 
-import { CartItem } from '../cart-item'
+import { CartItem } from '../cart'
 import { CartItemSkeleton } from '../skeletons/cart-item-skeleton'
 import { WhiteBlock } from '../white-block'
 

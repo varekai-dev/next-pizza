@@ -7,7 +7,7 @@ import { PizzaSize, PizzaType } from '@/shared/constants'
 import { cn, getCartItemDetails, getIngredientsCost } from '@/shared/lib'
 import { CartItemDTO } from '@/shared/services/dto/cart.dto'
 
-import { Title } from './title'
+import { Title } from '../title'
 
 interface Props {
   className?: string

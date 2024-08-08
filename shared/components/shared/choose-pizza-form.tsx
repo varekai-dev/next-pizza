@@ -12,7 +12,7 @@ import { CreateCartItemValues } from '@/shared/services/dto/cart.dto'
 import { Button } from '../ui'
 import { GroupVariants } from './group-variants'
 import { IngredientItem } from './ingredient-item'
-import { ProductImage } from './product-image'
+import { ProductImage } from './product/product-image'
 import { Title } from './title'
 
 interface Props {
