@@ -16,7 +16,6 @@ export const useDeleteStory = () => {
   const { mutate: deleteStory, ...rest } = useMutation({
     mutationFn: Api.stories.deleteStory,
     onSuccess: (_, payload) => {
-      console.log('data', payload)
       router.push(Route.STORIES)
       queryClient.setQueryData([QueryKey.GET_STORIES], (oldData: IStory[] | undefined) => {
         if (!oldData) {

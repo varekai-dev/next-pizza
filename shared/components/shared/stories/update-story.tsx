@@ -3,7 +3,7 @@
 import React from 'react'
 
 import { STORY_PREVIEW_ASPECT, STORY_PREVIEW_HEIGHT, STORY_PREVIEW_WIDTH } from '@/shared/constants'
-import { useCreateStory, useStories } from '@/shared/hooks'
+import { useUpdateStory } from '@/shared/hooks'
 import { cn } from '@/shared/lib'
 
 import { Button } from '../../ui'
@@ -11,20 +11,16 @@ import { CropImage } from '../crop-image'
 
 interface Props {
   className?: string
+  id: string
 }
 
-export const CreateStory: React.FC<Props> = ({ className }) => {
-  const { createStory, isPending } = useCreateStory()
-  const { stories } = useStories()
+export const UpdateStory: React.FC<Props> = ({ className, id }) => {
+  const { updateStory, isPending } = useUpdateStory()
 
   const handleCreateStory = async (file: File) => {
     const formData = new FormData()
     formData.append('file', file)
-    createStory(formData)
-  }
-
-  if (!stories || stories.length >= 6) {
-    return null
+    updateStory({ id, payload: formData })
   }
 
   return (
@@ -36,7 +32,7 @@ export const CreateStory: React.FC<Props> = ({ className }) => {
     >
       <CropImage onCropImage={handleCreateStory} aspect={STORY_PREVIEW_ASPECT} isLoading={isPending}>
         <Button variant="secondary" size="lg" className="text-lg">
-          Create story
+          Update story
         </Button>
       </CropImage>
     </div>

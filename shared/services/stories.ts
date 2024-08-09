@@ -25,3 +25,8 @@ export const deleteStory = async (id: string) => {
   const { data } = await axiosInstance.delete<IStory>(`/stories/${id}`)
   return data
 }
+
+export const updateStory = async ({ id, payload }: { id: string; payload: FormData }) => {
+  const { data } = await axiosInstance.patch<IStory>(`/stories/${id}`, payload)
+  return data
+}

@@ -1,9 +1,9 @@
 import { redirect } from 'next/navigation'
-import { dehydrate,HydrationBoundary, QueryClient } from '@tanstack/react-query'
+import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query'
 import { UserRole } from '@prisma/client'
 
 import { QueryKey } from '@/@types'
-import { SingleStory } from '@/shared/components/shared'
+import { Story } from '@/shared/components/shared'
 import { getUserSession } from '@/shared/lib/get-user-session'
 import { Api } from '@/shared/services/api-client'
 
@@ -23,7 +23,7 @@ export default async function StoryPage({ params: { id } }: { params: { id: stri
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <SingleStory id={id} />
+      <Story id={id} />
     </HydrationBoundary>
   )
 }

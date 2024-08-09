@@ -4,20 +4,38 @@ import { prisma } from '@/prisma/prisma-client'
 import { CheckAuth } from '@/shared/lib/check-auth'
 import { utapi } from '@/shared/services/uploadthing'
 
-export async function GET() {
-  const stories = await prisma.story.findMany({
-    include: {
-      items: true,
-    },
-  })
-
-  return NextResponse.json(stories)
-}
-
 export async function POST(req: NextRequest) {
   try {
     CheckAuth('ADMIN')
     const formData = await req.formData()
+    const id = formData.get('id') as string
+
+    if (!id) {
+      return NextResponse.json(
+        {
+          message: 'Story id is required',
+        },
+        { status: 400 },
+      )
+    }
+
+    const findStory = await prisma.story.findFirst({
+      where: {
+        id,
+      },
+      include: {
+        items: true,
+      },
+    })
+
+    if (!findStory) {
+      return NextResponse.json(
+        {
+          message: 'Story not found',
+        },
+        { status: 404 },
+      )
+    }
 
     const file = formData.get('file')
 
@@ -32,13 +50,14 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    const story = await prisma.story.create({
+    const storyItem = await prisma.storyItem.create({
       data: {
-        previewImageUrl: response.data.url,
+        storyId: id,
+        sourceUrl: response.data.url,
       },
     })
 
-    return NextResponse.json(story)
+    return NextResponse.json(storyItem)
   } catch (error) {
     console.log('[STORY_POST] Server error', error)
     return NextResponse.json(

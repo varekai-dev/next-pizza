@@ -15,7 +15,7 @@ export const SettingsStories: React.FC = () => {
     router.push(`${Route.STORIES}/${id}`)
   }
   return (
-    <div className="flex flex-start gap-2 flex-wrap">
+    <div className="flex flex-start gap-2 sm:flex-wrap flex-nowrap overflow-x-auto w-full">
       <StoriesList onClickStory={handleOpenStory} />
       <CreateStory />
     </div>

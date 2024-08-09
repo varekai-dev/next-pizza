@@ -4,39 +4,19 @@ import { prisma } from '@/prisma/prisma-client'
 import { CheckAuth } from '@/shared/lib/check-auth'
 import { utapi } from '@/shared/services/uploadthing'
 
-export async function GET(_: NextRequest, { params }: { params: { id: string } }) {
-  const { id } = params
-
-  const product = await prisma.story.findFirst({
-    where: {
-      id,
-    },
-    include: { items: true },
-  })
-
-  if (!product) {
-    return NextResponse.json({ message: 'not found' }, { status: 404 })
-  }
-
-  return NextResponse.json(product)
-}
-
 export async function DELETE(_: NextRequest, { params }: { params: { id: string } }) {
   try {
     CheckAuth('ADMIN')
 
     const { id } = params
 
-    const findStory = await prisma.story.findFirst({
+    const findItem = await prisma.storyItem.findFirst({
       where: {
         id,
       },
-      include: {
-        items: true,
-      },
     })
 
-    if (!findStory) {
+    if (!findItem) {
       return NextResponse.json(
         {
           message: 'Not found',
@@ -45,21 +25,15 @@ export async function DELETE(_: NextRequest, { params }: { params: { id: string 
       )
     }
 
-    const itemsUrls = findStory?.items.map((item) => item.sourceUrl)
-
-    const urls = [...itemsUrls, findStory?.previewImageUrl]
-
-    await prisma.story.delete({
+    await prisma.storyItem.delete({
       where: {
         id,
       },
     })
 
-    const fileNames = urls.map((url) => url.split('/').pop() || '')
+    await utapi.deleteFiles(findItem.sourceUrl.split('/').pop() || '')
 
-    await utapi.deleteFiles(fileNames)
-
-    return NextResponse.json({ message: 'Deleted' })
+    return NextResponse.json(findItem)
   } catch (error) {
     console.log('[STORY_DELETE] Server error', error)
     return NextResponse.json(
@@ -79,16 +53,13 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
 
     const { id } = params
 
-    const findStory = await prisma.story.findFirst({
+    const findItem = await prisma.storyItem.findFirst({
       where: {
         id,
       },
-      include: {
-        items: true,
-      },
     })
 
-    if (!findStory) {
+    if (!findItem) {
       return NextResponse.json(
         {
           message: 'Not found',
@@ -112,21 +83,18 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
       )
     }
 
-    const updatedStory = await prisma.story.update({
+    const updatedStoryItem = await prisma.storyItem.update({
       where: {
         id,
       },
       data: {
-        previewImageUrl: response.data.url,
-      },
-      include: {
-        items: true,
+        sourceUrl: response.data.url,
       },
     })
 
-    await utapi.deleteFiles(findStory.previewImageUrl.split('/').pop() || '')
+    await utapi.deleteFiles(findItem.sourceUrl.split('/').pop() || '')
 
-    return NextResponse.json(updatedStory)
+    return NextResponse.json(updatedStoryItem)
   } catch (error) {
     console.log('[STORY_DELETE] Server error', error)
     return NextResponse.json(

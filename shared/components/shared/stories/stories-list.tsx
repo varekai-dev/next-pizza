@@ -16,7 +16,7 @@ export const StoriesList: React.FC<Props> = ({ onClickStory }) => {
   return (
     <>
       {isLoading &&
-        [...Array(stories?.length || 2)].map((_, index) => (
+        [...Array(stories?.length || 6)].map((_, index) => (
           <div key={index} className={`min-w-[200px] h-[250px] bg-gray-200 rounded-md animate-pulse`} />
         ))}
       {!isLoading &&
