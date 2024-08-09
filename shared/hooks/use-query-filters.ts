@@ -10,7 +10,7 @@ interface Props {
   selectedPizzaTypes: Set<string>
   selectedSizes: Set<string>
   selectedIngredients: Set<string>
-  sortBy?: number
+  sortBy?: string
 }
 
 export const useQueryFilters = (filters: Props) => {

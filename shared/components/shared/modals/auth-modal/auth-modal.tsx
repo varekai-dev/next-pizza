@@ -3,6 +3,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { signIn } from 'next-auth/react'
+import { Root } from '@radix-ui/react-visually-hidden'
 
 import { Switch } from '@/shared/components/ui/switch'
 import { cn } from '@/shared/lib'
@@ -31,6 +32,9 @@ export const AuthModal: React.FC<Props> = ({ className, open, onClose }) => {
   return (
     <Dialog.Dialog open={open} onOpenChange={onClose}>
       <Dialog.DialogContent className={cn(' bg-white p-10 sm:max-w-[450px] max-w-[90vw]', className)}>
+        <Root>
+          <Dialog.DialogTitle>Title</Dialog.DialogTitle>
+        </Root>
         <div className="overflow-x-auto max-h-[80vh] scrollbar p-2">
           <div className="flex justify-center items-center gap-5 mb-2">
             <label

@@ -5,6 +5,7 @@ import { useFirstMountState, useIntersection, usePrevious } from 'react-use'
 import { useSearchParams } from 'next/navigation'
 import { ProductItem } from '@prisma/client'
 
+import { Sort } from '@/@types'
 import { ProductWithRelations } from '@/@types/prisma'
 import { cn } from '@/shared/lib/utils'
 import { useCategoryActiveId, useSetCategoryActiveId } from '@/shared/store'
@@ -41,10 +42,15 @@ export const ProductsGroupList: React.FC<Props> = ({
   const sortBy = searchParams.get('sortBy')
 
   // Sort on frontend because prisma doesn't support sorting by nested fields
-  const sortedItems =
-    Number(sortBy) === 2
-      ? items.sort((a, b) => b.items[b.items.length - 1].price - a.items[a.items.length - 1].price)
-      : items.sort((a, b) => a.items[0].price - b.items[0].price)
+  const sortedItems = (() => {
+    if (sortBy === Sort.EXPENSIVE) {
+      return items.sort((a, b) => b.items[b.items.length - 1].price - a.items[a.items.length - 1].price)
+    }
+    if (sortBy === Sort.CHEAP) {
+      items.sort((a, b) => a.items[0].price - b.items[0].price)
+    }
+    return items
+  })()
 
   const prevCategoryActiveId = usePrevious(categoryActiveId)
 

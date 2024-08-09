@@ -1,5 +1,6 @@
 import { Category } from '@prisma/client'
 
+import { Sort } from '@/@types'
 import { ProductWithRelations } from '@/@types/prisma'
 import { prisma } from '@/prisma/prisma-client'
 
@@ -26,7 +27,7 @@ export const findCategories = async (params: GetSearchParams): Promise<Categorie
   const ingredientsIdArr = params.ingredients?.split(',').map(String)
   const priceFrom = Number(params.priceFrom) || DEFAULT_MIN_PRICE
   const priceTo = Number(params.priceTo) || DEFAULT_MAX_PRICE
-  const sortBy = Number(params.sortBy) || 1
+  const sortBy = params.sortBy || Sort.CHEAP
 
   const categories = await prisma.category.findMany({
     where: {
@@ -40,7 +41,13 @@ export const findCategories = async (params: GetSearchParams): Promise<Categorie
     include: {
       products: {
         orderBy: {
-          id: 'desc',
+          ...(sortBy === Sort.POPULAR
+            ? {
+                orderCount: 'asc',
+              }
+            : {
+                id: 'desc',
+              }),
         },
         where: {
           ingredients: ingredientsIdArr
@@ -75,9 +82,16 @@ export const findCategories = async (params: GetSearchParams): Promise<Categorie
                 lte: priceTo,
               },
             },
-            orderBy: {
-              price: sortBy === 1 ? 'asc' : 'desc',
-            },
+            ...(sortBy === Sort.CHEAP && {
+              orderBy: {
+                price: 'asc',
+              },
+            }),
+            ...(sortBy === Sort.EXPENSIVE && {
+              orderBy: {
+                price: 'desc',
+              },
+            }),
           },
           ingredients: true,
         },

@@ -29,6 +29,25 @@ const paymentSucceed = async (event: any) => {
 
     const orderItems: CartItemDTO[] = JSON.parse(order.items as string)
 
+    const productsCount = orderItems.map((item) => ({
+      [item.productItemId]: item.quantity,
+    }))
+
+    const updatePromises = Object.entries(productsCount).map(([id, quantity]) => {
+      return prisma.product.update({
+        where: {
+          id,
+        },
+        data: {
+          orderCount: {
+            increment: Number(quantity) || 0,
+          },
+        },
+      })
+    })
+
+    await Promise.all(updatePromises)
+
     await sendEmail({
       to: order.email,
       subject: 'Order paid',

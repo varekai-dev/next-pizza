@@ -6,6 +6,7 @@ import qs from 'qs'
 import { ArrowUpDown } from 'lucide-react'
 
 import { Popover, PopoverContent, PopoverTrigger } from '@/shared/components/ui/popover'
+import { sortTypes } from '@/shared/constants'
 import { GetSearchParams } from '@/shared/lib/find-categories'
 import { cn } from '@/shared/lib/utils'
 
@@ -14,11 +15,9 @@ interface Props {
   searchParams?: GetSearchParams
 }
 
-const sortItems = ['First Cheap', 'First Expensive']
-
 export const SortPopup: React.FC<Props> = ({ className, searchParams }) => {
   const isMounted = React.useRef(false)
-  const sortByQuery = Number(searchParams?.sortBy) || 1
+  const sortByQuery = searchParams?.sortBy || sortTypes[0].value
   const router = useRouter()
   const [sortBy, setSortBy] = React.useState(sortByQuery)
   const [popoverOpen, setPopoverOpen] = React.useState(false)
@@ -41,11 +40,12 @@ export const SortPopup: React.FC<Props> = ({ className, searchParams }) => {
     setPopoverOpen(!popoverOpen)
   }
 
-  const handleClickSortItem = (index: number) => {
-    setSortBy(index + 1)
+  const handleClickSortItem = (sortType: string) => {
+    setSortBy(sortType)
     handleTogglePopover()
   }
 
+  const selectedText = sortTypes.find((item) => item.value === sortBy)?.text
   return (
     <Popover open={popoverOpen} onOpenChange={handleTogglePopover}>
       <PopoverTrigger asChild onClick={handleTogglePopover}>
@@ -58,18 +58,18 @@ export const SortPopup: React.FC<Props> = ({ className, searchParams }) => {
           <ArrowUpDown className="w-4 h-4" />
           <b>Sort:</b>
 
-          <b className="text-primary">{sortItems[sortBy - 1]}</b>
+          <b className="text-primary">{selectedText}</b>
         </div>
       </PopoverTrigger>
       <PopoverContent className="w-[240px]">
         <ul>
-          {sortItems.map((item, index) => (
+          {sortTypes.map(({ value, text }, index) => (
             <li
               key={index}
               className="hover:bg-secondary hover:text-primary p-2 px-4 cursor-pointer rounded-md select-none"
-              onClick={() => handleClickSortItem(index)}
+              onClick={() => handleClickSortItem(value)}
             >
-              {item}
+              {text}
             </li>
           ))}
         </ul>

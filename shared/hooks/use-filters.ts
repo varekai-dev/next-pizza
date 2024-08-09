@@ -14,7 +14,7 @@ interface ReturnProps {
   priceFrom?: number
   priceTo?: number
   setPrice: React.Dispatch<React.SetStateAction<PriceProps>>
-  sortBy?: number
+  sortBy?: string
   searchParams: Map<paramType, string>
   clearFilters: () => void
 }
@@ -45,7 +45,7 @@ export const useFilters = (): ReturnProps => {
     new Set<string>(searchParams.get('pizzaTypes') ? searchParams.get('pizzaTypes')?.split(',') : []),
   )
 
-  const sortBy = Number(searchParams.get('sortBy')) || undefined
+  const sortBy = searchParams.get('sortBy') || undefined
 
   const clearFilters = () => {
     clearSelectedSizes()
