@@ -49,6 +49,7 @@ export const ImageCropper: React.FC<Props> = ({ className, file, aspect = 4 / 3,
         autoCropArea={1}
         checkOrientation={false} // https://github.com/fengyuanchen/cropperjs/issues/671
         guides={false}
+        cropBoxResizable={false}
       />
       <Button onClick={getCropData} className="z-10 absolute bottom-5 right-5">
         Save

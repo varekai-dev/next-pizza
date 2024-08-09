@@ -15,7 +15,7 @@ export const SettingNavigation: React.FC<Props> = async ({ className, role }) =>
   return (
     <div
       className={cn(
-        'md:w-[300px] bg-white rounded-md md:p-5 md:relative sticky bottom-5 left-5 right-5 md:bottom-auto md:left-auto md:right-auto',
+        'md:min-w-[250px] bg-white rounded-md md:p-5 md:relative sticky bottom-5 left-5 right-5 md:bottom-auto md:left-auto md:right-auto',
         className,
       )}
     >

@@ -19,12 +19,7 @@ interface Props {
 
 export const StoryPreview: React.FC<Props> = ({ className, srcUrl, onDelete, id }) => {
   return (
-    <div
-      className={cn(
-        `relative rounded-md overflow-hidden group h-[${STORY_PREVIEW_HEIGHT}px] w-[${STORY_PREVIEW_WIDTH}px]`,
-        className,
-      )}
-    >
+    <div className={cn(`relative rounded-md overflow-hidden group h-[250px] w-[200px]`, className)}>
       <Image src={srcUrl} alt="story" width={STORY_PREVIEW_WIDTH} height={STORY_PREVIEW_HEIGHT} />
       <div className="absolute transition duration-300 top-0 left-0 right-0 bottom-0 bg-gray-400/30  justify-center items-center flex opacity-0 group-hover:opacity-100">
         <Button variant="secondary">Change</Button>

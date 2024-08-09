@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Ingredient } from '@prisma/client'
 import { Plus } from 'lucide-react'
 
+import { Route } from '@/@types'
 import { cn } from '@/shared/lib'
 
 import { Button } from '../../ui'
@@ -30,7 +31,7 @@ export const ProductCard: React.FC<Props> = ({
 }) => {
   return (
     <div className={className}>
-      <Link href={`/product/${id}`} className="flex flex-col h-full" scroll={false}>
+      <Link href={`${Route.PRODUCT}/${id}`} className="flex flex-col h-full" scroll={false}>
         <div className="flex justify-center p-6 bg-secondary rounded-lg h=[260px]">
           <Image
             width={215}

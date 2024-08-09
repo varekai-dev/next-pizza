@@ -7,6 +7,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { Root } from '@radix-ui/react-visually-hidden'
 import { AxiosError } from 'axios'
 
+import { Route } from '@/@types'
 import { requestVerificationCode } from '@/app/action'
 import { useTimer } from '@/shared/hooks'
 import { cn } from '@/shared/lib'
@@ -33,7 +34,7 @@ export const CodeVerificationModal: React.FC<Props> = ({ className }) => {
 
   const handleClose = (isOpen: boolean) => {
     setOpen(isOpen)
-    router.push('/')
+    router.push(Route.HOME)
   }
 
   React.useEffect(() => {
@@ -54,7 +55,7 @@ export const CodeVerificationModal: React.FC<Props> = ({ className }) => {
       setIsVerificationLoading(true)
       await verifyEmail(code)
       toast.success('Email verified')
-      router.push('/')
+      router.push(Route.HOME)
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         toast.error(error?.response?.data?.message || 'Could not verify email')

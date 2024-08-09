@@ -29,7 +29,7 @@ export const Stories: React.FC = () => {
       </Container>
       {open && (
         <div className="fixed left-0 top-0 w-full h-full bg-black/80 flex items-center justify-center z-40">
-          <div className="relative w-[520px]">
+          <div className={`relative w-[${STORY_ITEM_WIDTH}px]`}>
             <button className="absolute -right-10 -top-5 z-30" onClick={() => setOpen(false)}>
               <X className="absolute top-0 right-0 w-8 h-8 text-white/50" />
             </button>

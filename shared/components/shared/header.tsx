@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 
+import { Route } from '@/@types'
 import { cn } from '@/shared/lib/utils'
 
 import { CartButton } from './cart'
@@ -44,7 +45,7 @@ export const Header: React.FC<Props> = ({ className, hasSearch = true, hasCart =
     <header className={cn('border-b', className)}>
       <Container className="flex items-center justify-between py-8">
         {/* Left part */}
-        <Link href="/">
+        <Link href={Route.HOME}>
           <div className="flex items-center gap-4">
             <Image src="/logo.png" width={35} height={35} alt="logo" />
             <div className="sm:block hidden">

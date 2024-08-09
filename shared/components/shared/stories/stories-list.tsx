@@ -16,13 +16,16 @@ export const StoriesList: React.FC<Props> = ({ onClickStory }) => {
   return (
     <>
       {isLoading &&
-        [...Array(2)].map((_, index) => (
-          <div key={index} className="min-w-[200px] h-[250px] bg-gray-200 rounded-md animate-pulse" />
+        [...Array(stories?.length || 2)].map((_, index) => (
+          <div key={index} className={`min-w-[200px] h-[250px] bg-gray-200 rounded-md animate-pulse`} />
         ))}
       {!isLoading &&
         stories &&
         stories.map((story) => (
-          <div key={story.id} className="min-w-[200px] w-[200px] h-[250px] overflow-hidden rounded-md cursor-pointer">
+          <div
+            key={story.id}
+            className={`min-w-[${STORY_PREVIEW_WIDTH}px] w-[${STORY_PREVIEW_WIDTH}px] h-[${STORY_PREVIEW_HEIGHT}px] overflow-hidden rounded-md cursor-pointer`}
+          >
             <Image
               alt="story"
               onClick={() => onClickStory?.(story)}

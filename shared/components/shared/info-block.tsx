@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 
+import { Route } from '@/@types'
 import { cn } from '@/shared/lib/utils'
 
 import { Button } from '../ui/button'
@@ -24,7 +25,7 @@ export const InfoBlock: React.FC<Props> = ({ className, title, text, imageUrl })
         </div>
 
         <div className="flex gap-5 mt-11">
-          <Link href="/">
+          <Link href={Route.HOME}>
             <Button variant="outline" className="gap-2">
               <ArrowLeft />
               To main

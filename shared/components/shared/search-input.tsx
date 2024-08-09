@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { Product } from '@prisma/client'
 import { Search } from 'lucide-react'
 
+import { Route } from '@/@types'
 import { cn } from '@/shared/lib/utils'
 import { Api } from '@/shared/services/api-client'
 
@@ -72,7 +73,7 @@ export const SearchInput: React.FC<Props> = ({ className }) => {
                 onClick={onClickItem}
                 key={product.id}
                 className="flex items-center gap-3 w-full px-3 py-2 hover:bg-primary/10"
-                href={`/product/${product.id}`}
+                href={`${Route.PRODUCT}/${product.id}`}
                 scroll={false}
               >
                 <Image

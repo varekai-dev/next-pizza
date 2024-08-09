@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { Root } from '@radix-ui/react-visually-hidden'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 
+import { Route } from '@/@types'
 import { PizzaSize, PizzaType } from '@/shared/constants'
 import { useCart } from '@/shared/hooks'
 import { cn, getCartItemDetails } from '@/shared/lib'
@@ -100,7 +101,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({ children,
 
                     <span className="font-bold text-lg">{totalAmount} ₴</span>
                   </div>
-                  <Link href="/checkout">
+                  <Link href={Route.CHECKOUT}>
                     <Button loading={loading} type="submit" className="w-full h-12 text-base">
                       Make an order
                       <ArrowRight className="w-5 ml-2" />

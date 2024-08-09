@@ -1,7 +1,7 @@
 import React from 'react'
 import type { Metadata } from 'next'
 
-import { Header, SettingNavigation } from '@/shared/components/shared'
+import { Container, Header, SettingNavigation } from '@/shared/components/shared'
 import { getUserSession } from '@/shared/lib/get-user-session'
 
 import '../globals.css'
@@ -22,10 +22,12 @@ export default async function SettingsLayout({
       <React.Suspense>
         <Header className="border-b-gray-200 bg-white" hasSearch={false} hasCart={false} />
       </React.Suspense>
-      <div className="flex gap-5 m-5 h-[calc(100vh-148px)] md:flex-row flex-col-reverse justify-between md:justify-normal">
-        <SettingNavigation className="ml-0 md:ml-5" role={session?.role} />
-        {children}
-      </div>
+      <Container>
+        <div className="flex gap-5 m-5 h-[calc(100vh-148px)] md:flex-row flex-col-reverse justify-between md:justify-normal">
+          <SettingNavigation role={session?.role} />
+          {children}
+        </div>
+      </Container>
     </main>
   )
 }

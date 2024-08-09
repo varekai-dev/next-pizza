@@ -1,25 +1,37 @@
 'use client'
 
-import React, { ChangeEvent } from 'react'
+import React from 'react'
 import toast from 'react-hot-toast'
 
 import { compressFile } from '@/shared/lib'
 import { CompressFileOptions } from '@/shared/lib/compress-file'
 
-import { Button, Input } from '../ui'
+import { Input } from '../ui'
 import { CropModal } from './modals/crop-modal'
 
 interface Props extends CompressFileOptions {
   className?: string
   aspect?: number
+  onCropImage: (file: File) => void
+  isLoading?: boolean
+  showFileName?: boolean
+  children: React.ReactElement
 }
 
-export const UploadImage: React.FC<Props> = ({ className, aspect, ...props }) => {
+export const CropImage: React.FC<Props> = ({
+  className,
+  aspect,
+  onCropImage,
+  isLoading,
+  showFileName,
+  children,
+  ...props
+}) => {
   const [loading, setLoading] = React.useState(false)
   const [file, setFile] = React.useState<File>()
   const [modifiedFile, setModifiedFile] = React.useState<File>()
 
-  const handleChange = async (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     try {
       setLoading(true)
       const inputFile = e.target.files?.[0]
@@ -43,6 +55,7 @@ export const UploadImage: React.FC<Props> = ({ className, aspect, ...props }) =>
 
   const onComplete = (file: File) => {
     setModifiedFile(file)
+    onCropImage(file)
     setFile(undefined)
   }
 
@@ -61,10 +74,8 @@ export const UploadImage: React.FC<Props> = ({ className, aspect, ...props }) =>
           onChange={handleChange}
           className="hidden"
         />
-        <Button className="w-[200px]" variant="secondary" loading={loading} onClick={onClickUpload}>
-          Upload image
-        </Button>
-        <span> {modifiedFile && modifiedFile.name}</span>
+        {React.cloneElement(children, { onClick: onClickUpload, loading: loading || isLoading })}
+        {showFileName && !!modifiedFile && <span> {modifiedFile.name}</span>}
       </div>
       {file && <CropModal file={file} aspect={aspect} onModalClose={onModalClose} onComplete={onComplete} />}
     </div>
