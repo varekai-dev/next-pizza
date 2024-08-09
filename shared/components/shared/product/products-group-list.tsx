@@ -19,17 +19,9 @@ interface Props {
   className?: string
   listClassName?: string
   categoryId: string
-  isPageScrolling: boolean
 }
 
-export const ProductsGroupList: React.FC<Props> = ({
-  className,
-  title,
-  items,
-  listClassName,
-  categoryId,
-  isPageScrolling,
-}) => {
+export const ProductsGroupList: React.FC<Props> = ({ className, title, items, listClassName, categoryId }) => {
   const searchParams = useSearchParams()
   const isFirstMount = useFirstMountState()
   const ref = React.createRef<HTMLDivElement>()
@@ -63,10 +55,10 @@ export const ProductsGroupList: React.FC<Props> = ({
   }, [ref, categoryActiveId, prevCategoryActiveId, shouldScroll, categoryId, isFirstMount])
 
   React.useEffect(() => {
-    if (intersection?.isIntersecting && !isPageScrolling) {
+    if (intersection?.isIntersecting) {
       setActiveCategoryId(categoryId, false)
     }
-  }, [categoryId, setActiveCategoryId, intersection?.isIntersecting, isPageScrolling])
+  }, [categoryId, setActiveCategoryId, intersection?.isIntersecting])
   return (
     <div ref={ref} className={className} id={title}>
       <Title text={title} size="lg" className="font-extrabold mb-5" />

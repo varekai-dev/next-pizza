@@ -44,7 +44,7 @@ const paymentSucceed = async (event: any) => {
         },
         data: {
           orderCount: {
-            increment: Number(quantity) || 0,
+            increment: quantity,
           },
         },
       })

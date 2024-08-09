@@ -42,7 +42,7 @@ export const Stories: React.FC = () => {
                   url: item.sourceUrl,
                 })) || []
               }
-              defaultInterval={30000}
+              defaultInterval={3000}
               width={isMd ? STORY_ITEM_WIDTH : STORY_ITEM_WIDTH / 1.8}
               height={isMd ? STORY_ITEM_HEIGHT : STORY_ITEM_HEIGHT / 1.8}
             />

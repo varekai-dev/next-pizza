@@ -43,7 +43,7 @@ export const findCategories = async (params: GetSearchParams): Promise<Categorie
         orderBy: {
           ...(sortBy === Sort.POPULAR
             ? {
-                orderCount: 'asc',
+                orderCount: 'desc',
               }
             : {
                 id: 'desc',

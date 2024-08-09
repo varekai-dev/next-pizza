@@ -36,7 +36,7 @@ model Product {
 
   items ProductItem[]
 
-  orderCount Int @default(0)
+  orderCount Int @default(1)
 
   category   Category @relation(fields: [categoryId], references: [id])
   categoryId String   @db.ObjectId
