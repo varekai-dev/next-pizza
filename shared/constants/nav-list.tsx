@@ -1,4 +1,4 @@
-import { CircleUser, Gauge, Instagram, Truck } from 'lucide-react'
+import { CircleUser, Gauge, Instagram, ShoppingBasket, Truck } from 'lucide-react'
 
 import { Route } from '@/@types'
 
@@ -8,6 +8,12 @@ export const navList = [
     href: Route.DASHBOARD,
     isAdmin: true,
     icon: <Gauge size={18} />,
+  },
+  {
+    name: 'Ingredients',
+    href: Route.INGREDIENTS,
+    isAdmin: true,
+    icon: <ShoppingBasket size={18} />,
   },
   {
     name: 'Stories',

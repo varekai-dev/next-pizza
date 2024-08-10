@@ -22,8 +22,8 @@ export default async function SettingsLayout({
       <React.Suspense>
         <Header className="border-b-gray-200 bg-white" hasSearch={false} hasCart={false} />
       </React.Suspense>
-      <Container>
-        <div className="flex gap-5 m-5 h-[calc(100vh-148px)] md:flex-row flex-col-reverse justify-between md:justify-normal">
+      <Container className="h-[calc(100vh-109px)]">
+        <div className="flex gap-5 py-5 h-full  md:flex-row flex-col-reverse justify-between md:justify-normal">
           <SettingNavigation role={session?.role} />
           {children}
         </div>

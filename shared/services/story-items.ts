@@ -7,7 +7,7 @@ export const createStoryItem = async ({ payload }: { payload: FormData }) => {
   return data
 }
 
-export const deleteStoryItem = async ({ itemId }: { itemId: string }) => {
+export const deleteStoryItem = async (itemId: string) => {
   const { data } = await axiosInstance.delete<StoryItem>(`/story-items/${itemId}`)
   return data
 }

@@ -19,6 +19,7 @@ export const Products: React.FC<Props> = ({ className, searchParams }) => {
     queryKey: [QueryKey.GET_CATEGORIES, searchParams],
     queryFn: () => findCategories(searchParams),
   })
+
   return (
     <div className={cn('flex-1', className)}>
       <div className="flex flex-col gap-16">

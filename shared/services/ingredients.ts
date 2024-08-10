@@ -1,9 +1,20 @@
 import { Ingredient } from '@prisma/client'
 
-import { ApiRoutes } from './constants'
+import { ApiRoute } from '@/@types'
+
 import { axiosInstance } from './instance'
 
 export const getAll = async (): Promise<Ingredient[]> => {
-  const { data } = await axiosInstance.get<Ingredient[]>(ApiRoutes.INGREDIENTS)
+  const { data } = await axiosInstance.get<Ingredient[]>(ApiRoute.INGREDIENTS)
+  return data
+}
+
+export const getIngredient = async (id: string): Promise<Ingredient> => {
+  const { data } = await axiosInstance.get<Ingredient>(`${ApiRoute.INGREDIENTS}/${id}`)
+  return data
+}
+
+export const updateIngredient = async ({ id, payload }: { id: string; payload: FormData }) => {
+  const { data } = await axiosInstance.patch<Ingredient>(`${ApiRoute.INGREDIENTS}/${id}`, payload)
   return data
 }

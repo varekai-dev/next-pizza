@@ -24,7 +24,7 @@ export default async function OrdersPage() {
 
   return (
     <div className="w-full overflow-x-auto scrollbar">
-      <Title text="My Orders" size="md" className="font-bold mb-10" />
+      <Title text="Orders" size="md" className="font-bold mb-5" />
       <Accordion.Accordion type="single" collapsible className="lg:w-[750px] md:w-[550px] flex flex-col gap-5">
         {orders.map((order, index) => {
           const orderNumber = orders.length - index

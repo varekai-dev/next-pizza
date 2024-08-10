@@ -17,8 +17,8 @@ export const IngredientItem: React.FC<Props> = ({ className, imageUrl, name, act
   return (
     <div
       className={cn(
-        'border border-white flex items-center flex-col p-1 rounded-md w-34 text-center relative cursor-pointer shadow-md bg-white select-none',
-        { 'border border-primary': active },
+        'border border-white flex items-center flex-col p-1 rounded-md w-34 text-center relative shadow-md bg-white select-none overflow-hidden h-full',
+        { 'border border-primary': active, 'cursor-pointer': onClick },
         className,
       )}
       onClick={onClick}

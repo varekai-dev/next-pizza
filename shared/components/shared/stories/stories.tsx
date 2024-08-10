@@ -5,13 +5,14 @@ import ReactStories from 'react-insta-stories'
 import { X } from 'lucide-react'
 
 import { STORY_ITEM_HEIGHT, STORY_ITEM_WIDTH } from '@/shared/constants'
-import { useBreakpoint } from '@/shared/hooks'
+import { useBreakpoint, useStories } from '@/shared/hooks'
 import { IStory } from '@/shared/services/stories'
 
 import { Container } from '../container'
 import { StoriesList } from './stories-list'
 
 export const Stories: React.FC = () => {
+  const { stories, isLoading } = useStories()
   const [open, setOpen] = React.useState(false)
   const [selectedStory, setSelectedStory] = React.useState<IStory | null>(null)
   const isMd = useBreakpoint('md')
@@ -27,7 +28,7 @@ export const Stories: React.FC = () => {
   return (
     <>
       <Container className="flex flex-start gap-2 my-10 overflow-x-auto">
-        <StoriesList onClickStory={onClickStory} />
+        <StoriesList stories={stories} isLoading={isLoading} onClickStory={onClickStory} />
       </Container>
       {open && (
         <div className="fixed left-0 top-0 w-full h-full bg-black/80 flex items-center justify-center z-40">

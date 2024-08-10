@@ -70,7 +70,7 @@ export const CropImage: React.FC<Props> = ({
         <Input
           ref={inputRef}
           type="file"
-          accept="image/jpeg, image/png image/webp"
+          accept="image/jpeg, image/png, image/webp"
           onChange={handleChange}
           className="hidden"
         />

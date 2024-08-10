@@ -72,6 +72,7 @@
     "zustand": "^4.5.4"
   },
   "devDependencies": {
+    "@tanstack/react-query-devtools": "^5.51.23",
     "@types/bcrypt": "^5.0.2",
     "@types/lodash.debounce": "^4.0.9",
     "@types/node": "^20",

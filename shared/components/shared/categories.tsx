@@ -20,6 +20,7 @@ export const Categories: React.FC<Props> = ({ className, searchParams }) => {
   const { data: categories } = useQuery({
     queryKey: [QueryKey.GET_CATEGORIES, searchParams],
     queryFn: () => findCategories(searchParams),
+    enabled: !!searchParams,
   })
 
   const { refs, activeWidth, activeOffset } = useElasticTransition({

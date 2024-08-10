@@ -5,6 +5,7 @@ export enum Route {
 
   // settings
   PROFILE = '/settings/profile',
+  INGREDIENTS = '/settings/ingredients',
   DASHBOARD = '/settings/dashboard',
   ORDERS = '/settings/orders',
   STORIES = '/settings/stories',

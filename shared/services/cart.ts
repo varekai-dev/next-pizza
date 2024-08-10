@@ -1,27 +1,28 @@
-import { ApiRoutes } from './constants'
+import { ApiRoute } from '@/@types'
+
 import { CartDTO, CartResponse, CreateCartItemValues } from './dto/cart.dto'
 import { axiosInstance } from './instance'
 
 export const getCart = async (): Promise<CartResponse> => {
-  return (await axiosInstance.get<CartResponse>(ApiRoutes.CART)).data
+  return (await axiosInstance.get<CartResponse>(ApiRoute.CART)).data
 }
 
 export const updateItemQuantity = async (itemId: string, quantity: number): Promise<CartDTO> => {
   return (
-    await axiosInstance.patch<CartDTO>(`${ApiRoutes.CART}/${itemId}`, {
+    await axiosInstance.patch<CartDTO>(`${ApiRoute.CART}/${itemId}`, {
       quantity,
     })
   ).data
 }
 
 export const deleteItem = async (itemId: string): Promise<CartDTO> => {
-  return (await axiosInstance.delete<CartDTO>(`${ApiRoutes.CART}/${itemId}`)).data
+  return (await axiosInstance.delete<CartDTO>(`${ApiRoute.CART}/${itemId}`)).data
 }
 
 export const createCartItem = async (data: CreateCartItemValues): Promise<CartDTO> => {
-  return (await axiosInstance.post<CartDTO>(ApiRoutes.CART, data)).data
+  return (await axiosInstance.post<CartDTO>(ApiRoute.CART, data)).data
 }
 
-export const removeCartItems = async (): Promise<CartDTO> => {
-  return (await axiosInstance.delete(ApiRoutes.CART)).data
+export const removeCartItems = async (): Promise<void> => {
+  return (await axiosInstance.delete<void>(ApiRoute.CART)).data
 }
