@@ -1,16 +1,15 @@
 'use client'
 
 import toast from 'react-hot-toast'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 import { QueryKey } from '@/@types'
 
-import { getQueryClient } from '../components/shared/providers'
 import { Api } from '../services/api-client'
 import { IStory } from '../services/stories'
 
 export const useCreateStory = () => {
-  const queryClient = getQueryClient()
+  const queryClient = useQueryClient()
   const { mutate: createStory, ...rest } = useMutation({
     mutationFn: Api.stories.createStory,
     onSuccess: (data) => {
@@ -18,7 +17,7 @@ export const useCreateStory = () => {
         if (!oldData) {
           return undefined
         }
-        return [...oldData, data]
+        return [...oldData, { ...data, items: [] }]
       })
       toast.success('Story created successfully')
     },

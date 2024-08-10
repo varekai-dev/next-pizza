@@ -41,9 +41,9 @@ export const Story: React.FC<Props> = ({ id }) => {
             {story.items.map((item) => (
               <StoryItemPreview itemId={item.id} key={item.id} srcUrl={item.sourceUrl} onDelete={deleteStoryItem} />
             ))}
+            <CreateStoryItem storyId={id} />
           </>
         )}
-        <CreateStoryItem storyId={id} />
       </div>
     </div>
   )

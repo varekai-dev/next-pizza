@@ -15,7 +15,7 @@ interface Props {
 
 export const CreateStory: React.FC<Props> = ({ className }) => {
   const { createStory, isPending } = useCreateStory()
-  const { stories } = useStories()
+  const { stories, isLoading } = useStories()
 
   const handleCreateStory = async (file: File) => {
     const formData = new FormData()
@@ -23,7 +23,7 @@ export const CreateStory: React.FC<Props> = ({ className }) => {
     createStory(formData)
   }
 
-  if (!stories || stories.length >= 6) {
+  if (!stories || stories.length >= 6 || isLoading) {
     return null
   }
 

@@ -1,12 +1,5 @@
-'use client'
-
 import React from 'react'
-import { Toaster } from 'react-hot-toast'
-import { SessionProvider } from 'next-auth/react'
-import NextTopLoader from 'nextjs-toploader'
 import { isServer, QueryClient, QueryClientProvider } from '@tanstack/react-query'
-
-import { CodeVerificationModal } from './modals/code-verification-modal'
 
 function makeQueryClient() {
   return new QueryClient({
@@ -36,18 +29,7 @@ export function getQueryClient() {
   }
 }
 
-export const Providers: React.FC<React.PropsWithChildren> = ({ children }) => {
+export const QueryProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   const queryClient = getQueryClient()
-  return (
-    <>
-      <NextTopLoader showSpinner={false} />
-      <SessionProvider>
-        <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-      </SessionProvider>
-      <Toaster />
-      <React.Suspense>
-        <CodeVerificationModal />
-      </React.Suspense>
-    </>
-  )
+  return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
 }
