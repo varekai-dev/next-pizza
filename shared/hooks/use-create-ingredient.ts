@@ -8,11 +8,11 @@ import { QueryKey, Route } from '@/@types'
 
 import { Api } from '../services/api-client'
 
-export const useUpdateIngredient = () => {
+export const useCreateIngredient = () => {
   const router = useRouter()
   const queryClient = useQueryClient()
-  const { mutate: updateIngredient, ...rest } = useMutation({
-    mutationFn: Api.ingredients.updateIngredient,
+  const { mutate: createIngredient, ...rest } = useMutation({
+    mutationFn: Api.ingredients.createIngredient,
     onSuccess: (data) => {
       queryClient.invalidateQueries({
         queryKey: [QueryKey.GET_INGREDIENT, data.id],
@@ -20,13 +20,13 @@ export const useUpdateIngredient = () => {
       queryClient.invalidateQueries({
         queryKey: [QueryKey.GET_INGREDIENTS],
       })
-      toast.success('Ingredient updated successfully')
+      toast.success('Ingredient created successfully')
       router.push(Route.INGREDIENTS)
     },
   })
 
   return {
-    updateIngredient,
+    createIngredient,
     ...rest,
   }
 }

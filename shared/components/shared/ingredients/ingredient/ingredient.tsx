@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-import { useGetIngredient } from '@/shared/hooks'
+import { useGetIngredient, useUpdateIngredient } from '@/shared/hooks'
 
 import { IngredientForm } from './ingredient-form'
 
@@ -13,12 +13,21 @@ interface Props {
 
 export const Ingredient: React.FC<Props> = ({ className, id }) => {
   const { ingredient } = useGetIngredient(id)
+  const { updateIngredient, isPending } = useUpdateIngredient()
+
+  const handleSubmit = (data: FormData) => {
+    updateIngredient({
+      id: id,
+      payload: data,
+    })
+  }
 
   return (
     <div className={className}>
       {ingredient && (
         <IngredientForm
-          ingredientId={id}
+          isPending={isPending}
+          handleSubmit={handleSubmit}
           defaultValues={{
             name: ingredient?.name,
             price: String(ingredient?.price),

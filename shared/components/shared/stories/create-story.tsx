@@ -7,6 +7,7 @@ import { useCreateStory, useStories } from '@/shared/hooks'
 import { cn } from '@/shared/lib'
 
 import { Button } from '../../ui'
+import { AddButton } from '../add-button'
 import { CropImage } from '../crop-image'
 
 interface Props {
@@ -30,13 +31,13 @@ export const CreateStory: React.FC<Props> = ({ className }) => {
   return (
     <div
       className={cn(
-        `w-[${STORY_PREVIEW_WIDTH}px] h-[${STORY_PREVIEW_HEIGHT}px] flex items-center justify-center bg-gray-200/30 rounded-md`,
+        `w-[${STORY_PREVIEW_WIDTH}px] h-[${STORY_PREVIEW_HEIGHT}px] flex items-center justify-center`,
         className,
       )}
     >
       <CropImage onCropImage={handleCreateStory} aspect={STORY_PREVIEW_ASPECT} isLoading={isPending}>
-        <Button variant="secondary" size="lg" className="text-lg">
-          Create story
+        <Button variant="link" size="lg" className="text-lg text-gray-500">
+          <AddButton />
         </Button>
       </CropImage>
     </div>

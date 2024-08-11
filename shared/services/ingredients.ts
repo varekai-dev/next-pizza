@@ -18,3 +18,8 @@ export const updateIngredient = async ({ id, payload }: { id: string; payload: F
   const { data } = await axiosInstance.patch<Ingredient>(`${ApiRoute.INGREDIENTS}/${id}`, payload)
   return data
 }
+
+export const createIngredient = async ({ payload }: { payload: FormData }) => {
+  const { data } = await axiosInstance.post<Ingredient>(`${ApiRoute.INGREDIENTS}`, payload)
+  return data
+}

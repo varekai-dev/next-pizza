@@ -9,7 +9,8 @@ import { QueryKey, Route } from '@/@types'
 import { useGetIngredients } from '@/shared/hooks'
 import { cn } from '@/shared/lib'
 
-import { Skeleton } from '../../ui'
+import { Button, Skeleton } from '../../ui'
+import { AddButton } from '../add-button'
 import { IngredientItem } from '../ingredient-item'
 
 interface Props {
@@ -27,11 +28,13 @@ export const Ingredients: React.FC<Props> = ({ className }) => {
   }
   return (
     <div className={cn('flex gap-3 flex-wrap', className)}>
-      {isLoading
-        ? Array.from({ length: 10 }).map((_, index) => (
-            <Skeleton key={index} className="w-[150px] h-[200px] bg-gray-200" />
-          ))
-        : ingredients?.map((ingredient) => (
+      {isLoading ? (
+        Array.from({ length: 10 }).map((_, index) => (
+          <Skeleton key={index} className="w-[150px] h-[200px] bg-gray-200" />
+        ))
+      ) : (
+        <>
+          {ingredients?.map((ingredient) => (
             <IngredientItem
               key={ingredient.id}
               className="w-[150px] h-[200px]"
@@ -41,6 +44,18 @@ export const Ingredients: React.FC<Props> = ({ className }) => {
               onClick={() => handleClickIngredient(ingredient)}
             />
           ))}
+          <div className="w-[150px] h-[200px] flex items-center justify-center">
+            <Button
+              variant="link"
+              size="lg"
+              className="text-lg text-gray-500"
+              onClick={() => router.push(Route.CREATE_INGREDIENT)}
+            >
+              <AddButton />
+            </Button>
+          </div>
+        </>
+      )}
     </div>
   )
 }

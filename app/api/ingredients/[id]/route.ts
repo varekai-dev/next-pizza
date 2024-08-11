@@ -25,6 +25,7 @@ export async function GET(_: NextRequest, { params }: { params: { id: string } }
 
     return NextResponse.json(ingredient)
   } catch (error) {
+    console.log('[GET_INGREDIENTS]', error)
     return NextResponse.json(
       { message: 'Internal server error' },
       {
@@ -93,7 +94,7 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
 
     return NextResponse.json(updatedIngredient)
   } catch (error) {
-    console.log('[STORY_DELETE] Server error', error)
+    console.log('[UPDATE_INGREDIENT] Server error', error)
     return NextResponse.json(
       {
         message: 'Server error',

@@ -5,7 +5,6 @@ import { FormProvider, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import { Button } from '@/shared/components/ui'
-import { useUpdateIngredient } from '@/shared/hooks/use-update-ingredient'
 
 import { CropImage } from '../../crop-image'
 import { FormInput } from '../../form'
@@ -20,11 +19,12 @@ interface Props {
     price: string
     imageUrl: string
   }
-  ingredientId: string
+  handleSubmit: (data: FormData) => void
+  isPending?: boolean
+  empty?: boolean
 }
 
-export const IngredientForm: React.FC<Props> = ({ className, defaultValues, ingredientId }) => {
-  const { updateIngredient, isPending } = useUpdateIngredient()
+export const IngredientForm: React.FC<Props> = ({ className, defaultValues, handleSubmit, isPending, empty }) => {
   const [file, setFile] = React.useState<File>()
   const form = useForm<FormIngredientValues>({
     resolver: zodResolver(ingredientSchema),
@@ -45,10 +45,7 @@ export const IngredientForm: React.FC<Props> = ({ className, defaultValues, ingr
     if (file) {
       formData.append('file', file)
     }
-    updateIngredient({
-      id: ingredientId,
-      payload: formData,
-    })
+    handleSubmit(formData)
   }
 
   return (
@@ -66,6 +63,7 @@ export const IngredientForm: React.FC<Props> = ({ className, defaultValues, ingr
               <FormInput label="Price ₴" name="price" placeholder="Price" required type="number" disabled={isPending} />
             </div>
             <ImageCard
+              empty={empty}
               isLoading={isPending}
               width={250}
               height={250}

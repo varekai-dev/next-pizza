@@ -30,6 +30,7 @@ export const useCartStore = create<State>()((set) => ({
         set(getCartDetails(data))
       }
     } catch (error) {
+      console.log('error', error)
       throw new Error('Could not fetch cart items')
     } finally {
       set({ loading: false })
@@ -45,6 +46,7 @@ export const useCartStore = create<State>()((set) => ({
       const data = await Api.cart.deleteItem(id)
       set(getCartDetails(data))
     } catch (error) {
+      console.log('error', error)
       throw new Error('Could not remove item from cart')
     } finally {
       set({ loading: false })
@@ -56,6 +58,7 @@ export const useCartStore = create<State>()((set) => ({
       const data = await Api.cart.updateItemQuantity(id, quantity)
       set(getCartDetails(data))
     } catch (error) {
+      console.log('error', error)
       throw new Error('Could not update item quantity')
     } finally {
       set({ loading: false })
@@ -67,6 +70,7 @@ export const useCartStore = create<State>()((set) => ({
       const data = await Api.cart.createCartItem(values)
       set(getCartDetails(data))
     } catch (error) {
+      console.log('error', error)
       throw new Error('Could not add item to cart')
     } finally {
       set({ loading: false })
@@ -81,6 +85,7 @@ export const useCartStore = create<State>()((set) => ({
         items: [],
       })
     } catch (error) {
+      console.log('error', error)
       throw new Error('Could not clear cart')
     } finally {
       set({ loading: false })

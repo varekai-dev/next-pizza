@@ -47,7 +47,7 @@ export const ImageCard: React.FC<Props> = ({
           className={cn(
             'absolute transition duration-300 top-0 left-0 right-0 bottom-0 bg-gray-400/30  justify-center items-center flex opacity-0 group-hover:opacity-100',
             {
-              'opacity-100': empty,
+              'opacity-100': empty && !srcUrl,
             },
           )}
         >
