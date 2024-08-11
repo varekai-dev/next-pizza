@@ -11,4 +11,6 @@ export enum Route {
   DASHBOARD = '/settings/dashboard',
   ORDERS = '/settings/orders',
   STORIES = '/settings/stories',
+  PRODUCTS = '/settings/products',
+  CATEGORIES = '/settings/categories',
 }

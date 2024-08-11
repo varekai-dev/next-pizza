@@ -10,3 +10,8 @@ export const search = async (query: string): Promise<Product[]> => {
   })
   return data
 }
+
+export const getAll = async (): Promise<Product[]> => {
+  const { data } = await axiosInstance.get<Product[]>(ApiRoute.PRODUCTS)
+  return data
+}

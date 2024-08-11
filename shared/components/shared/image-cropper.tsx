@@ -37,6 +37,7 @@ export const ImageCropper: React.FC<Props> = ({ className, file, aspect = 4 / 3,
   return (
     <>
       <Cropper
+        dragMode="none"
         ref={cropperRef}
         className={cn('w-full max-h-[800px]', className)}
         initialAspectRatio={aspect}
@@ -44,12 +45,13 @@ export const ImageCropper: React.FC<Props> = ({ className, file, aspect = 4 / 3,
         viewMode={1}
         minCropBoxHeight={10}
         minCropBoxWidth={10}
-        background={false}
+        background={true}
         responsive={true}
         autoCropArea={1}
+        allowFullScreen={false}
         checkOrientation={false} // https://github.com/fengyuanchen/cropperjs/issues/671
         guides={false}
-        cropBoxResizable={false}
+        cropBoxResizable={true}
       />
       <Button onClick={getCropData} className="z-10 absolute bottom-5 right-5">
         Save

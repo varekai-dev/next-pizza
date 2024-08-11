@@ -5,8 +5,20 @@ import { CheckAuth } from '@/shared/lib/check-auth'
 import { utapi } from '@/shared/services/uploadthing'
 
 export async function GET() {
-  const ingredients = await prisma.ingredient.findMany()
-  return NextResponse.json(ingredients)
+  try {
+    const ingredients = await prisma.ingredient.findMany()
+    return NextResponse.json(ingredients)
+  } catch (error) {
+    console.log('[INGREDIENTS_GET] Server error', error)
+    return NextResponse.json(
+      {
+        message: 'Server error',
+      },
+      {
+        status: 500,
+      },
+    )
+  }
 }
 
 export async function POST(req: NextRequest) {

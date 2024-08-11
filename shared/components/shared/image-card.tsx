@@ -16,6 +16,7 @@ interface Props {
   isLoading?: boolean
   objectFit?: 'cover' | 'contain'
   empty?: boolean
+  alt?: string
 }
 
 export const ImageCard: React.FC<Props> = ({
@@ -28,6 +29,7 @@ export const ImageCard: React.FC<Props> = ({
   isLoading,
   objectFit = 'contain',
   empty,
+  alt = 'image',
 }) => {
   const [loading, setLoading] = React.useState(true)
   return (
@@ -39,9 +41,7 @@ export const ImageCard: React.FC<Props> = ({
       }}
       className={cn('relative rounded-md overflow-hidden group', className)}
     >
-      {srcUrl && (
-        <Image src={srcUrl} alt="image" fill objectFit={objectFit} priority onLoad={() => setLoading(false)} />
-      )}
+      {srcUrl && <Image src={srcUrl} alt={alt} fill objectFit={objectFit} priority onLoad={() => setLoading(false)} />}
       {(actions || empty) && (
         <div
           className={cn(

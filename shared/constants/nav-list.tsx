@@ -1,4 +1,4 @@
-import { CircleUser, Gauge, Instagram, ShoppingBasket, Truck } from 'lucide-react'
+import { CircleUser, ClipboardList, Gauge, Instagram, Pizza, ShoppingBasket, Truck } from 'lucide-react'
 
 import { Route } from '@/@types'
 
@@ -8,6 +8,18 @@ export const navList = [
     href: Route.DASHBOARD,
     isAdmin: true,
     icon: <Gauge size={18} />,
+  },
+  {
+    name: 'Products',
+    href: Route.PRODUCTS,
+    isAdmin: true,
+    icon: <Pizza size={18} />,
+  },
+  {
+    name: 'Categories',
+    href: Route.CATEGORIES,
+    isAdmin: true,
+    icon: <ClipboardList size={18} />,
   },
   {
     name: 'Ingredients',
