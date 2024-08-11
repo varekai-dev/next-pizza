@@ -2,7 +2,7 @@ import React from 'react'
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query'
 
 import { QueryKey } from '@/@types'
-import { CartButtonFixed, Container, Filters, Products, Stories, Title, TopBar } from '@/shared/components/shared'
+import { CartButtonFixed, Container, Filters, Products, Stories, TopBar } from '@/shared/components/shared'
 import { findCategories } from '@/shared/lib'
 import { GetSearchParams } from '@/shared/lib/find-categories'
 
@@ -16,9 +16,6 @@ export default async function Home({ searchParams }: { searchParams: GetSearchPa
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <Container className="mt-10">
-        <Title text="Categories" size="lg" className="font-extrabold" />
-      </Container>
       <TopBar searchParams={searchParams} />
       <Stories />
       <Container className="mt-10 pb-14">

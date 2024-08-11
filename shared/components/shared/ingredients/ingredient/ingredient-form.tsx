@@ -72,7 +72,7 @@ export const IngredientForm: React.FC<Props> = ({ className, defaultValues, hand
               actions={
                 <CropImage onCropImage={onCropImage} aspect={300 / 300}>
                   <Button type="button" variant="secondary" size="lg" className="text-lg">
-                    Change
+                    Upload
                   </Button>
                 </CropImage>
               }
