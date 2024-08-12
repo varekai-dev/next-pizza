@@ -5,8 +5,9 @@ import { useQuery } from '@tanstack/react-query'
 
 import { QueryKey } from '@/@types'
 import { useElasticTransition } from '@/shared/hooks'
-import { findCategories, GetSearchParams } from '@/shared/lib/find-categories'
 import { cn } from '@/shared/lib/utils'
+import { Api } from '@/shared/services/api-client'
+import { GetSearchParams } from '@/shared/services/categories'
 import { useCategoryActiveId, useSetCategoryActiveId } from '@/shared/store'
 
 interface Props {
@@ -17,9 +18,10 @@ interface Props {
 export const Categories: React.FC<Props> = ({ className, searchParams }) => {
   const { categoryActiveId } = useCategoryActiveId()
   const setCategoryActiveId = useSetCategoryActiveId()
+
   const { data: categories } = useQuery({
     queryKey: [QueryKey.GET_CATEGORIES, searchParams],
-    queryFn: () => findCategories(searchParams),
+    queryFn: () => Api.categories.getAll({ params: searchParams }),
     enabled: !!searchParams,
   })
 

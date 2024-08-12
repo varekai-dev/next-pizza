@@ -3,15 +3,15 @@ import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query
 
 import { QueryKey } from '@/@types'
 import { CartButtonFixed, Container, Filters, Products, Stories, TopBar } from '@/shared/components/shared'
-import { findCategories } from '@/shared/lib'
-import { GetSearchParams } from '@/shared/lib/find-categories'
+import { Api } from '@/shared/services/api-client'
+import { GetSearchParams } from '@/shared/services/categories'
 
 export default async function Home({ searchParams }: { searchParams: GetSearchParams }) {
   const queryClient = new QueryClient()
 
   await queryClient.prefetchQuery({
     queryKey: [QueryKey.GET_CATEGORIES, searchParams],
-    queryFn: () => findCategories(searchParams),
+    queryFn: () => Api.categories.getAll({ params: searchParams }),
   })
 
   return (

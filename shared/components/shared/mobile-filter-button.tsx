@@ -1,8 +1,9 @@
 import React from 'react'
 import { SlidersHorizontal } from 'lucide-react'
 
+import { DEFAULT_MAX_PRICE, DEFAULT_MIN_PRICE } from '@/shared/constants'
 import { cn } from '@/shared/lib'
-import { DEFAULT_MAX_PRICE, DEFAULT_MIN_PRICE, GetSearchParams } from '@/shared/lib/find-categories'
+import { GetSearchParams } from '@/shared/services/categories'
 
 import { Button } from '../ui'
 import { MobileFilterDrawer } from './mobile-filters-drawer'

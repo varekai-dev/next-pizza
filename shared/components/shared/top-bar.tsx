@@ -6,8 +6,8 @@ import Link from 'next/link'
 
 import { Route } from '@/@types'
 import { useIsPageScrolling } from '@/shared/hooks'
-import { GetSearchParams } from '@/shared/lib/find-categories'
 import { cn } from '@/shared/lib/utils'
+import { GetSearchParams } from '@/shared/services/categories'
 
 import { Categories } from './categories'
 import { Container } from './container'

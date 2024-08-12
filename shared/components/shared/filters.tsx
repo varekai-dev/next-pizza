@@ -3,11 +3,11 @@
 import React from 'react'
 import { CircleX } from 'lucide-react'
 
-import { pizzaSizesOptions, pizzaTypesItems } from '@/shared/constants'
+import { DEFAULT_MAX_PRICE, DEFAULT_MIN_PRICE, pizzaSizesOptions, pizzaTypesItems } from '@/shared/constants'
 import { useFilters, useIngredients, useQueryFilters } from '@/shared/hooks'
 import { PriceProps } from '@/shared/hooks/use-filters'
 import { cn } from '@/shared/lib'
-import { DEFAULT_MAX_PRICE, DEFAULT_MIN_PRICE, GetSearchParams } from '@/shared/lib/find-categories'
+import { GetSearchParams } from '@/shared/services/categories'
 
 import { Button, Input } from '../ui'
 import { CheckboxFiltersGroup } from './checkbox-filters-group'

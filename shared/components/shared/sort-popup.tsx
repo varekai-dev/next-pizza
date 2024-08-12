@@ -7,8 +7,8 @@ import { ArrowUpDown } from 'lucide-react'
 
 import { Popover, PopoverContent, PopoverTrigger } from '@/shared/components/ui/popover'
 import { sortTypes } from '@/shared/constants'
-import { GetSearchParams } from '@/shared/lib/find-categories'
 import { cn } from '@/shared/lib/utils'
+import { GetSearchParams } from '@/shared/services/categories'
 
 interface Props {
   className?: string

@@ -4,7 +4,6 @@ import React from 'react'
 
 import { useGetCategories } from '@/shared/hooks'
 import { cn } from '@/shared/lib'
-import { CategoryParams } from '@/shared/services/categories'
 
 import { Button, Skeleton } from '../../ui'
 import { CategoryItem } from './category-item'
@@ -14,12 +13,7 @@ interface Props {
 }
 
 export const SettingCategories: React.FC<Props> = ({ className }) => {
-  const params: CategoryParams = {
-    include: {
-      products: true,
-    },
-  }
-  const { categories, isFetching } = useGetCategories({ params })
+  const { categories, isFetching } = useGetCategories()
 
   return (
     <div className={cn('w-full flex flex-col gap-3', className)}>
@@ -32,7 +26,12 @@ export const SettingCategories: React.FC<Props> = ({ className }) => {
       ) : (
         <>
           {categories?.map((category) => (
-            <CategoryItem name={category.name} id={category.id} key={category.id} products={category.products} />
+            <CategoryItem
+              categoryName={category.name}
+              categoryId={category.id}
+              key={category.id}
+              products={category.products}
+            />
           ))}
           <Button className="h-[64px] font-bold text-md" variant="secondary">
             Create category

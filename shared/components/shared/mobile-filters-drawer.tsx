@@ -1,7 +1,7 @@
 import React from 'react'
 import { Root } from '@radix-ui/react-visually-hidden'
 
-import { GetSearchParams } from '@/shared/lib/find-categories'
+import { GetSearchParams } from '@/shared/services/categories'
 
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '../ui/sheet'
 import { Filters } from './filters'
