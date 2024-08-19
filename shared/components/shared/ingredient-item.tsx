@@ -26,9 +26,11 @@ export const IngredientItem: React.FC<Props> = ({ className, imageUrl, name, act
       )}
       onClick={onClick}
     >
-      <DeleteWrapper onSubmit={onDelete} className="absolute right-2 top-2 bg-red-400/80 hidden group-hover:flex">
-        <X className="text-white cursor-pointer group-hover:text-white z-10" size={20} />
-      </DeleteWrapper>
+      {onDelete && (
+        <DeleteWrapper onSubmit={onDelete} className="absolute right-2 top-2 bg-red-400/80 hidden group-hover:flex">
+          <X className="text-white cursor-pointer group-hover:text-white z-10" size={20} />
+        </DeleteWrapper>
+      )}
       {active && <CircleCheck className="absolute top-2 right-2 text-primary" />}
       <Image width={110} height={110} src={imageUrl} alt={name} />
       <span className="text-sm mb-1">{name}</span>

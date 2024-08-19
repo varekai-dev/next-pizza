@@ -11,5 +11,5 @@ export const getMe = async () => {
 }
 
 export const verifyEmail = async (code: string) => {
-  await axiosInstance.post(ApiRoute.AUTH_ME, { code })
+  await axiosInstance.post(ApiRoute.AUTH_VERIFY, { code })
 }

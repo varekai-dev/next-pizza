@@ -7,4 +7,6 @@ export enum ApiRoute {
   STORIES = 'stories',
   PRODUCTS = 'products',
   CATEGORIES = 'categories',
+  ORDERS = 'orders',
+  VERIFY = 'auth/verify',
 }
