@@ -8,35 +8,26 @@ import { QueryKey } from '@/@types'
 import { Api } from '../services/api-client'
 import { CategoryWithProducts } from '../services/categories'
 
-export const useUpdateCategory = () => {
+export const useCreateCategory = () => {
   const queryClient = useQueryClient()
-  const { mutate: updateCategory, ...rest } = useMutation({
-    mutationFn: Api.categories.updateCategory,
+  const { mutate: createCategory, ...rest } = useMutation({
+    mutationFn: Api.categories.createCategory,
     onSuccess: (data) => {
       queryClient.setQueryData([QueryKey.GET_CATEGORIES_SETTINGS], (oldData: CategoryWithProducts[] | undefined) => {
         if (!oldData) {
           return
         }
-        return oldData.map((category) => {
-          if (category.id === data.id) {
-            return {
-              ...category,
-              name: data.name,
-              items: category.products,
-            }
-          }
-          return category
-        })
+        return [...oldData, data]
       })
       queryClient.invalidateQueries({
         queryKey: [QueryKey.GET_CATEGORIES],
       })
 
-      toast.success('Category updated successfully')
+      toast.success('Category created successfully')
     },
   })
   return {
-    updateCategory,
+    createCategory,
     ...rest,
   }
 }

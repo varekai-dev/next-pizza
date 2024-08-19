@@ -2,11 +2,13 @@
 
 import React from 'react'
 
-import { useGetCategories } from '@/shared/hooks'
+import { useCreateCategory, useGetCategories } from '@/shared/hooks'
 import { cn } from '@/shared/lib'
 
 import { Button, Skeleton } from '../../ui'
+import { CategoryModal } from '../modals/category-modal'
 import { CategoryItem } from './category-item'
+import { CategoryFormValues } from './categoryFormSchema'
 
 interface Props {
   className?: string
@@ -14,6 +16,12 @@ interface Props {
 
 export const SettingCategories: React.FC<Props> = ({ className }) => {
   const { categories, isFetching } = useGetCategories()
+
+  const { createCategory, isPending } = useCreateCategory()
+
+  const handleCreateCategory = (values: CategoryFormValues) => {
+    createCategory(values)
+  }
 
   return (
     <div className={cn('w-full flex flex-col gap-3', className)}>
@@ -33,9 +41,11 @@ export const SettingCategories: React.FC<Props> = ({ className }) => {
               products={category.products}
             />
           ))}
-          <Button className="h-[64px] font-bold text-md" variant="secondary">
-            Create category
-          </Button>
+          <CategoryModal onSubmit={handleCreateCategory} isPending={isPending}>
+            <Button className="h-[64px] font-bold text-md" variant="secondary">
+              Create category
+            </Button>
+          </CategoryModal>
         </>
       )}
     </div>

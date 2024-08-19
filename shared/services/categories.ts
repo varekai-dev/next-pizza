@@ -3,6 +3,7 @@ import { Category } from '@prisma/client'
 import { ApiRoute } from '@/@types'
 import { ProductWithRelations } from '@/@types/prisma'
 
+import { CategoryFormValues } from '../components/shared/setting-categories/categoryFormSchema'
 import { axiosInstance } from './instance'
 
 export interface GetSearchParams {
@@ -13,6 +14,7 @@ export interface GetSearchParams {
   ingredients?: string
   priceFrom?: string
   priceTo?: string
+  getAll?: boolean
 }
 
 export type CategoryWithProducts = Category & {
@@ -35,4 +37,13 @@ export const updateCategory = async ({
 }): Promise<Category> => {
   const response = await axiosInstance.patch<Category>(`${ApiRoute.CATEGORIES}/${id}`, data)
   return response.data
+}
+
+export const createCategory = async (data: CategoryFormValues): Promise<Category> => {
+  const response = await axiosInstance.post<Category>(ApiRoute.CATEGORIES, data)
+  return response.data
+}
+
+export const deleteCategory = async (id: string): Promise<void> => {
+  await axiosInstance.delete(`${ApiRoute.CATEGORIES}/${id}`)
 }

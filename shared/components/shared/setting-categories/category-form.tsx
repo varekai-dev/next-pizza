@@ -8,7 +8,7 @@ import { categoryFormSchema, CategoryFormValues } from './categoryFormSchema'
 
 interface Props {
   className?: string
-  categoryName: string
+  categoryName?: string
   onSubmit: (values: CategoryFormValues) => void
   isPending?: boolean
 }

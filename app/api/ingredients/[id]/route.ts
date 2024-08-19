@@ -105,3 +105,38 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
     )
   }
 }
+
+export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
+  try {
+    CheckAuth('ADMIN')
+    const { id } = params
+
+    const findIngredient = await prisma.ingredient.findFirst({
+      where: {
+        id,
+      },
+      include: {
+        products: true,
+      },
+    })
+
+    if (!findIngredient) {
+      return NextResponse.json({ error: 'Ingredient not found' }, { status: 404 })
+    }
+
+    // do not allow to delete category if it has products
+    if (findIngredient?.products.length) {
+      return NextResponse.json({ error: 'Ingredient has products' }, { status: 400 })
+    }
+
+    await prisma.ingredient.delete({
+      where: {
+        id,
+      },
+    })
+    return NextResponse.json({ message: 'Ingredient deleted' })
+  } catch (error) {
+    console.log('[INGREDIENT_DELETE]', error)
+    return NextResponse.json({ error: 'Server error' }, { status: 500 })
+  }
+}

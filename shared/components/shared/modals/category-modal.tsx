@@ -4,31 +4,27 @@ import React from 'react'
 import { Root } from '@radix-ui/react-visually-hidden'
 
 import { Dialog } from '@/shared/components/ui'
-import { useUpdateCategory } from '@/shared/hooks'
 
 import { CategoryForm } from '../setting-categories/category-form'
 import { CategoryFormValues } from '../setting-categories/categoryFormSchema'
 
 interface Props {
-  categoryName: string
-  categoryId: string
+  categoryName?: string
+  onSubmit: (values: CategoryFormValues) => void
+  isPending?: boolean
 }
 
-export const CategoryModal: React.FC<React.PropsWithChildren<Props>> = ({ categoryName, categoryId, children }) => {
+export const CategoryModal: React.FC<React.PropsWithChildren<Props>> = ({
+  categoryName,
+  children,
+  isPending,
+  onSubmit,
+}) => {
   const [open, setOpen] = React.useState(false)
 
-  const onSuccess = () => {
-    setOpen(false)
-  }
-  const { updateCategory, isPending } = useUpdateCategory(onSuccess)
-
   const handleSubmit = (values: CategoryFormValues) => {
-    updateCategory({
-      id: categoryId,
-      data: {
-        name: values.name,
-      },
-    })
+    onSubmit(values)
+    setOpen(false)
   }
   return (
     <Dialog.Dialog open={open} onOpenChange={(isOpen: boolean) => setOpen(isOpen)}>

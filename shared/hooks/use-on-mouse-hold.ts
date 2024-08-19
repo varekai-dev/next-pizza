@@ -6,7 +6,8 @@ export const useOnMouseHold = ({ intervalMs, targetMs }: { intervalMs: number; t
   const [progress, setProgress] = React.useState(0)
   const [isFinished, setIsFinished] = React.useState(false)
 
-  const buttonPressDown = () => {
+  const buttonPressDown = (e: any) => {
+    e.stopPropagation()
     setIsPressed(true)
   }
 

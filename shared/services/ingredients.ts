@@ -23,3 +23,7 @@ export const createIngredient = async ({ payload }: { payload: FormData }) => {
   const { data } = await axiosInstance.post<Ingredient>(`${ApiRoute.INGREDIENTS}`, payload)
   return data
 }
+
+export const deleteIngredient = async (id: string) => {
+  await axiosInstance.delete(`${ApiRoute.INGREDIENTS}/${id}`)
+}

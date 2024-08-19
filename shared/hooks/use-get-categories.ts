@@ -9,7 +9,12 @@ import { Api } from '../services/api-client'
 export const useGetCategories = () => {
   const { data: categories, ...rest } = useQuery({
     queryKey: [QueryKey.GET_CATEGORIES_SETTINGS],
-    queryFn: () => Api.categories.getAll({}),
+    queryFn: () =>
+      Api.categories.getAll({
+        params: {
+          getAll: true,
+        },
+      }),
   })
   return { categories, ...rest }
 }

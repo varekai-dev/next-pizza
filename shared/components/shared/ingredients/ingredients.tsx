@@ -6,7 +6,7 @@ import { useQueryClient } from '@tanstack/react-query'
 import { Ingredient } from '@prisma/client'
 
 import { QueryKey, Route } from '@/@types'
-import { useGetIngredients } from '@/shared/hooks'
+import { useDeleteIngredient, useGetIngredients } from '@/shared/hooks'
 import { cn } from '@/shared/lib'
 
 import { Button, Skeleton } from '../../ui'
@@ -20,15 +20,17 @@ interface Props {
 export const Ingredients: React.FC<Props> = ({ className }) => {
   const queryClient = useQueryClient()
   const { ingredients, isLoading } = useGetIngredients()
+  const { deleteIngredient, isPending } = useDeleteIngredient()
   const router = useRouter()
 
   const handleClickIngredient = (ingredient: Ingredient) => {
     router.push(`${Route.INGREDIENTS}/${ingredient.id}`)
     queryClient.setQueryData([QueryKey.GET_INGREDIENT, ingredient.id], () => ingredient)
   }
+
   return (
     <div className={cn('flex gap-3 flex-wrap', className)}>
-      {isLoading ? (
+      {isLoading || isPending ? (
         Array.from({ length: 10 }).map((_, index) => (
           <Skeleton key={index} className="w-[150px] h-[200px] bg-gray-200" />
         ))
@@ -41,6 +43,7 @@ export const Ingredients: React.FC<Props> = ({ className }) => {
               imageUrl={ingredient.imageUrl}
               name={ingredient.name}
               price={ingredient.price}
+              onDelete={() => deleteIngredient(ingredient.id)}
               onClick={() => handleClickIngredient(ingredient)}
             />
           ))}

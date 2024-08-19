@@ -21,6 +21,7 @@ export const DeleteWrapper: React.FC<PropsWithChildren<Props>> = ({ className, o
   }, [isFinished])
   return (
     <div
+      onClick={(e) => e.stopPropagation()}
       onMouseDown={buttonPressDown}
       onMouseUp={buttonPressUp}
       onTouchStart={buttonPressDown}
