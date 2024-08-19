@@ -9,7 +9,7 @@ import { Button } from '@/shared/components/ui'
 
 import { FormInput, FormPhone } from '../../../form'
 import { Title } from '../../../title'
-import { formRegisterSchema, formRegisterValues } from './schemas'
+import { formRegisterSchema, FormRegisterValues } from './schemas'
 
 interface Props {
   className?: string
@@ -17,7 +17,7 @@ interface Props {
 }
 
 export const RegisterForm: React.FC<Props> = ({ className, onClose }) => {
-  const form = useForm<formRegisterValues>({
+  const form = useForm<FormRegisterValues>({
     resolver: zodResolver(formRegisterSchema),
     defaultValues: {
       email: '',
@@ -27,7 +27,7 @@ export const RegisterForm: React.FC<Props> = ({ className, onClose }) => {
       phone: '',
     },
   })
-  const onSubmit = async (data: formRegisterValues) => {
+  const onSubmit = async (data: FormRegisterValues) => {
     try {
       await registerUser({
         email: data.email,

@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const passwordSchema = z.string().min(4, { message: 'Min length 4' })
+import { passwordSchema } from '@/shared/constants'
 
 export const formLoginSchema = z.object({
   email: z.string().email(),
@@ -20,5 +20,7 @@ export const formRegisterSchema = formLoginSchema
     path: ['confirmPassword'],
   })
 
-export type formLoginValues = z.infer<typeof formLoginSchema>
-export type formRegisterValues = z.infer<typeof formRegisterSchema>
+export const updateProfileSchema = formRegisterSchema.optional()
+
+export type FormLoginValues = z.infer<typeof formLoginSchema>
+export type FormRegisterValues = z.infer<typeof formRegisterSchema>

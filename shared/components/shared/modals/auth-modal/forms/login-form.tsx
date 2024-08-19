@@ -10,7 +10,7 @@ import { Button } from '@/shared/components/ui'
 
 import { FormInput } from '../../../form'
 import { Title } from '../../../title'
-import { formLoginSchema, formLoginValues } from './schemas'
+import { formLoginSchema, FormLoginValues } from './schemas'
 
 interface Props {
   className?: string
@@ -19,7 +19,7 @@ interface Props {
 
 export const LoginForm: React.FC<Props> = ({ className, onClose }) => {
   const router = useRouter()
-  const form = useForm<formLoginValues>({
+  const form = useForm<FormLoginValues>({
     resolver: zodResolver(formLoginSchema),
     defaultValues: {
       email: '',
@@ -27,7 +27,7 @@ export const LoginForm: React.FC<Props> = ({ className, onClose }) => {
     },
   })
 
-  const onSubmit = async (data: formLoginValues) => {
+  const onSubmit = async (data: FormLoginValues) => {
     try {
       const resp = await signIn('credentials', {
         ...data,

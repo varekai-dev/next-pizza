@@ -164,33 +164,32 @@ export const sendEmail = async ({ to, subject, html }: SendEmailProps) => {
   }
 }
 
-export const updateUserInfo = async (body: Prisma.UserCreateInput) => {
+export const updateUserInfo = async (body: Partial<Prisma.UserCreateInput>) => {
   try {
     const currentUser = await getUserSession()
     if (!currentUser) {
       throw new Error('User not found')
     }
 
-    const emailExists = await prisma.user.findFirst({
-      where: {
-        email: body.email,
-      },
-    })
-    if (emailExists && emailExists.id !== currentUser.id) {
-      throw new Error('Email already exists')
+    if (body.email) {
+      const emailExists = await prisma.user.findFirst({
+        where: {
+          email: body.email,
+        },
+      })
+      if (emailExists && emailExists.id !== currentUser.id) {
+        throw new Error('Email already exists')
+      }
     }
 
-    const updateData = {
-      email: body.email,
-      fullName: body.fullName,
-      password: hashSync(body.password, 10),
-      phone: body.phone,
-    }
     await prisma.user.update({
       where: {
         id: currentUser.id,
       },
-      data: updateData,
+      data: {
+        ...body,
+        ...(body.password && { password: hashSync(body.password, 10) }),
+      },
     })
   } catch (error) {
     console.log('Error [UPDATE_USER]', error)
