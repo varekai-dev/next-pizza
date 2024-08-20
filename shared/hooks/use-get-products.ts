@@ -6,10 +6,10 @@ import { QueryKey } from '@/@types'
 
 import { Api } from '../services/api-client'
 
-export const useGetProducts = () => {
+export const useGetProducts = ({ params }: { params: any }) => {
   const { data: products, ...rest } = useQuery({
-    queryKey: [QueryKey.GET_PRODUCTS],
-    queryFn: Api.products.getAll,
+    queryKey: [QueryKey.GET_PRODUCTS, params],
+    queryFn: () => Api.products.getAll({ params }),
     refetchOnMount: false,
     refetchOnReconnect: false,
   })

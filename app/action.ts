@@ -6,11 +6,14 @@ import Stripe from 'stripe'
 import { hashSync } from 'bcrypt'
 import nodemailer from 'nodemailer'
 
+import { UploadFileResult } from 'uploadthing/types'
+
 import { prisma } from '@/prisma/prisma-client'
 import { CheckoutFormValues } from '@/shared/components/shared'
 import { generateRandomCode, getStripeItems, sendConfirmationCode } from '@/shared/lib'
 import { CartItemWithRelations, StripeItem } from '@/shared/lib/get-stripe-items'
 import { getUserSession } from '@/shared/lib/get-user-session'
+import { utapi } from '@/shared/services/uploadthing'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string)
 
@@ -262,6 +265,20 @@ export const requestVerificationCode = async (email: string) => {
     await sendConfirmationCode(email, code)
   } catch (error) {
     console.log('Error [REQUEST_VERIFICATION_CODE]', error)
+    throw error
+  }
+}
+
+export const uploadImage = async (file: File): Promise<UploadFileResult> => {
+  try {
+    const response = await utapi.uploadFiles(file)
+
+    if (!response?.data?.url) {
+      throw new Error('Upload failed')
+    }
+    return response
+  } catch (error) {
+    console.log('Error [UPLOAD_IMAGE]', error)
     throw error
   }
 }

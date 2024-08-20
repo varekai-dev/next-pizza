@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '../../../prisma/prisma-client'
 
+import { uploadImage } from '@/app/action'
 import { CheckAuth } from '@/shared/lib/check-auth'
-import { utapi } from '@/shared/services/uploadthing'
 
 export async function GET() {
   try {
@@ -31,22 +31,13 @@ export async function POST(req: NextRequest) {
     const price = formData.get('price')
     const name = formData.get('name')
 
-    const response = await utapi.uploadFiles(file as File)
-
-    if (!response?.data?.url) {
-      return NextResponse.json(
-        {
-          message: 'Upload failed',
-        },
-        { status: 500 },
-      )
-    }
+    const response = await uploadImage(file as File)
 
     const ingredient = await prisma.ingredient.create({
       data: {
         price: Number(price),
         name: name as string,
-        imageUrl: response.data.url,
+        imageUrl: response.data?.url || '',
       },
     })
 

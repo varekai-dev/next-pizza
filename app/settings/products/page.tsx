@@ -10,8 +10,8 @@ export default async function ProductsPage() {
     return redirect('/not-auth')
   }
   return (
-    <div>
-      <Title text="Products" size="md" className="font-bold" />
+    <div className="overflow-auto">
+      <Title text="Products" size="md" className="font-bold mb-5" />
       <SettingProducts />
     </div>
   )
