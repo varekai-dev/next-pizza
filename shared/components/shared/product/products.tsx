@@ -17,7 +17,7 @@ interface Props {
 
 export const Products: React.FC<Props> = ({ className, searchParams }) => {
   const { data: categories } = useQuery({
-    queryKey: [QueryKey.GET_CATEGORIES, searchParams],
+    queryKey: [QueryKey.GET_CATEGORIES, JSON.stringify(searchParams)],
     queryFn: () => Api.categories.getAll({ params: searchParams }),
   })
 
