@@ -11,7 +11,7 @@ export default async function CategoriesPage() {
   }
   return (
     <div className="w-full">
-      <Title text="Categories" size="md" className="font-bold mb-5" />
+      <Title text="Categories" size="md" className="mb-5 font-bold" />
       <SettingCategories />
     </div>
   )

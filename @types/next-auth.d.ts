@@ -1,5 +1,4 @@
 // Ref: https://next-auth.js.org/getting-started/typescript#module-augmentation
-
 import { DefaultUser } from 'next-auth'
 import { DefaultJWT } from 'next-auth/jwt'
 import type { UserRole } from '@prisma/client'

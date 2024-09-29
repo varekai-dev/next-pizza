@@ -29,17 +29,17 @@ export const Ingredients: React.FC<Props> = ({ className }) => {
   }
 
   return (
-    <div className={cn('flex gap-3 flex-wrap', className)}>
+    <div className={cn('flex flex-wrap gap-3', className)}>
       {isLoading || isPending ? (
         Array.from({ length: 10 }).map((_, index) => (
-          <Skeleton key={index} className="w-[150px] h-[200px] bg-gray-200" />
+          <Skeleton key={index} className="h-[200px] w-[150px] bg-gray-200" />
         ))
       ) : (
         <>
           {ingredients?.map((ingredient) => (
             <IngredientItem
               key={ingredient.id}
-              className="w-[150px] h-[200px]"
+              className="h-[200px] w-[150px]"
               imageUrl={ingredient.imageUrl}
               name={ingredient.name}
               price={ingredient.price}
@@ -47,7 +47,7 @@ export const Ingredients: React.FC<Props> = ({ className }) => {
               onClick={() => handleClickIngredient(ingredient)}
             />
           ))}
-          <div className="w-[150px] h-[200px] flex items-center justify-center">
+          <div className="flex h-[200px] w-[150px] items-center justify-center">
             <Button
               variant="link"
               size="lg"

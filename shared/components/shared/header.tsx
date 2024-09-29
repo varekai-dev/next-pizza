@@ -48,14 +48,14 @@ export const Header: React.FC<Props> = ({ className, hasSearch = true, hasCart =
         <Link href={Route.HOME}>
           <div className="flex items-center gap-4">
             <Image src="/logo.png" width={35} height={35} alt="logo" />
-            <div className="sm:block hidden">
-              <h1 className="text-2xl uppercase font-black">Next Pizza</h1>
-              <p className="text-sm text-gray-400 leading-3">Taste awesome</p>
+            <div className="hidden sm:block">
+              <h1 className="text-2xl font-black uppercase">Next Pizza</h1>
+              <p className="text-sm leading-3 text-gray-400">Taste awesome</p>
             </div>
           </div>
         </Link>
         {hasSearch && (
-          <div className="mx-10 flex-1 md:block hidden">
+          <div className="mx-10 hidden flex-1 md:block">
             <SearchInput />
           </div>
         )}

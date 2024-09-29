@@ -31,16 +31,16 @@ export const AuthModal: React.FC<Props> = ({ className, open, onClose }) => {
   }
   return (
     <Dialog.Dialog open={open} onOpenChange={onClose}>
-      <Dialog.DialogContent className={cn(' bg-white p-10 sm:max-w-[450px] max-w-[90vw]', className)}>
+      <Dialog.DialogContent className={cn('max-w-[90vw] bg-white p-10 sm:max-w-[450px]', className)}>
         <Root>
           <Dialog.DialogTitle>Title</Dialog.DialogTitle>
         </Root>
-        <div className="overflow-x-auto max-h-[80vh] scrollbar p-2">
-          <div className="flex justify-center items-center gap-5 mb-2">
+        <div className="scrollbar max-h-[80vh] overflow-x-auto p-2">
+          <div className="mb-2 flex items-center justify-center gap-5">
             <label
               htmlFor="auth-switch"
-              className={cn('text-base font-bold cursor-pointer', {
-                'text-red-400 pointer-events-none': type === 'login',
+              className={cn('cursor-pointer text-base font-bold', {
+                'pointer-events-none text-red-400': type === 'login',
               })}
             >
               Login
@@ -48,8 +48,8 @@ export const AuthModal: React.FC<Props> = ({ className, open, onClose }) => {
             <Switch id="auth-switch" checked={type === 'register'} onCheckedChange={() => onSwitchType()} />
             <label
               htmlFor="auth-switch"
-              className={cn('text-base font-bold cursor-pointer', {
-                'text-red-400 pointer-events-none': type === 'register',
+              className={cn('cursor-pointer text-base font-bold', {
+                'pointer-events-none text-red-400': type === 'register',
               })}
             >
               Register
@@ -60,7 +60,7 @@ export const AuthModal: React.FC<Props> = ({ className, open, onClose }) => {
             <hr />
           </div>
 
-          <div className="flex items-center w-full justify-center">
+          <div className="flex w-full items-center justify-center">
             <Button
               onClick={() =>
                 signIn('google', {
@@ -69,7 +69,7 @@ export const AuthModal: React.FC<Props> = ({ className, open, onClose }) => {
                 })
               }
               variant="secondary"
-              className="flex items-center gap-3 w-full h-12 text-base"
+              className="flex h-12 w-full items-center gap-3 text-base"
             >
               <Image width={24} height={24} alt="google-logo" src="/assets/logo/google-logo.svg" />
               Google

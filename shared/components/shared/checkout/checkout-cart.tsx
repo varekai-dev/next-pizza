@@ -57,7 +57,7 @@ export const CheckoutCart: React.FC<Props> = ({ className }) => {
             ))}
       </div>
 
-      {totalAmount === 0 && !loading && <p className="text-center text-gray-400 p-10">Cart is empty</p>}
+      {totalAmount === 0 && !loading && <p className="p-10 text-center text-gray-400">Cart is empty</p>}
     </WhiteBlock>
   )
 }

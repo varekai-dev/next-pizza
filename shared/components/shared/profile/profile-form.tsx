@@ -27,7 +27,7 @@ export const ProfileForm: React.FC<Props> = ({ className, data, onSubmit }) => {
   return (
     <div className={className}>
       <FormProvider {...form}>
-        <form className="flex flex-col gap-5 w-96 mt-10" onSubmit={form.handleSubmit(onSubmit)}>
+        <form className="mt-10 flex w-96 flex-col gap-5" onSubmit={form.handleSubmit(onSubmit)}>
           <FormInput name="email" label="Email" required allowClear />
           <FormInput name="fullName" label="Full Name" required allowClear />
           <FormPhone
@@ -38,7 +38,7 @@ export const ProfileForm: React.FC<Props> = ({ className, data, onSubmit }) => {
             required
             label="Phone Number"
           />
-          <Button disabled={form.formState.isSubmitting} className="text-base mt-5" type="submit">
+          <Button disabled={form.formState.isSubmitting} className="mt-5 text-base" type="submit">
             Update info
           </Button>
         </form>

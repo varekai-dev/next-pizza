@@ -11,7 +11,7 @@ export default async function ProductsPage() {
   }
   return (
     <div className="overflow-auto">
-      <Title text="Products" size="md" className="font-bold mb-5" />
+      <Title text="Products" size="md" className="mb-5 font-bold" />
       <SettingProducts />
     </div>
   )

@@ -29,12 +29,12 @@ export const CheckoutSidebar: React.FC<Props> = ({ className, submitting }) => {
 
   return (
     <div className={className}>
-      <WhiteBlock className="p-6 sticky top-4">
+      <WhiteBlock className="sticky top-4 p-6">
         <div className="flex flex-col gap-1">
           <span className="text-xl">Total:</span>
 
           {loading ? (
-            <Skeleton className="w-48 h-11" />
+            <Skeleton className="h-11 w-48" />
           ) : (
             <span className="h-11 text-4xl font-extrabold">{totalPrice} ₴</span>
           )}
@@ -62,10 +62,10 @@ export const CheckoutSidebar: React.FC<Props> = ({ className, submitting }) => {
           loading={loading || submitting}
           type="submit"
           disabled={!totalAmount}
-          className="w-full h-14 rounded-2xl mt-6 text-base font-bold"
+          className="mt-6 h-14 w-full rounded-2xl text-base font-bold"
         >
           Checkout
-          <ArrowRight className="w-5 ml-2" />
+          <ArrowRight className="ml-2 w-5" />
         </Button>
       </WhiteBlock>
     </div>

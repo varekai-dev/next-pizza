@@ -33,7 +33,7 @@ export const Categories: React.FC<Props> = ({ className, searchParams }) => {
   return (
     <div
       className={cn(
-        'inline-flex gap-1 bg-gray-50 p-1 rounded-2xl relative overflow-x-scroll md:overflow-hidden',
+        'relative inline-flex gap-1 overflow-x-scroll rounded-2xl bg-gray-50 p-1 md:overflow-hidden',
         className,
       )}
     >
@@ -43,7 +43,7 @@ export const Categories: React.FC<Props> = ({ className, searchParams }) => {
             ref={(el) => {
               refs.current[index] = el
             }}
-            className={cn('flex items-center font-bold h-11 rounded-2xl px-5')}
+            className={cn('flex h-11 items-center rounded-2xl px-5 font-bold')}
             key={cat.id}
           >
             <button className="z-10" onClick={() => setCategoryActiveId(cat.id, true)}>
@@ -53,7 +53,7 @@ export const Categories: React.FC<Props> = ({ className, searchParams }) => {
         )
       })}
       <div
-        className="shadow-md shadow-gray-200 absolute bg-white h-11 rounded-2xl transition duration-300"
+        className="absolute h-11 rounded-2xl bg-white shadow-md shadow-gray-200 transition duration-300"
         style={{
           width: `${activeWidth}px`,
           transform: `translateX(${activeOffset}px)`,

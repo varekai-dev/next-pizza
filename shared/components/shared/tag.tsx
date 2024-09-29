@@ -21,7 +21,7 @@ export const Tag: React.FC<Props> = ({
 
   return (
     <div
-      className={cn('px-8 py-2 rounded-lg ', className, {
+      className={cn('rounded-lg px-8 py-2', className, {
         'bg-[#eaf8f4] text-[#1bb486]': status === OrderStatus.SUCCEEDED,
         'bg-[#fff0ef] text-[#ff544a]': status === OrderStatus.CANCELLED,
         'bg-[#FFF3B4] text-[#917C12]': status === OrderStatus.PENDING,

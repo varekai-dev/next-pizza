@@ -23,7 +23,7 @@ export const CartButtonFixed: React.FC<Props> = ({ className }) => {
       <Button
         loading={loading}
         className={cn(
-          'size-14 flex items-center gap-1 group-hover:opacity-0 fixed bottom-5 right-5 transition duration-300 translate-y-[600px] ',
+          'fixed bottom-5 right-5 flex size-14 translate-y-[600px] items-center gap-1 transition duration-300 group-hover:opacity-0',
           className,
           {
             'w-[56px]': loading,

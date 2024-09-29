@@ -19,11 +19,11 @@ export const Orders: React.FC<Props> = ({ className }) => {
 
   return (
     <div className={className}>
-      <Accordion.Accordion type="single" collapsible className="lg:w-[750px] md:w-[550px] flex flex-col gap-5">
+      <Accordion.Accordion type="single" collapsible className="flex flex-col gap-5 md:w-[550px] lg:w-[750px]">
         {isFetching || isLoading ? (
           <>
             {Array.from({ length: 5 }).map((_, index) => (
-              <Skeleton key={index} className="h-[85px] mb-5" />
+              <Skeleton key={index} className="mb-5 h-[85px]" />
             ))}
           </>
         ) : (
@@ -37,11 +37,11 @@ export const Orders: React.FC<Props> = ({ className }) => {
               }, 0)
               return (
                 <Accordion.AccordionItem key={order.id} value={order.id} className="px-0">
-                  <Accordion.AccordionTrigger className="px-8 sticky top-0">
-                    <div className="flex justify-between w-full flex-wrap sm:gap-0 gap-2">
-                      <div className="flex gap-5 items-center">
-                        <Title text={`Order #${orderNumber}`} className="font-bold sm:block hidden" />
-                        <div className="text-gray-400 sm:text-[16px] text-[14px]">
+                  <Accordion.AccordionTrigger className="sticky top-0 px-8">
+                    <div className="flex w-full flex-wrap justify-between gap-2 sm:gap-0">
+                      <div className="flex items-center gap-5">
+                        <Title text={`Order #${orderNumber}`} className="hidden font-bold sm:block" />
+                        <div className="text-[14px] text-gray-400 sm:text-[16px]">
                           {dayjs(order.createdAt).format('D MMMM YYYY,  HH:mm')}
                         </div>
                       </div>
@@ -49,11 +49,11 @@ export const Orders: React.FC<Props> = ({ className }) => {
                     </div>
                   </Accordion.AccordionTrigger>
                   <Accordion.AccordionContent>
-                    <div className="flex flex-col pt-4 px-0 max-h-[510px] overflow-x-auto scrollbar">
+                    <div className="scrollbar flex max-h-[510px] flex-col overflow-x-auto px-0 pt-4">
                       {orderItems?.map((item) => <SettingOrderItem key={item.id} item={item} />)}
                     </div>
 
-                    <div className="pt-6 pl-4 text-[20px]">
+                    <div className="pl-4 pt-6 text-[20px]">
                       Total: <b>{totalPrice} ₴</b>
                     </div>
                   </Accordion.AccordionContent>

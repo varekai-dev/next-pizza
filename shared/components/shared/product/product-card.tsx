@@ -31,14 +31,14 @@ export const ProductCard: React.FC<Props> = ({
 }) => {
   return (
     <div className={className}>
-      <Link href={`${Route.PRODUCT}/${id}`} className="flex flex-col h-full" scroll={false}>
-        <div className="flex justify-center p-6 bg-secondary rounded-lg h=[260px]">
+      <Link href={`${Route.PRODUCT}/${id}`} className="flex h-full flex-col" scroll={false}>
+        <div className="h=[260px] flex justify-center rounded-lg bg-secondary p-6">
           <Image
             width={215}
             height={215}
             src={imageUrl}
             alt="Logo"
-            className="hover:translate-y-1 transition duration-300"
+            className="transition duration-300 hover:translate-y-1"
           />
         </div>
         <Title
@@ -49,16 +49,16 @@ export const ProductCard: React.FC<Props> = ({
           })}
         />
         {!!ingredients?.length && (
-          <p className="text-sm text-gray-400 flex-1 flex justify-start">
+          <p className="flex flex-1 justify-start text-sm text-gray-400">
             {ingredients?.map((ingredient) => ingredient.name).join(', ')}
           </p>
         )}
 
-        <div className="flex justify-between items-center mt-4">
+        <div className="mt-4 flex items-center justify-between">
           <span className="text-[20px]">
             {isPizza && 'from'} <b>{price} ₴</b>
           </span>
-          <Button variant="secondary" className="text-base font-bold ">
+          <Button variant="secondary" className="text-base font-bold">
             <Plus size={20} className="mr-1" />
             Add
           </Button>

@@ -40,9 +40,9 @@ export const CategoryItem: React.FC<Props> = ({ className, categoryName, categor
   }
 
   return (
-    <div className={cn('bg-white rounded-md px-4 py-3 flex justify-between items-center gap-3', className)}>
+    <div className={cn('flex items-center justify-between gap-3 rounded-md bg-white px-4 py-3', className)}>
       <Title text={categoryName} size="xs" className="font-bold" />
-      <div className="flex gap-3 flex-1">
+      <div className="flex flex-1 gap-3">
         {products?.map((product) => (
           <React.Fragment key={product.id}>
             <Tooltip content={product.name}>
@@ -57,7 +57,7 @@ export const CategoryItem: React.FC<Props> = ({ className, categoryName, categor
         <Button variant="outline">Edit</Button>
       </CategoryModal>
       <DeleteWrapper onSubmit={handleDelete}>
-        <X className="text-gray-400 cursor-pointer group-hover:text-white z-10" size={20} />
+        <X className="z-10 cursor-pointer text-gray-400 group-hover:text-white" size={20} />
       </DeleteWrapper>
     </div>
   )

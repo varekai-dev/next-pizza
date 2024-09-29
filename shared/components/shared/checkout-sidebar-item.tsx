@@ -14,7 +14,7 @@ interface Props {
 
 export const CheckoutSidebarItem: React.FC<Props> = ({ className, loading, icon, title, value }) => {
   return (
-    <div className={cn('flex my-4', className)}>
+    <div className={cn('my-4 flex', className)}>
       {loading ? (
         <Skeleton className="h-7 w-full" />
       ) : (
@@ -24,9 +24,9 @@ export const CheckoutSidebarItem: React.FC<Props> = ({ className, loading, icon,
               {icon}
               {title}
             </div>
-            <div className="flex-1 border-b border-dashed border-b-neutral-200 relative -top-1 mx-2" />
+            <div className="relative -top-1 mx-2 flex-1 border-b border-dashed border-b-neutral-200" />
           </span>
-          <span className="font-bold text-lg">{value} ₴</span>
+          <span className="text-lg font-bold">{value} ₴</span>
         </>
       )}
     </div>

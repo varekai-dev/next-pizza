@@ -70,26 +70,26 @@ export default function CheckoutPage() {
   }
 
   return (
-    <Container className="mt-5 ">
-      <Title text="Order" size="lg" className="font-extrabold mb-8" />
+    <Container className="mt-5">
+      <Title text="Order" size="lg" className="mb-8 font-extrabold" />
       <FormProvider {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <div className="flex gap-10 flex-col lg:flex-row lg:gap-10 pb-5">
+          <div className="flex flex-col gap-10 pb-5 lg:flex-row lg:gap-10">
             {/* Left side */}
-            <div className="flex flex-col gap-10 flex-1 lg:mb-20">
+            <div className="flex flex-1 flex-col gap-10 lg:mb-20">
               <CheckoutCart
                 className={cn({
-                  'opacity-40  pointer-events-none': loading || totalAmount === 0,
+                  'pointer-events-none opacity-40': loading || totalAmount === 0,
                 })}
               />
               <CheckoutPersonalInfo
                 className={cn({
-                  'opacity-40  pointer-events-none': loading || totalAmount === 0,
+                  'pointer-events-none opacity-40': loading || totalAmount === 0,
                 })}
               />
               <CheckoutAddressForm
                 className={cn({
-                  'opacity-40 pointer-events-none': loading || totalAmount === 0,
+                  'pointer-events-none opacity-40': loading || totalAmount === 0,
                 })}
               />
             </div>
@@ -97,7 +97,7 @@ export default function CheckoutPage() {
             {/* Right side */}
             <div
               className={cn('w-full lg:w-[450px]', {
-                'opacity-40 pointer-events-none': loading || totalAmount === 0,
+                'pointer-events-none opacity-40': loading || totalAmount === 0,
               })}
             >
               <CheckoutSidebar submitting={loading || submitting} />

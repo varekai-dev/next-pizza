@@ -96,14 +96,14 @@ export const CodeVerificationModal: React.FC<Props> = ({ className }) => {
 
   return (
     <Dialog.Dialog open={open} onOpenChange={handleClose}>
-      <Dialog.DialogContent className={cn('max-w-[450px] bg-white p-10 overflow-auto', className)}>
+      <Dialog.DialogContent className={cn('max-w-[450px] overflow-auto bg-white p-10', className)}>
         <Root>
           <Dialog.DialogTitle>Title</Dialog.DialogTitle>
         </Root>
 
-        <div className="flex justify-between items-center">
+        <div className="flex items-center justify-between">
           <div>
-            <Title text="Enter code" className="font-semibold text-[30px]" />
+            <Title text="Enter code" className="text-[30px] font-semibold" />
             <p className="text-sm">
               Verification code was sent to <br /> your email
             </p>
@@ -112,7 +112,7 @@ export const CodeVerificationModal: React.FC<Props> = ({ className }) => {
             <Image src="/assets/images/numbers-icon.png" alt="number-icon" width={60} height={60} />
           </div>
         </div>
-        <div className="flex items-center justify-center mb-6">
+        <div className="mb-6 flex items-center justify-center">
           <CodeVerification length={6} value={value} onChange={(value) => setValue(value)} />
         </div>
         {email && (

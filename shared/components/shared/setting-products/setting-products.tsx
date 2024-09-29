@@ -31,17 +31,17 @@ export const SettingProducts: React.FC<Props> = ({ className }) => {
     queryClient.setQueryData([QueryKey.GET_PRODUCT, product.id], () => product)
   }
   return (
-    <div className={cn('flex gap-3 flex-wrap', className)}>
+    <div className={cn('flex flex-wrap gap-3', className)}>
       {isLoading ? (
         Array.from({ length: 10 }).map((_, index) => (
-          <Skeleton key={index} className="w-[150px] h-[200px] bg-gray-200" />
+          <Skeleton key={index} className="h-[200px] w-[150px] bg-gray-200" />
         ))
       ) : (
         <>
           {products?.map((product) => (
             <IngredientItem
               key={product.id}
-              className="w-[150px] h-[200px]"
+              className="h-[200px] w-[150px]"
               imageUrl={product.imageUrl}
               name={product.name}
               price={Math.min(...product.items.map((item) => item.price))}
@@ -49,7 +49,7 @@ export const SettingProducts: React.FC<Props> = ({ className }) => {
               onClick={() => handleClickProduct(product)}
             />
           ))}
-          <div className="w-[150px] h-[200px] flex items-center justify-center">
+          <div className="flex h-[200px] w-[150px] items-center justify-center">
             <Button
               variant="link"
               size="lg"

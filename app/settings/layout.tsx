@@ -18,12 +18,12 @@ export default async function SettingsLayout({
 }>) {
   const session = await getUserSession()
   return (
-    <main className="min-h-screen bg-[#f4f1ee] ">
+    <main className="min-h-screen bg-[#f4f1ee]">
       <React.Suspense>
         <Header className="border-b-gray-200 bg-white" hasSearch={false} hasCart={false} />
       </React.Suspense>
       <Container className="h-[calc(100vh-109px)]">
-        <div className="flex gap-5 py-5 h-full  md:flex-row flex-col-reverse justify-between md:justify-normal">
+        <div className="flex h-full flex-col-reverse justify-between gap-5 py-5 md:flex-row md:justify-normal">
           <SettingNavigation role={session?.role} />
           {children}
         </div>

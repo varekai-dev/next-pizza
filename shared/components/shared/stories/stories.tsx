@@ -27,14 +27,14 @@ export const Stories: React.FC = () => {
 
   return (
     <>
-      <Container className="flex flex-start gap-2 my-10 overflow-x-auto">
+      <Container className="flex-start my-10 flex gap-2 overflow-x-auto">
         <StoriesList stories={stories} isLoading={isLoading} onClickStory={onClickStory} />
       </Container>
       {open && (
-        <div className="fixed left-0 top-0 w-full h-full bg-black/80 flex items-center justify-center z-40">
+        <div className="fixed left-0 top-0 z-40 flex h-full w-full items-center justify-center bg-black/80">
           <div className={`relative md:w-[${STORY_ITEM_WIDTH}px] w-[calc(${STORY_ITEM_WIDTH}/1.8)]`}>
             <button className="absolute -right-10 -top-5 z-30" onClick={() => setOpen(false)}>
-              <X className="absolute top-0 right-0 w-8 h-8 text-white/50" />
+              <X className="absolute right-0 top-0 h-8 w-8 text-white/50" />
             </button>
             <ReactStories
               onAllStoriesEnd={() => setOpen(false)}

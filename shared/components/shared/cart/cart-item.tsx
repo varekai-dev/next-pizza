@@ -31,12 +31,12 @@ export const CartItem: React.FC<Props> = ({
       className={cn(
         'flex items-center justify-between',
         {
-          'opacity-50 pointer-events-none': disabled,
+          'pointer-events-none opacity-50': disabled,
         },
         className,
       )}
     >
-      <div className="flex items-center gap-5 flex-1">
+      <div className="flex flex-1 items-center gap-5">
         <CartItemDetails.Image src={imageUrl} />
         <CartItemDetails.Info name={name} details={details} />
       </div>
@@ -46,7 +46,7 @@ export const CartItem: React.FC<Props> = ({
       <div className="flex items-center gap-5 sm:ml-20">
         <CartItemDetails.CountButton className="hidden sm:flex" onClick={onClickCountButton} value={quantity} />
         <DeleteWrapper onSubmit={onClickRemove}>
-          <X className="text-gray-400 cursor-pointer group-hover:text-white z-10" size={20} />
+          <X className="z-10 cursor-pointer text-gray-400 group-hover:text-white" size={20} />
         </DeleteWrapper>
       </div>
     </div>

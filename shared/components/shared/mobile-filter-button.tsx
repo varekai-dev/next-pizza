@@ -22,9 +22,9 @@ export const MobileFilterButton: React.FC<Props> = ({ className, searchParams })
 
   return (
     <MobileFilterDrawer activeFiltersCount={activeFiltersCount} searchParams={searchParams}>
-      <Button variant="outline" className={cn('p-3 relative', className)}>
+      <Button variant="outline" className={cn('relative p-3', className)}>
         {activeFiltersCount > 0 && (
-          <div className="absolute -top-2 -right-2 bg-primary size-5 rounded-full text-white text-xs flex items-center justify-center">
+          <div className="absolute -right-2 -top-2 flex size-5 items-center justify-center rounded-full bg-primary text-xs text-white">
             {activeFiltersCount}
           </div>
         )}

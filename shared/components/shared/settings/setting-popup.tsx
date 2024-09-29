@@ -38,7 +38,7 @@ export const SettingPopup: React.FC<React.PropsWithChildren<Props>> = ({ classNa
               >
                 <li
                   className={cn(
-                    'flex items-center gap-2 hover:bg-secondary hover:text-primary p-2 px-4 cursor-pointer rounded-md select-none font-semibold my-2',
+                    'my-2 flex cursor-pointer select-none items-center gap-2 rounded-md p-2 px-4 font-semibold hover:bg-secondary hover:text-primary',
                     {
                       'bg-secondary': isActive,
                     },
@@ -52,7 +52,7 @@ export const SettingPopup: React.FC<React.PropsWithChildren<Props>> = ({ classNa
         </ul>
         <div className="flex-grow border-t border-gray-100 py-2" />
         <Button
-          className="w-full text-md"
+          className="text-md w-full"
           variant="secondary"
           onClick={() =>
             signOut({

@@ -10,8 +10,8 @@ export default async function OrdersPage() {
   }
 
   return (
-    <div className="w-full overflow-x-auto scrollbar">
-      <Title text="Orders" size="md" className="font-bold mb-5" />
+    <div className="scrollbar w-full overflow-x-auto">
+      <Title text="Orders" size="md" className="mb-5 font-bold" />
       <Orders />
     </div>
   )

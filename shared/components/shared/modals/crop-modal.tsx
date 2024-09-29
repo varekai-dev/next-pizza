@@ -38,7 +38,7 @@ export const CropModal: React.FC<Props> = ({ file, aspect, onModalClose, onCompl
       <Root>
         <Dialog.DialogTitle>Title</Dialog.DialogTitle>
       </Root>
-      <Dialog.DialogContent className="p-0 w-[1060px] max-w-[80vw] min-h-[50vh] bg-white overflow-hidden">
+      <Dialog.DialogContent className="min-h-[50vh] w-[1060px] max-w-[80vw] overflow-hidden bg-white p-0">
         <ImageCropper file={file} aspect={aspect} onComplete={handleComplete} />
       </Dialog.DialogContent>
     </Dialog.Dialog>

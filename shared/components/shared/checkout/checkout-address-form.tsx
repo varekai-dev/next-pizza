@@ -13,7 +13,7 @@ export const CheckoutAddressForm: React.FC<Props> = ({ className }) => {
     <WhiteBlock title="3. Delivery address" className={className}>
       <div className="flex flex-col gap-5">
         <AddressInput
-          className="w-full relative"
+          className="relative w-full"
           name="address"
           placeholder="Address"
           allowClear

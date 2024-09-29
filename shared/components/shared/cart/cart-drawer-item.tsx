@@ -29,7 +29,7 @@ export const CartDrawerItem: React.FC<Props> = ({
 }) => {
   return (
     <div
-      className={cn('flex bg-white p-5 gap-6', className, {
+      className={cn('flex gap-6 bg-white p-5', className, {
         'pointer-events-none': disabled,
       })}
     >
@@ -42,7 +42,7 @@ export const CartDrawerItem: React.FC<Props> = ({
           <div className="flex items-center gap-3">
             <CartItem.Price value={price} className="mt-[2px]" />
             <DeleteWrapper onSubmit={onClickRemoveButton}>
-              <Trash2Icon className={cn('text-gray-400 cursor-pointer group-hover:text-white z-10')} size={16} />
+              <Trash2Icon className={cn('z-10 cursor-pointer text-gray-400 group-hover:text-white')} size={16} />
             </DeleteWrapper>
           </div>
         </div>

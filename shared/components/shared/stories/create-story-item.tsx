@@ -24,7 +24,7 @@ export const CreateStoryItem: React.FC<Props> = ({ className, storyId }) => {
   }
 
   return (
-    <div className={cn(`min-w-[200px] w-[200px] h-[250px] flex items-center justify-center`, className)}>
+    <div className={cn(`flex h-[250px] w-[200px] min-w-[200px] items-center justify-center`, className)}>
       <CropImage onCropImage={handleCreateStoryItem} aspect={STORY_ITEM_ASPECT} isLoading={isPending}>
         <AddButton />
       </CropImage>

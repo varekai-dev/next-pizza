@@ -21,12 +21,12 @@ const createItems = [
 
 export default function ProductCreatePage() {
   return (
-    <div className="overflow-auto flex justify-center gap-10 items-center w-full h-full">
+    <div className="flex h-full w-full items-center justify-center gap-10 overflow-auto">
       {createItems.map((item) => (
         <Link
           href={item.href}
           key={item.name}
-          className="border border-white flex items-center flex-col p-2 rounded-md w-[300px] h-[350px] text-center relative hover:shadow-md hover:-translate-y-1 bg-white select-none overflow-hidden cursor-pointer gap-5 transition duration-300"
+          className="relative flex h-[350px] w-[300px] cursor-pointer select-none flex-col items-center gap-5 overflow-hidden rounded-md border border-white bg-white p-2 text-center transition duration-300 hover:-translate-y-1 hover:shadow-md"
         >
           <Title text={item.name} className="font-bold" />
           <Image className="opacity-70" src={item.imageUrl} alt={item.name} width={200} height={200} />

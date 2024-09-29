@@ -27,13 +27,13 @@ export const DeleteWrapper: React.FC<PropsWithChildren<Props>> = ({ className, o
       onTouchStart={buttonPressDown}
       onTouchEnd={buttonPressUp}
       className={cn(
-        'group w-8 h-8 flex justify-center items-center rounded-full overflow-hidden relative hover:bg-red-400/80 cursor-pointer',
+        'group relative flex h-8 w-8 cursor-pointer items-center justify-center overflow-hidden rounded-full hover:bg-red-400/80',
         className,
       )}
     >
       {children}
       <div
-        className={cn(`absolute left-0 right-0 bottom-0`, {
+        className={cn(`absolute bottom-0 left-0 right-0`, {
           [`bg-red-500/90 h-[${progressInPercent}%]`]: isPressed || isFinished,
         })}
       />

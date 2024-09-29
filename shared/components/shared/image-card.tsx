@@ -39,13 +39,13 @@ export const ImageCard: React.FC<Props> = ({
         width,
         minWidth: width,
       }}
-      className={cn('relative rounded-md overflow-hidden group', className)}
+      className={cn('group relative overflow-hidden rounded-md', className)}
     >
       {srcUrl && <Image src={srcUrl} alt={alt} fill objectFit={objectFit} priority onLoad={() => setLoading(false)} />}
       {(actions || empty) && (
         <div
           className={cn(
-            'absolute transition duration-300 top-0 left-0 right-0 bottom-0 bg-gray-400/30  justify-center items-center flex opacity-0 group-hover:opacity-100',
+            'absolute bottom-0 left-0 right-0 top-0 flex items-center justify-center bg-gray-400/30 opacity-0 transition duration-300 group-hover:opacity-100',
             {
               'opacity-100': empty && !srcUrl,
             },
@@ -53,14 +53,14 @@ export const ImageCard: React.FC<Props> = ({
         >
           <div className="flex items-center justify-center">{actions}</div>
           {onDelete && (
-            <DeleteWrapper className="absolute top-2 right-2 bg-red-400/80" onSubmit={onDelete}>
-              <X className=" cursor-pointer text-white z-10" size={20} />
+            <DeleteWrapper className="absolute right-2 top-2 bg-red-400/80" onSubmit={onDelete}>
+              <X className="z-10 cursor-pointer text-white" size={20} />
             </DeleteWrapper>
           )}
         </div>
       )}
       {(loading || !srcUrl || isLoading) && !empty && (
-        <div className="absolute bg-gray-200 rounded-md animate-pulse top-0 left-0 right-0 bottom-0" />
+        <div className="absolute bottom-0 left-0 right-0 top-0 animate-pulse rounded-md bg-gray-200" />
       )}
     </div>
   )

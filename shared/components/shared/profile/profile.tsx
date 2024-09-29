@@ -36,7 +36,7 @@ export const Profile: React.FC<Props> = ({ className, data }) => {
   }
   return (
     <div className={className}>
-      <Container className="md:px-5 px-0 md:block flex flex-col items-center">
+      <Container className="flex flex-col items-center px-0 md:block md:px-5">
         <Title text="Profile" size="md" className="font-bold" />
         <ProfileForm onSubmit={onSubmit} data={data} className="mb-12" />
         <ChangePassword onSubmit={onSubmit} />

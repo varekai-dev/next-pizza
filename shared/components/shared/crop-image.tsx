@@ -66,7 +66,7 @@ export const CropImage: React.FC<Props> = ({
   }
   return (
     <div className={className}>
-      <div className="flex flex-col flex-start">
+      <div className="flex-start flex flex-col">
         <Input
           ref={inputRef}
           type="file"

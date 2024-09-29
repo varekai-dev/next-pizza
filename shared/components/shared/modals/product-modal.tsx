@@ -25,7 +25,7 @@ export const ProductModal: React.FC<Props> = ({ product }) => {
       <Root>
         <Dialog.DialogTitle>Title</Dialog.DialogTitle>
       </Root>
-      <Dialog.DialogContent className="p-0 w-[1060px] max-w-[1060px] min-h-[510px] bg-white overflow-hidden">
+      <Dialog.DialogContent className="min-h-[510px] w-[1060px] max-w-[1060px] overflow-hidden bg-white p-0">
         <ProductForm product={product} onSubmit={onCloseModal} />
       </Dialog.DialogContent>
     </Dialog.Dialog>

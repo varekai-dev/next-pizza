@@ -24,9 +24,9 @@ export const SettingCategories: React.FC<Props> = ({ className }) => {
   }
 
   return (
-    <div className={cn('w-full flex flex-col gap-3', className)}>
+    <div className={cn('flex w-full flex-col gap-3', className)}>
       {isFetching ? (
-        <div className="flex gap-3 flex-col">
+        <div className="flex flex-col gap-3">
           {Array.from({ length: 5 }).map((_, index) => (
             <Skeleton key={index} className="h-[64px] w-full" />
           ))}
@@ -42,7 +42,7 @@ export const SettingCategories: React.FC<Props> = ({ className }) => {
             />
           ))}
           <CategoryModal onSubmit={handleCreateCategory} isPending={isPending}>
-            <Button className="h-[64px] font-bold text-md" variant="secondary">
+            <Button className="text-md h-[64px] font-bold" variant="secondary">
               Create category
             </Button>
           </CategoryModal>

@@ -1,4 +1,5 @@
 'use client'
+
 import React from 'react'
 
 import { cn } from '@/shared/lib/utils'
@@ -48,11 +49,11 @@ export const CheckboxFiltersGroup: React.FC<Props> = ({
   if (loading) {
     return (
       <div className={className}>
-        <div className="font-bold mb-3">{title}</div>
+        <div className="mb-3 font-bold">{title}</div>
         {Array.from({ length: limit }).map((_, index) => (
-          <Skeleton key={index} className="h-6 mb-5 rounded-[8px]" />
+          <Skeleton key={index} className="mb-5 h-6 rounded-[8px]" />
         ))}
-        <Skeleton className="w-28 h-6 mb-5 rounded-[8px]" />
+        <Skeleton className="mb-5 h-6 w-28 rounded-[8px]" />
       </div>
     )
   }
@@ -75,18 +76,18 @@ export const CheckboxFiltersGroup: React.FC<Props> = ({
 
   return (
     <div className={className}>
-      <div className="font-bold mb-3">{title}</div>
+      <div className="mb-3 font-bold">{title}</div>
       {showAll && (
         <div className="mb-5">
           <Input
             placeholder={searchInputPlaceholder}
             value={search}
             onChange={onChangeSearchInput}
-            className="bg-gray-50 border-none"
+            className="border-none bg-gray-50"
           />
         </div>
       )}
-      <div className="flex flex-col gap-4 max-h-96 pr-2 overflow-auto scrollbar">
+      <div className="scrollbar flex max-h-96 flex-col gap-4 overflow-auto pr-2">
         {list.map((item, index) => (
           <FilterCheckbox
             name={name}
@@ -102,10 +103,10 @@ export const CheckboxFiltersGroup: React.FC<Props> = ({
       {items.length > limit && (
         <div
           className={cn({
-            ['border-t border-t-bg-neutral-100 mt-4']: showAll,
+            ['border-t-bg-neutral-100 mt-4 border-t']: showAll,
           })}
         >
-          <button className="text-primary mt-3" onClick={() => setShowAll(!showAll)}>
+          <button className="mt-3 text-primary" onClick={() => setShowAll(!showAll)}>
             {showAll ? 'Hide' : '+Show all'}
           </button>
         </div>

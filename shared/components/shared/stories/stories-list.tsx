@@ -18,7 +18,7 @@ export const StoriesList: React.FC<Props> = ({ onClickStory, stories, isLoading 
       {isLoading &&
         !stories?.length &&
         [...Array(stories?.length || 6)].map((_, index) => (
-          <div key={index} className={`min-w-[200px] h-[250px] bg-gray-200 rounded-md animate-pulse`} />
+          <div key={index} className={`h-[250px] min-w-[200px] animate-pulse rounded-md bg-gray-200`} />
         ))}
       {stories &&
         stories.map((story) => (

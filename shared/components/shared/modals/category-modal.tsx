@@ -32,7 +32,7 @@ export const CategoryModal: React.FC<React.PropsWithChildren<Props>> = ({
         <Dialog.DialogTitle>Title</Dialog.DialogTitle>
       </Root>
       <Dialog.DialogTrigger asChild>{children}</Dialog.DialogTrigger>
-      <Dialog.DialogContent className="w-[300px] max-w-[300px] bg-white overflow-hidden flex flex-col justify-start  items-center">
+      <Dialog.DialogContent className="flex w-[300px] max-w-[300px] flex-col items-center justify-start overflow-hidden bg-white">
         <CategoryForm categoryName={categoryName} onSubmit={handleSubmit} className="w-[250px]" isPending={isPending} />
       </Dialog.DialogContent>
     </Dialog.Dialog>

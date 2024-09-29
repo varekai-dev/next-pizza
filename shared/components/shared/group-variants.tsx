@@ -26,7 +26,7 @@ export const GroupVariants: React.FC<Props> = ({ items, onClick, className, valu
     findBy: 'value',
   })
   return (
-    <div className={cn(className, 'flex justify-between bg-[#F3F3F7] rounded-3xl p-1 select-none relative')}>
+    <div className={cn(className, 'relative flex select-none justify-between rounded-3xl bg-[#F3F3F7] p-1')}>
       {items.map((item, index) => (
         <button
           ref={(el) => {
@@ -35,9 +35,9 @@ export const GroupVariants: React.FC<Props> = ({ items, onClick, className, valu
           key={item.name}
           onClick={() => !item.disabled && onClick?.(item.value)}
           className={cn(
-            'flex items-center justify-center cursor-pointer h-[30px] px-5 flex-1 rounded-3xl transition-all duration-400 text-sm z-10',
+            'duration-400 z-10 flex h-[30px] flex-1 cursor-pointer items-center justify-center rounded-3xl px-5 text-sm transition-all',
             {
-              'text-gray-500 opacity-50 cursor-not-allowed': item.disabled,
+              'cursor-not-allowed text-gray-500 opacity-50': item.disabled,
             },
           )}
         >
@@ -45,7 +45,7 @@ export const GroupVariants: React.FC<Props> = ({ items, onClick, className, valu
         </button>
       ))}
       <div
-        className="shadow-md shadow-gray-200 absolute bg-white h-[30px] rounded-2xl transition duration-300"
+        className="absolute h-[30px] rounded-2xl bg-white shadow-md shadow-gray-200 transition duration-300"
         style={{
           width: `${activeWidth}px`,
           transform: `translateX(${activeOffset}px)`,

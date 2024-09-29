@@ -24,11 +24,11 @@ export const TopBar: React.FC<Props> = ({ className, searchParams }) => {
 
   const show = scrollY > 150
   return (
-    <div className={cn('sticky top-0 bg-white py-5 shadow-lg shadow-black/5 z-10', className)}>
-      <Container className="flex justify-between gap-5 items-center relative">
-        <div className="flex justify-center items-center md:gap-5 overflow-hidden">
+    <div className={cn('sticky top-0 z-10 bg-white py-5 shadow-lg shadow-black/5', className)}>
+      <Container className="relative flex items-center justify-between gap-5">
+        <div className="flex items-center justify-center overflow-hidden md:gap-5">
           <div
-            className={cn('transition-all duration-300 md:block hidden', {
+            className={cn('hidden transition-all duration-300 md:block', {
               'md:translate-x-0': show,
               'md:animate-move-right md:translate-x-[35px]': !show,
             })}
@@ -40,7 +40,7 @@ export const TopBar: React.FC<Props> = ({ className, searchParams }) => {
 
           <Categories
             searchParams={searchParams}
-            className={cn('transition-all duration-300 ', {
+            className={cn('transition-all duration-300', {
               'md:translate-x-0': show,
               'md:-translate-x-[55px]': !show,
             })}

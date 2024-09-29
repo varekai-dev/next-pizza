@@ -32,20 +32,20 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({ children,
   return (
     <Sheet open={sheetOpen} onOpenChange={(value: boolean) => setSheetOpen(value)}>
       <SheetTrigger asChild>{children}</SheetTrigger>
-      <SheetContent className="flex flex-col justify-between pb-0 bg-[#f4f1ee]">
+      <SheetContent className="flex flex-col justify-between bg-[#f4f1ee] pb-0">
         <div
-          className={cn('flex flex-col h-full', {
+          className={cn('flex h-full flex-col', {
             'justify-center': !totalAmount,
           })}
         >
           {/* Empty cart */}
           {!totalAmount && (
-            <div className="flex flex-col items-center justify-center w-72 mx-auto">
+            <div className="mx-auto flex w-72 flex-col items-center justify-center">
               <Image src="/assets/images/empty-box.png" alt="Empty cart" width={120} height={120} />
               <Title size="sm" text="Empty cart" />
-              <p className="text-center text-neutral-500 mb-5">Add some items to your cart</p>
+              <p className="mb-5 text-center text-neutral-500">Add some items to your cart</p>
 
-              <Button className="w-56 h-12 text-base" size="lg" onClick={() => setSheetOpen(false)}>
+              <Button className="h-12 w-56 text-base" size="lg" onClick={() => setSheetOpen(false)}>
                 <ArrowLeft size={20} className="mr-2" />
                 Turn back
               </Button>
@@ -68,7 +68,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({ children,
                 </SheetTitle>
               </SheetHeader>
               {/* Cart items */}
-              <div className="-mx-6 mt-5 overflow-auto flex-1">
+              <div className="-mx-6 mt-5 flex-1 overflow-auto">
                 {items.map((item) => (
                   <CartDrawerItem
                     disabled={item.disabled}
@@ -93,18 +93,18 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({ children,
               </div>
               <SheetFooter className="-mx-6 bg-white p-8">
                 <div className="w-full">
-                  <div className="flex mb-4">
+                  <div className="mb-4 flex">
                     <span className="flex flex-1 text-lg text-neutral-500">
                       Total
-                      <div className="flex-1 border-b border-dashed border-b-neutral-200 relative -top-1 mx-2" />
+                      <div className="relative -top-1 mx-2 flex-1 border-b border-dashed border-b-neutral-200" />
                     </span>
 
-                    <span className="font-bold text-lg">{totalAmount} ₴</span>
+                    <span className="text-lg font-bold">{totalAmount} ₴</span>
                   </div>
                   <Link href={Route.CHECKOUT}>
-                    <Button loading={loading} type="submit" className="w-full h-12 text-base">
+                    <Button loading={loading} type="submit" className="h-12 w-full text-base">
                       Make an order
-                      <ArrowRight className="w-5 ml-2" />
+                      <ArrowRight className="ml-2 w-5" />
                     </Button>
                   </Link>
                 </div>

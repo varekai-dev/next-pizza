@@ -18,16 +18,16 @@ export const SettingOrderItem: React.FC<Props> = ({ className, item }) => {
   return (
     <div
       className={cn(
-        'flex items-center justify-between px-8 py-5 border-b border-gray-100 first:border-t md:flex-row flex-col',
+        'flex flex-col items-center justify-between border-b border-gray-100 px-8 py-5 first:border-t md:flex-row',
         className,
       )}
     >
       {/* Left side */}
-      <div className="flex items-center md:flex-row flex-col">
+      <div className="flex flex-col items-center md:flex-row">
         <Image src={item.productItem.product.imageUrl} alt={item.productItem.product.name} width={60} height={60} />
-        <div className="md:ml-5 flex flex-col ml-0  md:items-start items-center">
-          <Title text={item.productItem.product.name} size="xs" className="font-bold mb-1" />
-          <div className="text-gray-400 max-w-[240px] w-full">
+        <div className="ml-0 flex flex-col items-center md:ml-5 md:items-start">
+          <Title text={item.productItem.product.name} size="xs" className="mb-1 font-bold" />
+          <div className="w-full max-w-[240px] text-gray-400">
             {getCartItemDetails(
               item.ingredients,
               item.productItem.pizzaType as PizzaType,
@@ -38,7 +38,7 @@ export const SettingOrderItem: React.FC<Props> = ({ className, item }) => {
       </div>
       {/* Right side */}
       <div className="flex flex-col items-end">
-        <div className="font-bold text-[16px] mb-1">{getIngredientsCost(item) + item.productItem.price} ₴</div>
+        <div className="mb-1 text-[16px] font-bold">{getIngredientsCost(item) + item.productItem.price} ₴</div>
         <div className="text-gray-400">
           {item.quantity} unit{item.quantity > 1 ? 's' : ''}
         </div>

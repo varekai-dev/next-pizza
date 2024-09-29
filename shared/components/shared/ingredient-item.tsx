@@ -20,20 +20,20 @@ export const IngredientItem: React.FC<Props> = ({ className, imageUrl, name, act
   return (
     <div
       className={cn(
-        'group border border-white flex items-center flex-col p-1 rounded-md w-34 text-center relative shadow-md bg-white select-none overflow-hidden h-full',
+        'w-34 group relative flex h-full select-none flex-col items-center overflow-hidden rounded-md border border-white bg-white p-1 text-center shadow-md',
         { 'border border-primary': active, 'cursor-pointer': onClick },
         className,
       )}
       onClick={onClick}
     >
       {onDelete && (
-        <DeleteWrapper onSubmit={onDelete} className="absolute right-2 top-2 bg-red-400/80 hidden group-hover:flex">
-          <X className="text-white cursor-pointer group-hover:text-white z-10" size={20} />
+        <DeleteWrapper onSubmit={onDelete} className="absolute right-2 top-2 hidden bg-red-400/80 group-hover:flex">
+          <X className="z-10 cursor-pointer text-white group-hover:text-white" size={20} />
         </DeleteWrapper>
       )}
-      {active && <CircleCheck className="absolute top-2 right-2 text-primary" />}
+      {active && <CircleCheck className="absolute right-2 top-2 text-primary" />}
       <Image width={110} height={110} src={imageUrl} alt={name} />
-      <span className="text-sm mb-1">{name}</span>
+      <span className="mb-1 text-sm">{name}</span>
       <span className="font-bold">{price} ₴</span>
     </div>
   )

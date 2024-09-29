@@ -22,18 +22,18 @@ export const Story: React.FC<Props> = ({ id }) => {
 
   return (
     <div className="overflow-y-auto">
-      <Title text="Story" size="md" className="font-bold mb-5" />
+      <Title text="Story" size="md" className="mb-5 font-bold" />
       <ImageCard
         srcUrl={story?.previewImageUrl}
         actions={<UpdateStory id={id} />}
         onDelete={() => deleteStory(id)}
         isLoading={isDeleteStoryPending || isLoadingStory}
       />
-      <Title text="Story Items" size="md" className="font-bold my-5" />
-      <div className="flex gap-5 sm:flex-wrap flex-no-wrap w-full overflow-x-auto">
+      <Title text="Story Items" size="md" className="my-5 font-bold" />
+      <div className="flex-no-wrap flex w-full gap-5 overflow-x-auto sm:flex-wrap">
         {(isLoadingStory || isDeleteStoryItemPending) &&
           [...Array(2)].map((_, index) => (
-            <div key={index} className="min-w-[200px] w-[200px] h-[250px] bg-gray-200 rounded-md animate-pulse" />
+            <div key={index} className="h-[250px] w-[200px] min-w-[200px] animate-pulse rounded-md bg-gray-200" />
           ))}
         {story?.items.map((item) => (
           <ImageCard

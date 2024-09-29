@@ -61,7 +61,7 @@ export const ProductsGroupList: React.FC<Props> = ({ className, title, items, li
   }, [categoryId, setActiveCategoryId, intersection?.isIntersecting])
   return (
     <div ref={ref} className={className} id={title}>
-      <Title text={title} size="lg" className="font-extrabold mb-5" />
+      <Title text={title} size="lg" className="mb-5 font-extrabold" />
       <div className={cn('grid grid-cols-1 gap-[50px] md:grid-cols-3', listClassName)}>
         {sortedItems.map((product) => (
           <ProductCard

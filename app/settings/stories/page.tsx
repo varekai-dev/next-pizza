@@ -12,7 +12,7 @@ export default async function StoriesPage() {
 
   return (
     <div className="w-full">
-      <Title text="Stories" size="md" className="font-bold mb-5" />
+      <Title text="Stories" size="md" className="mb-5 font-bold" />
       <div className="flex items-center gap-2">
         <SettingsStories />
       </div>

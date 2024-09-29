@@ -33,10 +33,10 @@ export const ChangePassword: React.FC<Props> = ({ className, onSubmit }) => {
   return (
     <div className={className}>
       <FormProvider {...form}>
-        <form className="flex flex-col gap-5 w-96 mt-10" onSubmit={form.handleSubmit(handleSubmit)}>
+        <form className="mt-10 flex w-96 flex-col gap-5" onSubmit={form.handleSubmit(handleSubmit)}>
           <FormInput type="password" name="password" label="New Password" required allowClear />
           <FormInput type="password" name="confirmPassword" label="Confirm Password" required allowClear />
-          <Button disabled={form.formState.isSubmitting} className="text-base mt-5" type="submit">
+          <Button disabled={form.formState.isSubmitting} className="mt-5 text-base" type="submit">
             Update password
           </Button>
         </form>

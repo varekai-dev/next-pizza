@@ -26,7 +26,7 @@ export const SettingButton: React.FC<Props> = ({ className, onClickSignIn }) => 
     <div className={className}>
       {session ? (
         <SettingPopup role={session.user.role} pathname={pathname}>
-          <Button variant="secondary" className="flex items-center gap-2 font-semibold text-md">
+          <Button variant="secondary" className="text-md flex items-center gap-2 font-semibold">
             <CircleUser size={18} />
             Settings
           </Button>

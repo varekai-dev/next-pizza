@@ -12,7 +12,7 @@ export default async function IngredientsPage() {
 
   return (
     <div className="overflow-auto">
-      <Title text="Ingredients" size="md" className="font-bold mb-5" />
+      <Title text="Ingredients" size="md" className="mb-5 font-bold" />
       <Ingredients />
     </div>
   )

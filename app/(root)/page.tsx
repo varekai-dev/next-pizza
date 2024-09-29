@@ -19,9 +19,9 @@ export default async function Home({ searchParams }: { searchParams: GetSearchPa
       <TopBar searchParams={searchParams} />
       <Stories />
       <Container className="mt-10 pb-14">
-        <div className="flex gap-[60px] relative">
+        <div className="relative flex gap-[60px]">
           {/* Filters */}
-          <div className="w-[250px] lg:block hidden">
+          <div className="hidden w-[250px] lg:block">
             <React.Suspense>
               <Filters />
             </React.Suspense>

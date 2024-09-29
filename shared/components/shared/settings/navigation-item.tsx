@@ -25,15 +25,15 @@ export const NavigationItem: React.FC<Props> = ({ className, icon, name, href })
     >
       <li
         className={cn(
-          'px-4 my-2 md:py-3 md:px-2 text-gray-500 font-bold text-lg flex items-center gap-3 cursor-pointer select-none hover:bg-secondary hover:text-primary',
+          'my-2 flex cursor-pointer select-none items-center gap-3 px-4 text-lg font-bold text-gray-500 hover:bg-secondary hover:text-primary md:px-2 md:py-3',
           className,
           {
-            'bg-secondary rounded-md ': isActive,
+            'rounded-md bg-secondary': isActive,
           },
         )}
       >
-        <div className={cn('md:scale-100 scale-150', {})}>{icon}</div>
-        <span className="md:inline-block hidden">{name}</span>
+        <div className={cn('scale-150 md:scale-100', {})}>{icon}</div>
+        <span className="hidden md:inline-block">{name}</span>
       </li>
     </Link>
   )

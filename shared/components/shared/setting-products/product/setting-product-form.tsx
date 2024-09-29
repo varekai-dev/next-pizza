@@ -48,13 +48,13 @@ export const SettingProductForm: React.FC<Props> = ({ className, defaultValues, 
     <div className={className}>
       <FormProvider {...form}>
         <form className="flex flex-col gap-5" onSubmit={form.handleSubmit(onSubmit)}>
-          <div className="flex justify-between items-center">
+          <div className="flex items-center justify-between">
             <div className="mr-2">
               <Title text="Product" size="md" className="font-bold" />
             </div>
           </div>
-          <div className="sm:flex-row flex-col-reverse sm:items-start  items-center flex sm:gap-10 gap-3  w-full">
-            <div className="sm:w-auto w-full flex flex-col gap-5 min-w-[280px] h-full">
+          <div className="flex w-full flex-col-reverse items-center gap-3 sm:flex-row sm:items-start sm:gap-10">
+            <div className="flex h-full w-full min-w-[280px] flex-col gap-5 sm:w-auto">
               <FormInput label="Name" name="name" placeholder="Name" required disabled={isPending} />
               <FormInput label="Price ₴" name="price" placeholder="Price" required type="number" disabled={isPending} />
             </div>

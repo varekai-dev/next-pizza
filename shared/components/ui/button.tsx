@@ -49,7 +49,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         {...props}
       >
-        {!loading ? children : <Loader2 className="w-5 h-5 animate-spin" />}
+        {!loading ? children : <Loader2 className="h-5 w-5 animate-spin" />}
       </Comp>
     )
   },

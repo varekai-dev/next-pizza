@@ -61,20 +61,20 @@ export const ChoosePizzaForm: React.FC<Props> = ({
   return (
     <div
       className={cn('flex flex-1 rounded', className, {
-        'flex-col max-h-[70vh] scrollbar overflow-x-auto': isDrawer,
-        'lg:flex-row flex-col': productPage,
+        'scrollbar max-h-[70vh] flex-col overflow-x-auto': isDrawer,
+        'flex-col lg:flex-row': productPage,
       })}
     >
       <ProductImage size={size} src={imageUrl} alt={name} productPage={productPage} isDrawer={isDrawer} />
       <div
         className={cn('w-[490px] bg-[#f7f6f5] p-7', {
           'w-full': isDrawer,
-          'lg:w-[490px] w-full ': productPage,
+          'w-full lg:w-[490px]': productPage,
         })}
       >
         <Title text={name} />
         <p className="text-gray-400">{textDetails}</p>
-        <div className="flex flex-col gap-4 mt-4">
+        <div className="mt-4 flex flex-col gap-4">
           <GroupVariants
             items={availablePizzaSizes}
             value={String(size)}
@@ -87,7 +87,7 @@ export const ChoosePizzaForm: React.FC<Props> = ({
           />
         </div>
 
-        <div className="bg-gray-50 p-5 rounded-md h-[420px] overflow-auto scrollbar mt-5">
+        <div className="scrollbar mt-5 h-[420px] overflow-auto rounded-md bg-gray-50 p-5">
           <div className="grid grid-cols-3 gap-3">
             {ingredients.map((ingredient) => {
               return (
@@ -103,10 +103,10 @@ export const ChoosePizzaForm: React.FC<Props> = ({
             })}
           </div>
         </div>
-        <span className="sticky bottom-6 sm:block sm:bottom-0 z-10">
+        <span className="sticky bottom-6 z-10 sm:bottom-0 sm:block">
           <Button
             loading={loading}
-            className={cn('h-[55px] px-10 text-base rounded-[18px] w-full mt-10')}
+            className={cn('mt-10 h-[55px] w-full rounded-[18px] px-10 text-base')}
             onClick={handleClickAddCart}
           >
             Add to Cart {totalPrice} ₴
