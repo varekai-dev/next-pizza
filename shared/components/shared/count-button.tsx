@@ -19,7 +19,7 @@ export const CountButton: React.FC<CountButtonProps> = ({ className, onClick, va
       <CountIconButton onClick={() => onClick?.('minus')} disabled={value === 1} size={size} type="minus" />
 
       <b
-        className={cn('text-md select-none', {
+        className={cn('select-none', {
           'text-sm': size === 'sm',
         })}
       >

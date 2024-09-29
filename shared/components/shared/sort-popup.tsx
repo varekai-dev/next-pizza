@@ -55,7 +55,7 @@ export const SortPopup: React.FC<Props> = ({ className, searchParams }) => {
             className,
           )}
         >
-          <ArrowUpDown className="h-4 w-4" />
+          <ArrowUpDown className="size-4" />
           <b>Sort:</b>
 
           <b className="text-primary">{selectedText}</b>

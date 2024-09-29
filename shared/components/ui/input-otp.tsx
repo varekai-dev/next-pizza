@@ -40,7 +40,7 @@ const InputOTPSlot = React.forwardRef<
       )}
       {...props}
     >
-      {char ? char : !isActive && <span className="border-full h-1 w-1 bg-[#dadada]" />}
+      {char ? char : !isActive && <span className="size-1 rounded-full bg-[#dadada]" />}
       {hasFakeCaret && (
         <div className="pointer-events-none absolute inset-0 flex w-full items-center justify-center">
           <div className="h-4 w-px animate-blink bg-foreground" />

@@ -42,7 +42,7 @@ export const SettingCategories: React.FC<Props> = ({ className }) => {
             />
           ))}
           <CategoryModal onSubmit={handleCreateCategory} isPending={isPending}>
-            <Button className="text-md h-[64px] font-bold" variant="secondary">
+            <Button className="h-[64px] font-bold" variant="secondary">
               Create category
             </Button>
           </CategoryModal>

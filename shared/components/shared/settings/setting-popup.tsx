@@ -50,9 +50,9 @@ export const SettingPopup: React.FC<React.PropsWithChildren<Props>> = ({ classNa
             )
           })}
         </ul>
-        <div className="flex-grow border-t border-gray-100 py-2" />
+        <div className="grow border-t border-gray-100 py-2" />
         <Button
-          className="text-md w-full"
+          className="w-full"
           variant="secondary"
           onClick={() =>
             signOut({

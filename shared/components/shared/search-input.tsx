@@ -49,9 +49,9 @@ export const SearchInput: React.FC<Props> = ({ className }) => {
   }
   return (
     <>
-      {focused && <div className="fixed bottom-0 left-0 right-0 top-0 z-30 bg-black/50" />}
+      {focused && <div className="fixed inset-0 z-30 bg-black/50" />}
       <div ref={ref} className={cn('relative z-30 flex h-11 flex-1 justify-between rounded-2xl', className)}>
-        <Search size={20} className="absolute left-3 top-1/2 translate-y-[-50%] text-gray-500" />
+        <Search size={20} className="absolute left-3 top-1/2 translate-y-1/2 text-gray-500" />
         <input
           className="w-full rounded-2xl bg-gray-100 pl-11 outline-none"
           type="text"
@@ -77,13 +77,7 @@ export const SearchInput: React.FC<Props> = ({ className }) => {
                 href={`${Route.PRODUCT}/${product.id}`}
                 scroll={false}
               >
-                <Image
-                  className="h-8 w-8 rounded-sm"
-                  src={product.imageUrl}
-                  width={32}
-                  height={32}
-                  alt={product.name}
-                />
+                <Image className="size-8 rounded-sm" src={product.imageUrl} width={32} height={32} alt={product.name} />
                 <span>{product.name}</span>
               </Link>
             ))}

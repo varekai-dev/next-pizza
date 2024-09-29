@@ -54,7 +54,7 @@ export const SettingProductForm: React.FC<Props> = ({ className, defaultValues, 
             </div>
           </div>
           <div className="flex w-full flex-col-reverse items-center gap-3 sm:flex-row sm:items-start sm:gap-10">
-            <div className="flex h-full w-full min-w-[280px] flex-col gap-5 sm:w-auto">
+            <div className="flex size-full min-w-[280px] flex-col gap-5 sm:w-auto">
               <FormInput label="Name" name="name" placeholder="Name" required disabled={isPending} />
               <FormInput label="Price ₴" name="price" placeholder="Price" required type="number" disabled={isPending} />
             </div>

@@ -30,7 +30,7 @@ export const Story: React.FC<Props> = ({ id }) => {
         isLoading={isDeleteStoryPending || isLoadingStory}
       />
       <Title text="Story Items" size="md" className="my-5 font-bold" />
-      <div className="flex-no-wrap flex w-full gap-5 overflow-x-auto sm:flex-wrap">
+      <div className="flex w-full flex-nowrap gap-5 overflow-x-auto sm:flex-wrap">
         {(isLoadingStory || isDeleteStoryItemPending) &&
           [...Array(2)].map((_, index) => (
             <div key={index} className="h-[250px] w-[200px] min-w-[200px] animate-pulse rounded-md bg-gray-200" />

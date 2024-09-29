@@ -36,13 +36,13 @@ export const FormTextarea: React.FC<Props> = ({ className, name, label, required
         {label} {required && <span className="text-red-500">*</span>}
       </p>
       <div className="relative">
-        <Textarea className="text-md h-12" {...register(name)} {...props} />
+        <Textarea className="h-12" {...register(name)} {...props} />
         {text && allowClear && (
           <button
             onClick={onClickClear}
             className="absolute right-4 top-7 -translate-y-1/2 cursor-pointer opacity-30 hover:opacity-100"
           >
-            <X className="h-5 w-5" />
+            <X className="size-5" />
           </button>
         )}
       </div>

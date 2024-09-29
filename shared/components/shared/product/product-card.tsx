@@ -32,7 +32,7 @@ export const ProductCard: React.FC<Props> = ({
   return (
     <div className={className}>
       <Link href={`${Route.PRODUCT}/${id}`} className="flex h-full flex-col" scroll={false}>
-        <div className="h=[260px] flex justify-center rounded-lg bg-secondary p-6">
+        <div className="flex h-[260px] justify-center rounded-lg bg-secondary p-6">
           <Image
             width={215}
             height={215}

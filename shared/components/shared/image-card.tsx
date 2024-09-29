@@ -60,7 +60,7 @@ export const ImageCard: React.FC<Props> = ({
         </div>
       )}
       {(loading || !srcUrl || isLoading) && !empty && (
-        <div className="absolute bottom-0 left-0 right-0 top-0 animate-pulse rounded-md bg-gray-200" />
+        <div className="absolute inset-0 animate-pulse rounded-md bg-gray-200" />
       )}
     </div>
   )

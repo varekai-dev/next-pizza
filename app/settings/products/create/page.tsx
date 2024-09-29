@@ -21,7 +21,7 @@ const createItems = [
 
 export default function ProductCreatePage() {
   return (
-    <div className="flex h-full w-full items-center justify-center gap-10 overflow-auto">
+    <div className="flex size-full items-center justify-center gap-10 overflow-auto">
       {createItems.map((item) => (
         <Link
           href={item.href}

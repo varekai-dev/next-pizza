@@ -128,7 +128,7 @@ export const Filters: React.FC<Props> = ({ className, activeFiltersCount, search
       />
       {!!activeFiltersCount && activeFiltersCount > 0 && (
         <div className="fixed bottom-2 right-2">
-          <Button variant="link" className="text-md flex items-center gap-2" onClick={clearFilters}>
+          <Button variant="link" className="flex items-center gap-2" onClick={clearFilters}>
             Clear all
             <CircleX />
           </Button>

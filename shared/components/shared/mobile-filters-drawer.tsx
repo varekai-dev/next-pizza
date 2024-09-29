@@ -23,7 +23,7 @@ export const MobileFilterDrawer: React.FC<React.PropsWithChildren<Props>> = ({
       <Root>
         <SheetTitle>Title</SheetTitle>
       </Root>
-      <SheetContent className="scrollbar max-h-[100vh] overflow-x-scroll bg-[#fff] pb-[50px] pl-8 pr-12 pt-4">
+      <SheetContent className="scrollbar max-h-screen overflow-x-scroll bg-white pb-[50px] pl-8 pr-12 pt-4">
         <React.Suspense>
           <Filters activeFiltersCount={activeFiltersCount} searchParams={searchParams} />
         </React.Suspense>

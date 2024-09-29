@@ -41,7 +41,7 @@ export const FormInput: React.FC<FormInputProps> = ({ className, name, label, re
         </p>
       )}
       <div className="relative">
-        <Input className="text-md h-12 bg-white" {...register(name)} {...props} name={name} />
+        <Input className="h-12 bg-white" {...register(name)} {...props} name={name} />
         {allowClear && text && <ClearButton onClick={onClickClear} />}
       </div>
       {errorText && <ErrorText text={errorText} className="mt-2" />}
