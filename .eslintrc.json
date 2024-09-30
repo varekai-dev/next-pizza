@@ -5,9 +5,9 @@
     "plugin:import/typescript",
     "plugin:import/errors",
     "plugin:import/warnings",
-     "plugin:tailwindcss/recommended"
+    "plugin:tailwindcss/recommended"
   ],
-  "plugins": ["@typescript-eslint/eslint-plugin", "simple-import-sort","tailwindcss"],
+  "plugins": ["@typescript-eslint/eslint-plugin", "simple-import-sort", "tailwindcss"],
   "rules": {
     "@typescript-eslint/no-unused-vars": "warn",
     "@next/next/no-img-element": "off",
