@@ -17,10 +17,9 @@ interface Props {
 
 export const Products: React.FC<Props> = ({ className, searchParams }) => {
   const { data: categories } = useQuery({
-    queryKey: [QueryKey.GET_CATEGORIES, JSON.stringify(searchParams)],
+    queryKey: [QueryKey.GET_CATEGORIES, String(JSON.stringify(searchParams))],
     queryFn: () => Api.categories.getAll({ params: searchParams }),
   })
-
   return (
     <div className={cn('flex-1', className)}>
       <div className="flex flex-col gap-16">
