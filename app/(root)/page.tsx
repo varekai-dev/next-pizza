@@ -21,7 +21,7 @@ export default async function Home({ searchParams }: { searchParams: GetSearchPa
       <Container className="mt-10 pb-14">
         <div className="relative flex gap-[60px]">
           {/* Filters */}
-          <div className="hidden w-[250px] lg:block">
+          <div className="scrollbar sticky top-28 hidden max-h-[calc(100vh-11rem)] w-[250px] shrink-0 self-start overflow-y-auto pr-2 lg:block">
             <React.Suspense>
               <Filters />
             </React.Suspense>

@@ -48,20 +48,25 @@ const RangeSlider = React.forwardRef(
         <SliderPrimitive.Track className="relative h-1 w-full grow overflow-hidden rounded-full bg-primary/20">
           <SliderPrimitive.Range className="absolute h-full bg-primary" />
         </SliderPrimitive.Track>
-        {localValues.map((value, index) => (
-          <React.Fragment key={index}>
-            <div
-              className="absolute text-center"
-              style={{
-                left: `calc(${((value - min) / (max - min)) * 100}% + 0px)`,
-                top: `10px`,
-              }}
-            >
-              <span className="text-sm">{formatLabel ? formatLabel(value) : value}</span>
-            </div>
-            <SliderPrimitive.Thumb className="block size-4 rounded-full border border-primary/50 bg-white shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50" />
-          </React.Fragment>
-        ))}
+        {localValues.map((value, index) => {
+          const percent = ((value - min) / (max - min)) * 100
+          return (
+            <React.Fragment key={index}>
+              <div
+                className="absolute whitespace-nowrap text-center"
+                style={{
+                  left: `${percent}%`,
+                  top: `10px`,
+                  // Shift by the same percent so the label never overflows the track edges
+                  transform: `translateX(-${percent}%)`,
+                }}
+              >
+                <span className="text-sm">{formatLabel ? formatLabel(value) : value}</span>
+              </div>
+              <SliderPrimitive.Thumb className="block size-4 rounded-full border border-primary/50 bg-white shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50" />
+            </React.Fragment>
+          )
+        })}
       </SliderPrimitive.Root>
     )
   },
