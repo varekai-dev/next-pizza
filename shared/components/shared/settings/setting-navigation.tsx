@@ -15,11 +15,11 @@ export const SettingNavigation: React.FC<Props> = async ({ className, role }) =>
   return (
     <div
       className={cn(
-        'sticky bottom-5 left-5 right-5 rounded-md bg-white md:relative md:bottom-auto md:left-auto md:right-auto md:min-w-[250px] md:p-5',
+        'sticky bottom-5 left-5 right-5 rounded-md bg-white p-2 shadow-[0_4px_20px_rgba(0,0,0,0.08)] md:relative md:bottom-auto md:left-auto md:right-auto md:min-w-[250px] md:p-5 md:shadow-none',
         className,
       )}
     >
-      <ul className="flex h-[60px] w-full items-center md:block">
+      <ul className="flex w-full items-center gap-1 md:block">
         {navList.map(({ name, isAdmin, href, icon }) => {
           if (role === UserRole.USER && isAdmin) {
             return

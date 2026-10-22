@@ -62,7 +62,7 @@ export const ProductsGroupList: React.FC<Props> = ({ className, title, items, li
   return (
     <div ref={ref} className={className} id={title}>
       <Title text={title} size="lg" className="mb-5 font-extrabold" />
-      <div className={cn('grid grid-cols-1 gap-[50px] md:grid-cols-3', listClassName)}>
+      <div className={cn('grid grid-cols-1 gap-8 sm:grid-cols-2 xl:grid-cols-3 xl:gap-[50px]', listClassName)}>
         {sortedItems.map((product) => (
           <ProductCard
             key={product.id}

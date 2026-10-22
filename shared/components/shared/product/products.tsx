@@ -21,7 +21,7 @@ export const Products: React.FC<Props> = ({ className, searchParams }) => {
     queryFn: () => Api.categories.getAll({ params: searchParams }),
   })
   return (
-    <div className={cn('flex-1', className)}>
+    <div className={cn('min-w-0 flex-1', className)}>
       <div className="flex flex-col gap-16">
         {categories?.map((category) => {
           if (!category.products?.length) return null

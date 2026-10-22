@@ -32,13 +32,13 @@ export const ProductCard: React.FC<Props> = ({
   return (
     <div className={className}>
       <Link href={`${Route.PRODUCT}/${id}`} className="flex h-full flex-col" scroll={false}>
-        <div className="flex h-[260px] justify-center rounded-lg bg-secondary p-6">
+        <div className="flex aspect-square max-h-[260px] items-center justify-center rounded-lg bg-secondary p-6">
           <Image
             width={215}
             height={215}
             src={imageUrl}
-            alt="Logo"
-            className="transition duration-300 hover:translate-y-1"
+            alt={name}
+            className="size-full max-h-[215px] max-w-[215px] object-contain transition duration-300 hover:translate-y-1"
           />
         </div>
         <Title
